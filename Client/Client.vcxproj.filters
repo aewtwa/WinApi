@@ -10,6 +10,15 @@
     <Filter Include="Windows\Header">
       <UniqueIdentifier>{b12b3469-3cf5-4d5f-ae1d-20ddfc7ed4bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{abf34135-5617-48af-afd6-8b9f4611d91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common">
+      <UniqueIdentifier>{08733243-eed1-4d89-be61-351bd230e14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\High Level interface">
+      <UniqueIdentifier>{d2a64901-b9f1-484f-8c09-0007bd4d625c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -23,6 +32,15 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ssApplication.h">
+      <Filter>Engine\High Level interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Commoninclude.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ssMath.h">
+      <Filter>Engine\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,5 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ssApplication.cpp">
+      <Filter>Engine\High Level interface</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

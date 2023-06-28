@@ -1,10 +1,9 @@
 ﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
-//푸시
-
 #include "framework.h"
 #include "Client.h"
+#include "ssApplication.h"
 
 #define MAX_LOADSTRING 100
 
@@ -12,6 +11,7 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+ss::Application application;                    // 전역 객체 생성
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -44,17 +44,42 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    // GetMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
+    //              (msg.message == WM_QUIT) return false;
+    //              WM_QUIT 이외의 메세지가 발생 한 경우는 return true; 
+
+    // PeekMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
+    //               PM_REMOVE -> 발생한 메세지를 가져올 때 메세지큐에서 제거 (GetMessage 랑 동일하게 하기 위해서...)
+    //               메세지큐에 메세지 유/무 에 상관없이 함수가 리턴됨
+    //               리턴값이 true 인 경우 메세지가 있었다. 리턴값이 false 인 경우 메세지가 큐에 없었다.
+
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (WM_QUIT == msg.message)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+        {
+            // 게임 로직 돌려줘~
+            // (게임 실행)
+            application.Run();
         }
     }
 
-    return (int) msg.wParam;
+    if (msg.message == WM_QUIT)
+    {
+        //
+    }
+
+    return (int)msg.wParam;
 }
 
 
@@ -101,6 +126,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+
+   application.Initialize(hWnd);
 
    if (!hWnd)
    {
@@ -150,7 +177,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            Rectangle(hdc, 100, 100, 200, 200);
 
             EndPaint(hWnd, &ps);
         }
