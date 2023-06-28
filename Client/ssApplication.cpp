@@ -32,7 +32,7 @@ namespace ss
 			mPos.x -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && mPos.x < 1500)
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && mPos.x < 1484)
 		{
 			mPos.x += 0.01f;
 		}
@@ -42,7 +42,7 @@ namespace ss
 			mPos.y -= 0.01f;
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000 && mPos.y < 750)
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000 && mPos.y < 741)
 		{
 			mPos.y += 0.01f;
 		}
