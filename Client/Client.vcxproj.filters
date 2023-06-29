@@ -19,6 +19,9 @@
     <Filter Include="Engine\High Level interface">
       <UniqueIdentifier>{d2a64901-b9f1-484f-8c09-0007bd4d625c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{168b78a3-65c5-4df2-a449-dbe11bbdc2a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -42,6 +45,9 @@
     <ClInclude Include="ssMath.h">
       <Filter>Engine\Common</Filter>
     </ClInclude>
+    <ClInclude Include="ssInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -60,6 +66,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp">
       <Filter>Engine\High Level interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ssInput.cpp">
+      <Filter>Engine\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

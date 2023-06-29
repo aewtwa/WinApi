@@ -1,5 +1,5 @@
 #include "ssApplication.h"
-
+#include "ssInput.h"
 
 namespace ss
 {
@@ -17,6 +17,8 @@ namespace ss
 	{
 		mHWND = HWND;
 		mHDC = GetDC(mHWND);
+
+		Input::Initailize();
 	}
 
 	void Application::Run()
@@ -27,24 +29,23 @@ namespace ss
 
 	void Application::Update()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000 && mPos.x > 0)
-		{
-			mPos.x -= 0.01f;
-		}
+		Input::Update();
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000 && mPos.x < 1484)
-		{
-			mPos.x += 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_UP) & 0x8000 && mPos.y > 0)
+		if (Input::GetKey(eKeyCode::W))
 		{
 			mPos.y -= 0.01f;
 		}
-
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000 && mPos.y < 741)
+		if (Input::GetKey(eKeyCode::A))
+		{
+			mPos.x -= 0.01f;
+		}
+		if (Input::GetKey(eKeyCode::S))
 		{
 			mPos.y += 0.01f;
+		}
+		if (Input::GetKey(eKeyCode::D))
+		{
+			mPos.x += 0.01f;
 		}
 	}
 
