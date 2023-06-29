@@ -52,7 +52,7 @@ namespace ss
 	void Application::Render()
 	{
 		//Rectangle(mHdc, 100, 100, 200, 200);
-		Ellipse(mHDC,mPos.x,mPos.y
-			, 100 + mPos.x, 100 + mPos.y);
+		InvalidateRect(mHWND, NULL, true);
+		Ellipse(mHDC, mPos.x, mPos.y, 100 + mPos.x, 100 + mPos.y);
 	}
 }
