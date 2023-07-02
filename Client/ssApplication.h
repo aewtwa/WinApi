@@ -20,5 +20,6 @@ namespace ss
 		HDC mHDC;
 
 		Vector2 mPos;
+		int mDirect;
 	};
 }

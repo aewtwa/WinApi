@@ -138,12 +138,14 @@
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssInput.h" />
     <ClInclude Include="ssMath.h" />
+    <ClInclude Include="ssTime.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssInput.cpp" />
+    <ClCompile Include="ssTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
