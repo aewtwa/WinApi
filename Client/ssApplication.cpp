@@ -1,14 +1,15 @@
 #include "ssApplication.h"
 #include "ssInput.h"
 #include "ssTime.h"
-#include <time.h>
+#include "ssCircle.h"
+
+std::vector<ss::Circle*> Circles;
 
 namespace ss
 {
 	Application::Application()
 		: mHWND(NULL)
 		, mHDC(NULL)
-		, mDirect(rand() % 8)
 	{
 	}
 
@@ -23,6 +24,9 @@ namespace ss
 
 		Time::Initailize();
 		Input::Initailize();
+		
+		Circle* Circle1 = new Circle;
+		Circles.push_back(Circle1);
 	}
 
 	void Application::Run()
@@ -35,8 +39,17 @@ namespace ss
 	{
 		Time::Update();
 		Input::Update();
-
-		if (mDirect == 0)
+		if (Input::GetKeyUp(eKeyCode::W))
+		{
+			Circle* circle123 = new Circle;
+			Circles.push_back(circle123);
+		}
+		for (size_t i = 0; i < Circles.size(); i++)
+		{
+			Circles[i]->Update();
+		}
+		//자동으로 원 움직이기
+		/*if (mDirect == 0)
 		{
 			mPos.y -= 500.0f * Time::DeltaTime();
 			if (mPos.y <= 0)
@@ -103,8 +116,9 @@ namespace ss
 			{
 				mDirect = rand() % 8;
 			}
-		}
-		
+		}*/
+
+		// 키입력
 		/*if (Input::GetKey(eKeyCode::W))
 		{
 			mPos.y -= 300.0f * Time::DeltaTime();
@@ -126,8 +140,9 @@ namespace ss
 	void Application::Render()
 	{
 		Time::Render(mHDC);
-		//Rectangle(mHdc, 100, 100, 200, 200);
-		InvalidateRect(mHWND, NULL, true);
-		Ellipse(mHDC, mPos.x, mPos.y, 100 + mPos.x, 100 + mPos.y);
+		for (size_t i = 0; i < Circles.size(); i++)
+		{
+			Circles[i]->Render(mHDC);
+		}
 	}
 }

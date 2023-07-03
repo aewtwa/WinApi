@@ -25,6 +25,12 @@
     <Filter Include="Engine\Time">
       <UniqueIdentifier>{f3e35ba0-54a7-4185-9efb-1debdc92ab64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{b5c6220e-227c-4f0e-b65a-6d9a6c98d41c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Circle">
+      <UniqueIdentifier>{9effdef2-7f86-41f9-a465-e0f1e28df2eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -54,7 +60,9 @@
     <ClInclude Include="ssTime.h">
       <Filter>Engine\Time</Filter>
     </ClInclude>
-    <ClInclude Include="ssCircle.h" />
+    <ClInclude Include="ssCircle.h">
+      <Filter>Objects\Circle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -80,6 +88,8 @@
     <ClCompile Include="ssTime.cpp">
       <Filter>Engine\Time</Filter>
     </ClCompile>
-    <ClCompile Include="ssCircle.cpp" />
+    <ClCompile Include="ssCircle.cpp">
+      <Filter>Objects\Circle</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
