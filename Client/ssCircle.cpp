@@ -27,9 +27,9 @@ namespace ss
 	{
 		Circle::Count();
 
-		if (mPos.x <= 0 || mPos.x >= 1484)
+		if (mPos.x <= 0.0f || mPos.x >= 1484.0f)
 			mDirect.x = -mDirect.x;
-		if (mPos.y <= 0 || mPos.y >= 741)
+		if (mPos.y <= 0.0f || mPos.y >= 741.0f)
 			mDirect.y = -mDirect.y;
 
 		mPos.x += mDirect.x * Time::DeltaTime() * mSpeed;
@@ -38,6 +38,6 @@ namespace ss
 
 	void Circle::Render(HDC hdc)
 	{
-		Ellipse(hdc, mPos.x, mPos.y, 100 + mPos.x, 100 + mPos.y);
+		Ellipse(hdc, mPos.x, mPos.y, 100.0f + mPos.x, 100.0f + mPos.y);
 	}
 }
