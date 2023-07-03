@@ -54,6 +54,7 @@
     <ClInclude Include="ssTime.h">
       <Filter>Engine\Time</Filter>
     </ClInclude>
+    <ClInclude Include="ssCircle.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -79,5 +80,6 @@
     <ClCompile Include="ssTime.cpp">
       <Filter>Engine\Time</Filter>
     </ClCompile>
+    <ClCompile Include="ssCircle.cpp" />
   </ItemGroup>
 </Project>

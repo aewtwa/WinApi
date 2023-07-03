@@ -127,7 +127,7 @@ namespace ss
 	{
 		Time::Render(mHDC);
 		//Rectangle(mHdc, 100, 100, 200, 200);
-		//InvalidateRect(mHWND, NULL, true);
+		InvalidateRect(mHWND, NULL, true);
 		Ellipse(mHDC, mPos.x, mPos.y, 100 + mPos.x, 100 + mPos.y);
 	}
 }

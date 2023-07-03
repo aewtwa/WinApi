@@ -136,6 +136,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ssApplication.h" />
+    <ClInclude Include="ssCircle.h" />
     <ClInclude Include="ssInput.h" />
     <ClInclude Include="ssMath.h" />
     <ClInclude Include="ssTime.h" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp" />
+    <ClCompile Include="ssCircle.cpp" />
     <ClCompile Include="ssInput.cpp" />
     <ClCompile Include="ssTime.cpp" />
   </ItemGroup>
