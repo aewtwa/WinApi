@@ -10,6 +10,10 @@ namespace ss
 	Application::Application()
 		: mHWND(NULL)
 		, mHDC(NULL)
+		, mWidth(0)
+		, mHeight(0)
+		, mBackBuffer(NULL)
+		, mBackHdc(NULL)
 	{
 	}
 
@@ -22,11 +26,33 @@ namespace ss
 		mHWND = HWND;
 		mHDC = GetDC(mHWND);
 
+		mWidth = 1600;
+		mHeight = 900;
+
+
+		RECT rect = { 0, 0, mWidth, mHeight };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		SetWindowPos(mHWND
+			, nullptr, 0, 0
+			, rect.right - rect.left
+			, rect.bottom - rect.top
+			, 0);
+		ShowWindow(mHWND, true);
+
+		// 윈도우 해상도 동일한 비트맵 생성
+		mBackBuffer = CreateCompatibleBitmap(mHDC, mWidth, mHeight);
+
+		// 새로 생성한 비트맵을 가리키는 DC 생성
+		mBackHdc = CreateCompatibleDC(mHDC);
+
+		// 새로 생성한 비트맵과 DC를 서로 연결
+		HBITMAP defaultBitmap
+			= (HBITMAP)SelectObject(mBackHdc, mBackBuffer);
+		DeleteObject(defaultBitmap);
+
 		Time::Initailize();
-		Input::Initailize();
-		
-		Circle* Circle1 = new Circle;
-		Circles.push_back(Circle1);
+		Input::Initailize();		
 	}
 
 	void Application::Run()
@@ -39,6 +65,8 @@ namespace ss
 	{
 		Time::Update();
 		Input::Update();
+
+		// w 누를때마다 공 생성
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
 			Circle* circle123 = new Circle;
@@ -48,75 +76,6 @@ namespace ss
 		{
 			Circles[i]->Update();
 		}
-		//자동으로 원 움직이기
-		/*if (mDirect == 0)
-		{
-			mPos.y -= 500.0f * Time::DeltaTime();
-			if (mPos.y <= 0)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 1)
-		{
-			mPos.x += 500.0f * Time::DeltaTime();
-			mPos.y -= 500.0f * Time::DeltaTime();
-			if (mPos.x >= 1484 || mPos.y <= 0)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 2)
-		{
-			mPos.x += 500.0f * Time::DeltaTime();
-			if (mPos.x >= 1484)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 3)
-		{
-			mPos.x += 500.0f * Time::DeltaTime();
-			mPos.y += 500.0f * Time::DeltaTime();
-			if (mPos.x >= 1484 || mPos.y >= 741)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 4)
-		{
-			mPos.y += 500.0f * Time::DeltaTime();
-			if (mPos.y >= 741)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 5)
-		{
-			mPos.x -= 500.0f * Time::DeltaTime();
-			mPos.y += 500.0f * Time::DeltaTime();
-			if (mPos.y >= 741 || mPos.x <= 0)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 6)
-		{
-			mPos.x -= 500.0f * Time::DeltaTime();
-			if (mPos.x <= 0)
-			{
-				mDirect = rand() % 8;
-			}
-		}
-		else if (mDirect == 7)
-		{
-			mPos.x -= 500.0f * Time::DeltaTime();
-			mPos.y -= 500.0f * Time::DeltaTime();
-			if (mPos.y <= 0 || mPos.x <= 0)
-			{
-				mDirect = rand() % 8;
-			}
-		}*/
 
 		// 키입력
 		/*if (Input::GetKey(eKeyCode::W))
@@ -140,9 +99,14 @@ namespace ss
 	void Application::Render()
 	{
 		Time::Render(mHDC);
+
+		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
+
 		for (size_t i = 0; i < Circles.size(); i++)
 		{
 			Circles[i]->Render(mHDC);
 		}
+
+		BitBlt(mHDC, 0, 0, mWidth, mHeight , mBackHdc, 0, 0, SRCCOPY);
 	}
 }

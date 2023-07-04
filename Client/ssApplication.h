@@ -18,6 +18,12 @@ namespace ss
 	private:
 		HWND mHWND;
 		HDC mHDC;
+		UINT mWidth;
+		UINT mHeight;
+
+		HDC mBackHdc;
+		HBITMAP mBackBuffer;
+
 		Vector2 mPos;
 	};
 }

@@ -27,9 +27,9 @@ namespace ss
 	{
 		Circle::Count();
 
-		if (mPos.x <= 0.0f || mPos.x >= 1484.0f)
+		if (mPos.x <= 0.0f || mPos.x >= 1500.0f)
 			mDirect.x = -mDirect.x;
-		if (mPos.y <= 0.0f || mPos.y >= 741.0f)
+		if (mPos.y <= 0.0f || mPos.y >= 780.0f)
 			mDirect.y = -mDirect.y;
 
 		mPos.x += mDirect.x * Time::DeltaTime() * mSpeed;
