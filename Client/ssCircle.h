@@ -13,10 +13,12 @@ namespace ss
 			:mPos{}
 			, mDirect{}
 			,mTimecheck(0.0f)
-			,mSpeed(500.0f)
+			,mSpeed(300.0f)
 		{
-			mPos.x = 500.0f;
-			mPos.y = 500.0f;
+			int RandomX = GetRandomNumber(1500, 0);
+			int RandomY = GetRandomNumber(780, 0);
+			mPos.x = RandomX;
+			mPos.y = RandomY;
 		}
 		void GetRandDirect();
 		void Count();

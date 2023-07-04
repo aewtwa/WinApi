@@ -3,11 +3,18 @@
 
 namespace ss
 {
+	
+
 	void Circle::GetRandDirect()
 	{
-		srand(time(NULL));
-		mDirect.y = rand() % 3 - 1;
-		mDirect.x = rand() % 3 - 1;
+		int RandomX = GetRandomNumber(3, -1);
+		int RandomY = GetRandomNumber(3, -1);
+		/*void* Random = new int;
+		srand((int)Random);*/
+		mDirect.y = RandomX;
+		mDirect.x = RandomY;
+
+		//delete Random;
 	}
 
 	void Circle::Count()

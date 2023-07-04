@@ -16,8 +16,8 @@ namespace ss
 		void Render();
 
 	private:
-		HWND mHWND;
-		HDC mHDC;
+		HWND mHwnd;
+		HDC mHdc;
 		UINT mWidth;
 		UINT mHeight;
 

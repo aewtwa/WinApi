@@ -8,8 +8,8 @@ std::vector<ss::Circle*> Circles;
 namespace ss
 {
 	Application::Application()
-		: mHWND(NULL)
-		, mHDC(NULL)
+		: mHwnd(NULL)
+		, mHdc(NULL)
 		, mWidth(0)
 		, mHeight(0)
 		, mBackBuffer(NULL)
@@ -23,8 +23,8 @@ namespace ss
 
 	void Application::Initialize(HWND HWND)
 	{
-		mHWND = HWND;
-		mHDC = GetDC(mHWND);
+		mHwnd = HWND;
+		mHdc = GetDC(mHwnd);
 
 		mWidth = 1600;
 		mHeight = 900;
@@ -33,18 +33,18 @@ namespace ss
 		RECT rect = { 0, 0, mWidth, mHeight };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
-		SetWindowPos(mHWND
+		SetWindowPos(mHwnd
 			, nullptr, 0, 0
 			, rect.right - rect.left
 			, rect.bottom - rect.top
 			, 0);
-		ShowWindow(mHWND, true);
+		ShowWindow(mHwnd, true);
 
 		// 윈도우 해상도 동일한 비트맵 생성
-		mBackBuffer = CreateCompatibleBitmap(mHDC, mWidth, mHeight);
+		mBackBuffer = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
 
 		// 새로 생성한 비트맵을 가리키는 DC 생성
-		mBackHdc = CreateCompatibleDC(mHDC);
+		mBackHdc = CreateCompatibleDC(mHdc);
 
 		// 새로 생성한 비트맵과 DC를 서로 연결
 		HBITMAP defaultBitmap
@@ -66,7 +66,7 @@ namespace ss
 		Time::Update();
 		Input::Update();
 
-		// w 누를때마다 공 생성
+		// b 누를때마다 공 생성
 		if (Input::GetKeyUp(eKeyCode::B))
 		{
 			Circle* circle123 = new Circle;
@@ -99,19 +99,18 @@ namespace ss
 
 	void Application::Render()
 	{
-		Time::Render(mHDC);
-
 		// 화면에 창크기만큼의 네모 그리기
 		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
 
-		// 화면에 공 그리기
+		Time::Render(mBackHdc);
+
 		for (size_t i = 0; i < Circles.size(); i++)
 		{
-			Circles[i]->Render(mHDC);
+			Circles[i]->Render(mBackHdc);
 		}
-		Ellipse(mBackHdc, 100 + mPos.x, 100 + mPos.y
-			, 200 + mPos.x, 200 + mPos.y);
 
-		BitBlt(mHDC, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+		Ellipse(mBackHdc, 100 + mPos.x, 100 + mPos.y, 200 + mPos.x, 200 + mPos.y);
+
+		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}
 }
