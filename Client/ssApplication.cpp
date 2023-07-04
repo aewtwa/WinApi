@@ -67,18 +67,19 @@ namespace ss
 		Input::Update();
 
 		// w 누를때마다 공 생성
-		if (Input::GetKeyUp(eKeyCode::W))
+		if (Input::GetKeyUp(eKeyCode::B))
 		{
 			Circle* circle123 = new Circle;
 			Circles.push_back(circle123);
 		}
+
 		for (size_t i = 0; i < Circles.size(); i++)
 		{
 			Circles[i]->Update();
 		}
 
 		// 키입력
-		/*if (Input::GetKey(eKeyCode::W))
+		if (Input::GetKey(eKeyCode::W))
 		{
 			mPos.y -= 300.0f * Time::DeltaTime();
 		}
@@ -93,20 +94,24 @@ namespace ss
 		if (Input::GetKey(eKeyCode::D))
 		{
 			mPos.x += 300.0f * Time::DeltaTime();
-		}*/
+		}
 	}
 
 	void Application::Render()
 	{
 		Time::Render(mHDC);
 
+		// 화면에 창크기만큼의 네모 그리기
 		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
 
+		// 화면에 공 그리기
 		for (size_t i = 0; i < Circles.size(); i++)
 		{
 			Circles[i]->Render(mHDC);
 		}
+		Ellipse(mBackHdc, 100 + mPos.x, 100 + mPos.y
+			, 200 + mPos.x, 200 + mPos.y);
 
-		BitBlt(mHDC, 0, 0, mWidth, mHeight , mBackHdc, 0, 0, SRCCOPY);
+		BitBlt(mHDC, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}
 }
