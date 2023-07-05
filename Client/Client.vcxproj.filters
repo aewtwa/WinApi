@@ -22,14 +22,35 @@
     <Filter Include="Engine\Input">
       <UniqueIdentifier>{168b78a3-65c5-4df2-a449-dbe11bbdc2a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Time">
-      <UniqueIdentifier>{f3e35ba0-54a7-4185-9efb-1debdc92ab64}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{b5c6220e-227c-4f0e-b65a-6d9a6c98d41c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Objects\Circle">
       <UniqueIdentifier>{9effdef2-7f86-41f9-a465-e0f1e28df2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common\Time">
+      <UniqueIdentifier>{f3e35ba0-54a7-4185-9efb-1debdc92ab64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{077c12e7-84e6-416c-852d-a0273c8a1d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity">
+      <UniqueIdentifier>{fdd05292-a6b5-4364-a39a-039af2682cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject">
+      <UniqueIdentifier>{588a184e-5a9d-4f61-ba73-8eae3007ec5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Layer">
+      <UniqueIdentifier>{029b0a7e-fcc4-40f5-9f52-269a50d2885a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{7fd8164e-162e-45b7-99ee-f9a439994884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{60438a24-4099-447a-814a-979d0b353e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SpriteRenderer">
+      <UniqueIdentifier>{b1b60fb6-6135-4dfc-bb36-d237228f1b16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,10 +79,31 @@
       <Filter>Engine\Input</Filter>
     </ClInclude>
     <ClInclude Include="ssTime.h">
-      <Filter>Engine\Time</Filter>
+      <Filter>Engine\Common\Time</Filter>
     </ClInclude>
     <ClInclude Include="ssCircle.h">
       <Filter>Objects\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="ssScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ssEntity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ssLayer.h">
+      <Filter>Engine\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="ssComponent.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ssGameObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ssTransform.h">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="ssSpriteRenderer.h">
+      <Filter>Engine\Component\SpriteRenderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,10 +128,31 @@
       <Filter>Engine\Input</Filter>
     </ClCompile>
     <ClCompile Include="ssTime.cpp">
-      <Filter>Engine\Time</Filter>
+      <Filter>Engine\Common\Time</Filter>
     </ClCompile>
     <ClCompile Include="ssCircle.cpp">
       <Filter>Objects\Circle</Filter>
+    </ClCompile>
+    <ClCompile Include="ssScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ssComponent.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ssEntity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="ssLayer.cpp">
+      <Filter>Engine\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="ssGameObject.cpp">
+      <Filter>Engine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ssTransform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="ssSpriteRenderer.cpp">
+      <Filter>Engine\Component\SpriteRenderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

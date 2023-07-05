@@ -52,7 +52,10 @@ namespace ss
 		DeleteObject(defaultBitmap);
 
 		Time::Initailize();
-		Input::Initailize();		
+		Input::Initailize();	
+
+		mScene = new Scene;
+		mScene->Initailize();
 	}
 
 	void Application::Run()
@@ -65,6 +68,8 @@ namespace ss
 	{
 		Time::Update();
 		Input::Update();
+
+		mScene->Update();
 
 		// b 누를때마다 공 생성
 		if (Input::GetKeyUp(eKeyCode::B))
@@ -99,9 +104,7 @@ namespace ss
 
 	void Application::Render()
 	{
-		// 화면에 창크기만큼의 네모 그리기
 		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
-
 		Time::Render(mBackHdc);
 
 		for (size_t i = 0; i < Circles.size(); i++)
@@ -109,7 +112,7 @@ namespace ss
 			Circles[i]->Render(mBackHdc);
 		}
 
-		Ellipse(mBackHdc, 100 + mPos.x, 100 + mPos.y, 200 + mPos.x, 200 + mPos.y);
+		mScene->Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}

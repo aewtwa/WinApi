@@ -1,5 +1,6 @@
 #pragma once
 #include "Commoninclude.h"
+#include "ssScene.h"
 
 namespace ss
 {
@@ -25,5 +26,6 @@ namespace ss
 		HBITMAP mBackBuffer;
 
 		Vector2 mPos;
+		Scene* mScene;
 	};
 }
