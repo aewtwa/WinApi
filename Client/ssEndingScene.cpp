@@ -3,6 +3,7 @@
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
 #include "ssInput.h"
+#include "ssResources.h"
 
 
 namespace ss
@@ -15,8 +16,14 @@ namespace ss
 	}
 	void EndingScene::Initialize()
 	{
+		Image* image = Resources::Load<Image>(L"TitleBackGroundImgae"
+			, L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
+
 		Player* player = Object::Instantiate<Player>(eLayerType::Player);
-		player->AddComponent<SpriteRenderer>();
+		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
+		sr->SetImage(image);
+
+		std::wstring name = player->GetName();
 
 		//mLayers[(int)eLayerType::Player].AddGameObject(player);
 	}
