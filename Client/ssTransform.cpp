@@ -17,7 +17,7 @@ namespace ss
 	void Transform::Update()
 	{
 	}
-	void Transform::Render(HDC hdc)
+	void Transform::Render(HDC _hdc)
 	{
 	}
 }
