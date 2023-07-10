@@ -17,12 +17,12 @@ namespace ss
 	void SpriteRenderer::Update()
 	{
 	}
-	void SpriteRenderer::Render(HDC hdc)
+	void SpriteRenderer::Render(HDC _hdc)
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		TransparentBlt(hdc, (int)pos.x, (int)pos.y
+		TransparentBlt(_hdc, (int)pos.x, (int)pos.y
 			, mImage->GetWidth(), mImage->GetHeight()
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
 	}

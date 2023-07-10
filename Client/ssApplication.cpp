@@ -20,9 +20,9 @@ namespace ss
 	{
 	}
 
-	void Application::Initialize(HWND HWND)
+	void Application::Initialize(HWND _HWND)
 	{
-		mHwnd = HWND;
+		mHwnd = _HWND;
 		mHdc = GetDC(mHwnd);
 
 		mWidth = 1600;

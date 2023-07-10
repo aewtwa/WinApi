@@ -22,11 +22,11 @@ namespace ss
 		}
 	}
 
-	void Layer::Render(HDC hdc)
+	void Layer::Render(HDC _hdc)
 	{
 		for (GameObject* obj : mGameObjects)
 		{
-			obj->Render(hdc);
+			obj->Render(_hdc);
 		}
 	}
 }

@@ -12,7 +12,7 @@ namespace ss
 	}
 	void Scene::Initialize()
 	{
-		mLayers[(int)eLayerType::Player].AddGameObject();
+
 	}
 	void Scene::Update()
 	{
@@ -26,11 +26,11 @@ namespace ss
 			layer.Update();
 		}
 	}
-	void Scene::Render(HDC hdc)
+	void Scene::Render(HDC _hdc)
 	{
 		for (Layer& layer : mLayers)
 		{
-			layer.Render(hdc);
+			layer.Render(_hdc);
 		}
 	}
 }

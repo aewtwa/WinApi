@@ -21,11 +21,11 @@ namespace ss
 		{
 			T* resource = Resources::Find<T>(_name);
 
-			if (resouce != nullptr)
-				return resouce;
+			if (resource != nullptr)
+				return resource;
 
 			resource = new T;
-			if (FAILED(resource->Load(path)))
+			if (FAILED(resource->Load(_path)))
 			{
 				MessageBox(nullptr, L"Resource Load Failed!", L"Error", MB_OK);
 				delete resource;
@@ -34,7 +34,7 @@ namespace ss
 
 			resource->SetName(_name);
 			resource->SetPath(_path);
-			mResources.insert(std::make_pair(name, resource));
+			mResources.insert(std::make_pair(_name, resource));
 
 			return resource;
 		}

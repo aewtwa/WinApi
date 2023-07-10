@@ -12,7 +12,7 @@ namespace ss
 
 		virtual void Initialize();
 		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void Render(HDC _hdc);
 
 		void AddGameObject(GameObject* _gameObj)
 		{

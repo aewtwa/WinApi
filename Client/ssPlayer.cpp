@@ -18,7 +18,7 @@ namespace ss
 	{
 		GameObject::Update();
 
-		Transform* tr = GetComponent<Transform>;
+		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
 		if (Input::GetKey(eKeyCode::W))

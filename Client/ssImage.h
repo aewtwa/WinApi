@@ -5,6 +5,7 @@ namespace ss
 {
 	class Image : public Resource
 	{
+	public:
 		Image();
 		virtual ~Image();
 

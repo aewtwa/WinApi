@@ -137,8 +137,10 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssComponent.h" />
+    <ClInclude Include="ssEndingScene.h" />
     <ClInclude Include="ssEntity.h" />
     <ClInclude Include="ssGameObject.h" />
+    <ClInclude Include="ssHomeScene.h" />
     <ClInclude Include="ssImage.h" />
     <ClInclude Include="ssInput.h" />
     <ClInclude Include="ssLayer.h" />
@@ -159,8 +161,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssComponent.cpp" />
+    <ClCompile Include="ssEndingScene.cpp" />
     <ClCompile Include="ssEntity.cpp" />
     <ClCompile Include="ssGameObject.cpp" />
+    <ClCompile Include="ssHomeScene.cpp" />
     <ClCompile Include="ssImage.cpp" />
     <ClCompile Include="ssInput.cpp" />
     <ClCompile Include="ssLayer.cpp" />

@@ -2,8 +2,9 @@
 
 namespace ss
 {
-	Component::Component(eComponentType type)
-		: mType(type)
+	Component::Component(eComponentType _type)
+		: mType(_type)
+		, mOwner(nullptr)
 	{
 	}
 	Component::~Component()
@@ -15,7 +16,7 @@ namespace ss
 	void Component::Update()
 	{
 	}
-	void Component::Render(HDC hdc)
+	void Component::Render(HDC _hdc)
 	{
 	}
 }

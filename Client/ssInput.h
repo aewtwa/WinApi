@@ -31,17 +31,17 @@ namespace ss
 		static void Initailize();
 		static void Update();
 
-		__forceinline static bool GetKeyDown(eKeyCode code)
+		__forceinline static bool GetKeyDown(eKeyCode _code)
 		{
-			return mKeys[(int)code].state == eKeyState::Down;
+			return mKeys[(int)_code].state == eKeyState::Down;
 		}
-		__forceinline static bool GetKeyUp(eKeyCode code)
+		__forceinline static bool GetKeyUp(eKeyCode _code)
 		{
-			return mKeys[(int)code].state == eKeyState::Up;
+			return mKeys[(int)_code].state == eKeyState::Up;
 		}
-		__forceinline static bool GetKey(eKeyCode code)
+		__forceinline static bool GetKey(eKeyCode _code)
 		{
-			return mKeys[(int)code].state == eKeyState::Pressed;
+			return mKeys[(int)_code].state == eKeyState::Pressed;
 		}
 
 	private:

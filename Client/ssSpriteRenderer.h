@@ -1,6 +1,7 @@
 #pragma once
 #include "ssComponent.h"
 #include "ssImage.h"
+
 namespace ss
 {
 	class SpriteRenderer : public Component
@@ -17,5 +18,4 @@ namespace ss
 	private:
 		Image* mImage;
 	};
-
 }

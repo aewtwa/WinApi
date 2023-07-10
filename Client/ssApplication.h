@@ -11,7 +11,7 @@ namespace ss
 		Application();
 		~Application();
 
-		void Initialize(HWND hwnd);
+		void Initialize(HWND _hwnd);
 		void Run();
 		void Update();
 		void Render();

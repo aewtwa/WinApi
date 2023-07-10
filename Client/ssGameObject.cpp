@@ -6,7 +6,7 @@ namespace ss
 {
 	GameObject::GameObject()
 	{
-		AddComponent<Transform>;
+		AddComponent<Transform>();
 	}
 
 	GameObject::~GameObject()
@@ -25,11 +25,11 @@ namespace ss
 		}
 	}
 
-	void GameObject::Render(HDC hdc)
+	void GameObject::Render(HDC _hdc)
 	{
 		for (Component* comp : mComponents)
 		{
-			comp->Render(hdc);
+			comp->Render(_hdc);
 		}
 	}
 }

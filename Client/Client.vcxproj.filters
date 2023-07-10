@@ -135,6 +135,12 @@
     <ClInclude Include="ssResources.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="ssHomeScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ssEndingScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -198,6 +204,12 @@
     </ClCompile>
     <ClCompile Include="ssResources.cpp">
       <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ssHomeScene.cpp">
+      <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssEndingScene.cpp">
+      <Filter>Contents\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

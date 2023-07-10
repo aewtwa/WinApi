@@ -7,14 +7,14 @@ namespace ss
 	class Component : public Entity
 	{
 	public:
-		Component(eComponentType type);
+		Component(eComponentType _type);
 		virtual ~Component();
 
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
 
-		void SetOwner(class GameObject* owner) { mOwner = owner; }
+		void SetOwner(class GameObject* _owner) { mOwner = _owner; }
 		class GameObject* GetOwner() { return mOwner; }
 
 	private:

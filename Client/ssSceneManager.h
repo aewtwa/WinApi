@@ -11,11 +11,11 @@ namespace ss
 		static void Render(HDC hdc);
 
 		template<typename T>
-		static T* CreateScene(const std::wstring& name)
+		static T* CreateScene(const std::wstring& _name)
 		{
-			T* scene = new T;
-			scene->SetName(name);
-			mScene.insert(std::make_pair(name, scene));
+			T* scene = new T();
+			scene->SetName(_name);
+			mScenes.insert(std::make_pair(_name, scene));
 			mActiveScene = scene;
 			scene->Initialize();
 
