@@ -136,31 +136,42 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ssApplication.h" />
-    <ClInclude Include="ssCircle.h" />
     <ClInclude Include="ssComponent.h" />
     <ClInclude Include="ssEntity.h" />
     <ClInclude Include="ssGameObject.h" />
+    <ClInclude Include="ssImage.h" />
     <ClInclude Include="ssInput.h" />
     <ClInclude Include="ssLayer.h" />
     <ClInclude Include="ssMath.h" />
+    <ClInclude Include="ssObject.h" />
+    <ClInclude Include="ssPlayer.h" />
+    <ClInclude Include="ssResource.h" />
+    <ClInclude Include="ssResources.h" />
     <ClInclude Include="ssScene.h" />
+    <ClInclude Include="ssSceneManager.h" />
     <ClInclude Include="ssSpriteRenderer.h" />
     <ClInclude Include="ssTime.h" />
+    <ClInclude Include="ssTitleScene.h" />
     <ClInclude Include="ssTransform.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp" />
-    <ClCompile Include="ssCircle.cpp" />
     <ClCompile Include="ssComponent.cpp" />
     <ClCompile Include="ssEntity.cpp" />
     <ClCompile Include="ssGameObject.cpp" />
+    <ClCompile Include="ssImage.cpp" />
     <ClCompile Include="ssInput.cpp" />
     <ClCompile Include="ssLayer.cpp" />
+    <ClCompile Include="ssPlayer.cpp" />
+    <ClCompile Include="ssResource.cpp" />
+    <ClCompile Include="ssResources.cpp" />
     <ClCompile Include="ssScene.cpp" />
+    <ClCompile Include="ssSceneManager.cpp" />
     <ClCompile Include="ssSpriteRenderer.cpp" />
     <ClCompile Include="ssTime.cpp" />
+    <ClCompile Include="ssTitleScene.cpp" />
     <ClCompile Include="ssTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

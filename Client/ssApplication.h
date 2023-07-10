@@ -16,6 +16,8 @@ namespace ss
 		void Update();
 		void Render();
 
+		HWND GetHwnd() { return mHwnd; }
+		HDC GetHdc() { return mHdc; }
 	private:
 		HWND mHwnd;
 		HDC mHdc;
@@ -24,8 +26,5 @@ namespace ss
 
 		HDC mBackHdc;
 		HBITMAP mBackBuffer;
-
-		Vector2 mPos;
-		Scene* mScene;
 	};
 }

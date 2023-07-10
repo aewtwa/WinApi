@@ -1,6 +1,6 @@
 #pragma once
 #include "ssComponent.h"
-
+#include "ssImage.h"
 namespace ss
 {
 	class SpriteRenderer : public Component
@@ -13,8 +13,9 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		void SetImage(Image* _image) { mImage = _image; }
 	private:
-
+		Image* mImage;
 	};
 
 }

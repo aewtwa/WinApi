@@ -6,11 +6,7 @@ namespace ss
 {
 	GameObject::GameObject()
 	{
-		mComponents.push_back(new Transform());
-		mComponents[0]->SetOwner(this);
-
-		mComponents.push_back(new SpriteRenderer());
-		mComponents[1]->SetOwner(this);
+		AddComponent<Transform>;
 	}
 
 	GameObject::~GameObject()

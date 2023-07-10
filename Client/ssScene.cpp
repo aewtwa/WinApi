@@ -10,7 +10,7 @@ namespace ss
 	{
 
 	}
-	void Scene::Initailize()
+	void Scene::Initialize()
 	{
 		mLayers[(int)eLayerType::Player].AddGameObject();
 	}

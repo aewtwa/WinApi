@@ -1,9 +1,8 @@
 #include "ssApplication.h"
 #include "ssInput.h"
 #include "ssTime.h"
-#include "ssCircle.h"
-
-std::vector<ss::Circle*> Circles;
+#include "ssTitleScene.h"
+#include "ssSceneManager.h"
 
 namespace ss
 {
@@ -54,8 +53,7 @@ namespace ss
 		Time::Initailize();
 		Input::Initailize();	
 
-		mScene = new Scene;
-		mScene->Initailize();
+		SceneManager::Initialize();
 	}
 
 	void Application::Run()
@@ -69,37 +67,7 @@ namespace ss
 		Time::Update();
 		Input::Update();
 
-		mScene->Update();
-
-		// b 누를때마다 공 생성
-		if (Input::GetKeyUp(eKeyCode::B))
-		{
-			Circle* circle123 = new Circle;
-			Circles.push_back(circle123);
-		}
-
-		for (size_t i = 0; i < Circles.size(); i++)
-		{
-			Circles[i]->Update();
-		}
-
-		// 키입력
-		if (Input::GetKey(eKeyCode::W))
-		{
-			mPos.y -= 300.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::A))
-		{
-			mPos.x -= 300.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mPos.y += 300.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::D))
-		{
-			mPos.x += 300.0f * Time::DeltaTime();
-		}
+		SceneManager::Update();
 	}
 
 	void Application::Render()
@@ -107,12 +75,7 @@ namespace ss
 		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
 		Time::Render(mBackHdc);
 
-		for (size_t i = 0; i < Circles.size(); i++)
-		{
-			Circles[i]->Render(mBackHdc);
-		}
-
-		mScene->Render(mBackHdc);
+		SceneManager::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
 	}

@@ -8,6 +8,7 @@
 
 #include "framework.h"
 #include "ssMath.h"
+#pragma comment(lib, "msing32.lib")
 
 namespace ss::enums
 {

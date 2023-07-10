@@ -13,9 +13,9 @@ namespace ss
 
 		virtual void Initialize()  override;
 		virtual void Update()  override;
-		virtual void Render(HDC hdc)  override;
+		virtual void Render(HDC _hdc)  override;
 
-		void SetPosition(Vector2 position) { mPosition = position; }
+		void SetPosition(Vector2 _position) { mPosition = _position; }
 		Vector2 GetPosition() { return mPosition; }
 
 	private:

@@ -12,10 +12,14 @@ namespace ss
 		Scene();
 		virtual ~Scene();
 
-		virtual void Initailize();
+		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
 
+		void AddGameObject(eLayerType _type, GameObject* _gameObj)
+		{
+			mLayers[(int)_type].AddGameObject(_gameObj);
+		}
 	private:
 		std::vector<Layer> mLayers;
 	};

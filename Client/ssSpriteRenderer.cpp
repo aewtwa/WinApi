@@ -22,7 +22,8 @@ namespace ss
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		Ellipse(hdc, 100 + pos.x, 100 + pos.y
-			, 200 + pos.x, 200 + pos.y);
+		TransparentBlt(hdc, (int)pos.x, (int)pos.y
+			, mImage->GetWidth(), mImage->GetHeight()
+			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
 	}
 }
