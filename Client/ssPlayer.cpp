@@ -21,19 +21,19 @@ namespace ss
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		if (Input::GetKey(eKeyCode::W))
+		if (Input::GetKey(eKeyCode::W) && pos.y > 0.0f)
 		{
 			pos.y -= 300.0f * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::A))
+		if (Input::GetKey(eKeyCode::A) && pos.x > 0.0f)
 		{
 			pos.x -= 300.0f * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::S))
+		if (Input::GetKey(eKeyCode::S) && pos.y < 750.0f)
 		{
 			pos.y += 300.0f * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::D))
+		if (Input::GetKey(eKeyCode::D) && pos.x < 1500.0f)
 		{
 			pos.x += 300.0f * Time::DeltaTime();
 		}
