@@ -64,6 +64,9 @@
     <Filter Include="Engine\Resource\Image">
       <UniqueIdentifier>{86192bf5-2cb9-42bc-aeeb-a2acae4e3904}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\BackGround">
+      <UniqueIdentifier>{2bcdd654-e4c6-46da-a904-74ffaaba26e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -126,7 +129,7 @@
     <ClInclude Include="ssPlayer.h">
       <Filter>Contents\GameObjects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="ssImage.h">
+    <ClInclude Include="ssTexture.h">
       <Filter>Engine\Resource\Image</Filter>
     </ClInclude>
     <ClInclude Include="ssResource.h">
@@ -140,6 +143,24 @@
     </ClInclude>
     <ClInclude Include="ssEndingScene.h">
       <Filter>Contents\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ssBackGround.h">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ssLoadingScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ssLoading.h">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ssHome.h">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ssPlayScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ssPlayBackGround.h">
+      <Filter>Contents\GameObjects\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +217,7 @@
     <ClCompile Include="ssPlayer.cpp">
       <Filter>Contents\GameObjects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="ssImage.cpp">
+    <ClCompile Include="ssTexture.cpp">
       <Filter>Engine\Resource\Image</Filter>
     </ClCompile>
     <ClCompile Include="ssResource.cpp">
@@ -210,6 +231,27 @@
     </ClCompile>
     <ClCompile Include="ssEndingScene.cpp">
       <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssMath.cpp">
+      <Filter>Engine\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ssBackGround.cpp">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssLoadingScene.cpp">
+      <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssLoading.cpp">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssHome.cpp">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssPlayScene.cpp">
+      <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssPlayBackGround.cpp">
+      <Filter>Contents\GameObjects\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

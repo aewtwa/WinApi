@@ -1,6 +1,5 @@
 #pragma once
 #include "Commoninclude.h"
-#include "ssScene.h"
 
 namespace ss
 {
@@ -18,6 +17,7 @@ namespace ss
 
 		HWND GetHwnd() { return mHwnd; }
 		HDC GetHdc() { return mHdc; }
+
 	private:
 		HWND mHwnd;
 		HDC mHdc;

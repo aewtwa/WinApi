@@ -1,29 +1,28 @@
-#include "ssTitleScene.h"
+#include "ssPlayScene.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
 #include "ssInput.h"
 #include "ssTexture.h"
 #include "ssResources.h"
-#include "ssBackGround.h"
-
+#include "ssPlayBackGround.h"
 namespace ss
 {
-	TitleScene::TitleScene()
+	PlayScene::PlayScene()
 	{
 	}
-	TitleScene::~TitleScene()
+	PlayScene::~PlayScene()
 	{
 	}
-	void TitleScene::Initialize()
+	void PlayScene::Initialize()
 	{
-		Texture* image = Resources::Load<Texture>(L"TitleBackGroundImage", L"..\\Resources\\Image\\Bg\\login_scene_bg.bmp");
+		Texture* image = Resources::Load<Texture>(L"PlayBackGround", L"..\\Resources\\Image\\Bg\\play.bmp");
 
-		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
+		PlayBackGround* bg = Object::Instantiate<PlayBackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(Vector2(1.0f, 1.0f));
+		bgsr->SetScale(Vector2(1.3f, 1.3f));
 	}
-	void TitleScene::Update()
+	void PlayScene::Update()
 	{
 		Scene::Update();
 
@@ -49,7 +48,7 @@ namespace ss
 			SceneManager::LoadScene(L"PlayScene");
 		}
 	}
-	void TitleScene::Render(HDC _hdc)
+	void PlayScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
 	}

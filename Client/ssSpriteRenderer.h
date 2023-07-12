@@ -1,9 +1,10 @@
 #pragma once
 #include "ssComponent.h"
-#include "ssImage.h"
+#include "ssTexture.h"
 
 namespace ss
 {
+	using namespace math;
 	class SpriteRenderer : public Component
 	{
 	public:
@@ -12,10 +13,13 @@ namespace ss
 
 		virtual void Initialize() override;
 		virtual void Update() override;
-		virtual void Render(HDC hdc) override;
+		virtual void Render(HDC _hdc) override;
 
-		void SetImage(Image* _image) { mImage = _image; }
+		void SetImage(Texture* _image) { mTexture = _image; }
+		void SetScale(Vector2 _scale) { mScale = _scale; }
+
 	private:
-		Image* mImage;
+		Texture* mTexture;
+		Vector2 mScale;
 	};
 }

@@ -25,8 +25,8 @@ namespace ss
 		mHwnd = _HWND;
 		mHdc = GetDC(mHwnd);
 
-		mWidth = 1600;
-		mHeight = 900;
+		mWidth = 1040;
+		mHeight = 780;
 
 
 		RECT rect = { 0, 0, mWidth, mHeight };

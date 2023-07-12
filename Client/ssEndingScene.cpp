@@ -1,9 +1,10 @@
 #include "ssEndingScene.h"
-#include "ssPlayer.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
-#include "ssInput.h"
+#include "ssTexture.h"
 #include "ssResources.h"
+#include "ssBackGround.h"
+#include "ssInput.h"
 
 
 namespace ss
@@ -16,16 +17,7 @@ namespace ss
 	}
 	void EndingScene::Initialize()
 	{
-		Image* image = Resources::Load<Image>(L"TitleBackGroundImgae"
-			, L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
-
-		Player* player = Object::Instantiate<Player>(eLayerType::Player);
-		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
-		sr->SetImage(image);
-
-		std::wstring name = player->GetName();
-
-		//mLayers[(int)eLayerType::Player].AddGameObject(player);
+		
 	}
 	void EndingScene::Update()
 	{
@@ -42,6 +34,14 @@ namespace ss
 		if (Input::GetKeyDown(eKeyCode::E))
 		{
 			SceneManager::LoadScene(L"EndingScene");
+		}
+		if (Input::GetKeyDown(eKeyCode::L))
+		{
+			SceneManager::LoadScene(L"LoadingScene");
+		}
+		if (Input::GetKeyDown(eKeyCode::P))
+		{
+			SceneManager::LoadScene(L"PlayScene");
 		}
 	}
 	void EndingScene::Render(HDC _hdc)

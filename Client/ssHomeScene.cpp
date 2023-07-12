@@ -1,9 +1,10 @@
 #include "ssHomeScene.h"
-#include "ssPlayer.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
-#include "ssInput.h"
+#include "ssTexture.h"
 #include "ssResources.h"
+#include "ssInput.h"
+#include "ssHome.h"
 
 namespace ss
 {
@@ -15,16 +16,12 @@ namespace ss
 	}
 	void HomeScene::Initialize()
 	{
-		Image* image = Resources::Load<Image>(L"TitleBackGroundImgae"
-			, L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
+		Texture* image = Resources::Load<Texture>(L"HomeBackGroundImage", L"..\\Resources\\Image\\Bg\\Lobby.bmp");
 
-		Player* player = Object::Instantiate<Player>(eLayerType::Player);
-		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
-		sr->SetImage(image);
-
-		std::wstring name = player->GetName();
-
-		//mLayers[(int)eLayerType::Player].AddGameObject(player);
+		Home* bg = Object::Instantiate<Home>(eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(Vector2(1.3f, 1.3f));
 	}
 	void HomeScene::Update()
 	{
@@ -41,6 +38,14 @@ namespace ss
 		if (Input::GetKeyDown(eKeyCode::E))
 		{
 			SceneManager::LoadScene(L"EndingScene");
+		}
+		if (Input::GetKeyDown(eKeyCode::L))
+		{
+			SceneManager::LoadScene(L"LoadingScene");
+		}
+		if (Input::GetKeyDown(eKeyCode::P))
+		{
+			SceneManager::LoadScene(L"PlayScene");
 		}
 	}
 	void HomeScene::Render(HDC _hdc)

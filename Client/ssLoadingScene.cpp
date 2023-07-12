@@ -1,32 +1,31 @@
-#include "ssTitleScene.h"
+#include "ssLoadingScene.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
-#include "ssInput.h"
 #include "ssTexture.h"
 #include "ssResources.h"
-#include "ssBackGround.h"
+#include "ssLoading.h"
+#include "ssInput.h"
 
 namespace ss
 {
-	TitleScene::TitleScene()
+	LoadingScene::LoadingScene()
 	{
 	}
-	TitleScene::~TitleScene()
+	LoadingScene::~LoadingScene()
 	{
 	}
-	void TitleScene::Initialize()
+	void LoadingScene::Initialize()
 	{
-		Texture* image = Resources::Load<Texture>(L"TitleBackGroundImage", L"..\\Resources\\Image\\Bg\\login_scene_bg.bmp");
+		Texture* image = Resources::Load<Texture>(L"LoadingImage", L"..\\Resources\\Image\\Bg\\Logo.bmp");
 
-		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
+		Loading* bg = Object::Instantiate<Loading>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(Vector2(1.0f, 1.0f));
+		bgsr->SetScale(Vector2(1.23f, 1.23f));
 	}
-	void TitleScene::Update()
+	void LoadingScene::Update()
 	{
 		Scene::Update();
-
 
 		if (Input::GetKeyDown(eKeyCode::H))
 		{
@@ -49,7 +48,7 @@ namespace ss
 			SceneManager::LoadScene(L"PlayScene");
 		}
 	}
-	void TitleScene::Render(HDC _hdc)
+	void LoadingScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
 	}

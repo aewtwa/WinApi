@@ -2,7 +2,8 @@
 #include "ssTitleScene.h"
 #include "ssHomeScene.h"
 #include "ssEndingScene.h"
-
+#include "ssLoadingScene.h"
+#include "ssPlayScene.h"
 
 namespace ss
 {
@@ -11,11 +12,13 @@ namespace ss
 
 	void SceneManager::Initialize()
 	{
+		CreateScene<LoadingScene>(L"LoadingScene");
 		CreateScene<TitleScene>(L"TitleScene");
 		CreateScene<HomeScene>(L"HomeScene");
 		CreateScene<EndingScene>(L"EndingScene");
+		CreateScene<PlayScene>(L"PlayScene");
 
-		LoadScene(L"TitleScene");
+		LoadScene(L"LoadingScene");
 	}
 
 	void SceneManager::Update()

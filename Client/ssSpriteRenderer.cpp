@@ -6,6 +6,7 @@ namespace ss
 {
 	SpriteRenderer::SpriteRenderer()
 		: Component(eComponentType::SpriteRenderer)
+		, mScale(Vector2::One)
 	{
 	}
 	SpriteRenderer::~SpriteRenderer()
@@ -22,8 +23,18 @@ namespace ss
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		TransparentBlt(_hdc, (int)pos.x, (int)pos.y
-			, mImage->GetWidth(), mImage->GetHeight()
-			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
+		if (mTexture->GetType() == eTextureType::Bmp)
+		{
+			TransparentBlt(_hdc, (int)pos.x, (int)pos.y
+				, mTexture->GetWidth() * mScale.x, mTexture->GetHeight() * mScale.y
+				, mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight(), RGB(255, 0, 255));
+		}
+		else if (mTexture->GetType() == eTextureType::Png)
+		{
+			Gdiplus::Graphics graphics(_hdc);
+			graphics.DrawImage(mTexture->GetImage(), (int)pos.x, (int)pos.y
+				, (int)(mTexture->GetWidth() * mScale.x)
+				, (int)(mTexture->GetHeight() * mScale.y));
+		}
 	}
 }
