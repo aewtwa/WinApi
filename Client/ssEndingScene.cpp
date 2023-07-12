@@ -2,6 +2,7 @@
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
 #include "ssTexture.h"
+#include "ssTransform.h"
 #include "ssResources.h"
 #include "ssInput.h"
 #include "ssEnding.h"
@@ -23,6 +24,8 @@ namespace ss
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.23f, 1.23f));
+		bgsr->SetAffectCamera(false);
+		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
 	}
 	void EndingScene::Update()
 	{

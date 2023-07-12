@@ -4,6 +4,7 @@
 #include "ssObject.h"
 #include "ssInput.h"
 #include "ssTexture.h"
+#include "ssTransform.h"
 #include "ssResources.h"
 #include "ssPlayBackGround.h"
 
@@ -23,6 +24,8 @@ namespace ss
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.3f, 1.3f));
+		bgsr->SetAffectCamera(false);
+		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
 
 		// 캐릭터 삽입
 		Texture* Playerimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
@@ -30,6 +33,9 @@ namespace ss
 		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
 		sr->SetImage(Playerimage);
 		sr->SetScale(Vector2(1.0f, 1.0f));
+		sr->SetAffectCamera(false);
+		player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+		
 	}
 	void PlayScene::Update()
 	{

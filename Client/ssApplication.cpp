@@ -3,6 +3,7 @@
 #include "ssTime.h"
 #include "ssTitleScene.h"
 #include "ssSceneManager.h"
+#include "ssCamera.h"
 
 namespace ss
 {
@@ -50,8 +51,9 @@ namespace ss
 			= (HBITMAP)SelectObject(mBackHdc, mBackBuffer);
 		DeleteObject(defaultBitmap);
 
-		Time::Initailize();
-		Input::Initailize();	
+		Time::Initiailize();
+		Input::Initiailize();	
+		Camera::Initialize();
 
 		SceneManager::Initialize();
 	}
@@ -66,6 +68,7 @@ namespace ss
 	{
 		Time::Update();
 		Input::Update();
+		Camera::Update();
 
 		SceneManager::Update();
 	}

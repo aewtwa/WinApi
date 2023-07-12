@@ -137,6 +137,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssBackGround.h" />
+    <ClInclude Include="ssCamera.h" />
     <ClInclude Include="ssComponent.h" />
     <ClInclude Include="ssEnding.h" />
     <ClInclude Include="ssEndingScene.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssBackGround.cpp" />
+    <ClCompile Include="ssCamera.cpp" />
     <ClCompile Include="ssComponent.cpp" />
     <ClCompile Include="ssEnding.cpp" />
     <ClCompile Include="ssEndingScene.cpp" />

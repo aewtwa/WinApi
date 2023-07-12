@@ -67,6 +67,9 @@
     <Filter Include="Contents\GameObjects\BackGround">
       <UniqueIdentifier>{2bcdd654-e4c6-46da-a904-74ffaaba26e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{a13a00aa-02f6-4310-83e0-d1c9a705e54f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -165,6 +168,9 @@
     <ClInclude Include="ssEnding.h">
       <Filter>Contents\GameObjects\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="ssCamera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -258,6 +264,9 @@
     </ClCompile>
     <ClCompile Include="ssEnding.cpp">
       <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssCamera.cpp">
+      <Filter>Engine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

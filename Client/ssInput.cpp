@@ -11,7 +11,7 @@ namespace ss
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M'
 	};
 
-	void ss::Input::Initailize()
+	void ss::Input::Initiailize()
 	{
 		for (size_t i = 0; i < (int)eKeyCode::End; i++)
 		{

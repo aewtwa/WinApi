@@ -28,7 +28,7 @@ namespace ss
 			bool bPressed;
 		};
 
-		static void Initailize();
+		static void Initiailize();
 		static void Update();
 
 		__forceinline static bool GetKeyDown(eKeyCode _code)

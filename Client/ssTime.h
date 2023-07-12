@@ -6,7 +6,7 @@ namespace ss
 	class Time
 	{
 	public:
-		static void Initailize();
+		static void Initiailize();
 		static void Update();
 		static void Render(HDC hdc);
 

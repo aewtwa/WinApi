@@ -17,9 +17,14 @@ namespace ss
 
 		void SetImage(Texture* _image) { mTexture = _image; }
 		void SetScale(Vector2 _scale) { mScale = _scale; }
+		void SetAffectCamera(bool _enable) { mbAffectCamera = _enable; }
+		float GetAlpha() { return mAlpha; }
+		void SetAlpha(float _alpha) { mAlpha = _alpha; }
 
 	private:
+		bool mbAffectCamera;
 		Texture* mTexture;
 		Vector2 mScale;
+		float mAlpha;
 	};
 }

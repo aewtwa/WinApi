@@ -43,6 +43,14 @@ namespace ss::math
 			return ret;
 		}
 
+		Vector2 operator/(const float value)
+		{
+			Vector2 temp;
+			temp.x = x / value;
+			temp.y = y / value;
+			return temp;
+		}
+
 		Vector2 operator*(Vector2 _other)
 		{
 			Vector2 ret;

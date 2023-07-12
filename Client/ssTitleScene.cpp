@@ -3,6 +3,7 @@
 #include "ssObject.h"
 #include "ssInput.h"
 #include "ssTexture.h"
+#include "ssTransform.h"
 #include "ssResources.h"
 #include "ssBackGround.h"
 
@@ -22,6 +23,8 @@ namespace ss
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.0f, 1.0f));
+		bgsr->SetAffectCamera(false);
+		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
 	}
 	void TitleScene::Update()
 	{
