@@ -162,6 +162,9 @@
     <ClInclude Include="ssPlayBackGround.h">
       <Filter>Contents\GameObjects\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="ssEnding.h">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -251,6 +254,9 @@
       <Filter>Contents\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ssPlayBackGround.cpp">
+      <Filter>Contents\GameObjects\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssEnding.cpp">
       <Filter>Contents\GameObjects\BackGround</Filter>
     </ClCompile>
   </ItemGroup>

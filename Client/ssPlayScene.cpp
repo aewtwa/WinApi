@@ -1,10 +1,12 @@
 #include "ssPlayScene.h"
+#include "ssPlayer.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
 #include "ssInput.h"
 #include "ssTexture.h"
 #include "ssResources.h"
 #include "ssPlayBackGround.h"
+
 namespace ss
 {
 	PlayScene::PlayScene()
@@ -15,12 +17,19 @@ namespace ss
 	}
 	void PlayScene::Initialize()
 	{
+		// ¹è°æ »ðÀÔ
 		Texture* image = Resources::Load<Texture>(L"PlayBackGround", L"..\\Resources\\Image\\Bg\\play.bmp");
-
 		PlayBackGround* bg = Object::Instantiate<PlayBackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.3f, 1.3f));
+
+		// Ä³¸¯ÅÍ »ðÀÔ
+		Texture* Playerimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
+		Player* player = Object::Instantiate<Player>(eLayerType::Player);
+		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
+		sr->SetImage(Playerimage);
+		sr->SetScale(Vector2(1.0f, 1.0f));
 	}
 	void PlayScene::Update()
 	{

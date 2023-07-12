@@ -3,8 +3,8 @@
 #include "ssObject.h"
 #include "ssTexture.h"
 #include "ssResources.h"
-#include "ssBackGround.h"
 #include "ssInput.h"
+#include "ssEnding.h"
 
 
 namespace ss
@@ -17,7 +17,12 @@ namespace ss
 	}
 	void EndingScene::Initialize()
 	{
-		
+		Texture* image = Resources::Load<Texture>(L"EndingImage", L"..\\Resources\\Image\\Bg\\Logo.bmp");
+
+		Ending* bg = Object::Instantiate<Ending>(eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(Vector2(1.23f, 1.23f));
 	}
 	void EndingScene::Update()
 	{

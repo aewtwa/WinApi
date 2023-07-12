@@ -138,6 +138,7 @@
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssBackGround.h" />
     <ClInclude Include="ssComponent.h" />
+    <ClInclude Include="ssEnding.h" />
     <ClInclude Include="ssEndingScene.h" />
     <ClInclude Include="ssEntity.h" />
     <ClInclude Include="ssGameObject.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssBackGround.cpp" />
     <ClCompile Include="ssComponent.cpp" />
+    <ClCompile Include="ssEnding.cpp" />
     <ClCompile Include="ssEndingScene.cpp" />
     <ClCompile Include="ssEntity.cpp" />
     <ClCompile Include="ssGameObject.cpp" />
