@@ -12,7 +12,7 @@ namespace ss
 		VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT
 	};
 
-	void ss::Input::Initiailize()
+	void Input::Initiailize()
 	{
 		for (size_t i = 0; i < (int)eKeyCode::End; i++)
 		{
@@ -25,7 +25,7 @@ namespace ss
 		}
 	}
 
-	void ss::Input::Update()
+	void Input::Update()
 	{
 		for (size_t i = 0; i < (int)eKeyCode::End; i++)
 		{
@@ -48,5 +48,18 @@ namespace ss
 				mKeys[i].bPressed = false;
 			}
 		}
+	}
+
+	bool Input::AllkeyNone()
+	{
+		for (size_t i = 0; i < (int)eKeyCode::End; i++)
+		{
+			if (mKeys[i].bPressed == true)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

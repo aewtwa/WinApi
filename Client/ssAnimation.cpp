@@ -70,18 +70,18 @@ namespace ss
 			, mSpriteSheet[mIndex].leftTop.y
 			, mSpriteSheet[mIndex].size.x
 			, mSpriteSheet[mIndex].size.y
-			, RGB(255, 0, 255));
+			, RGB(255.0f, 0.0f, 255.0f));
 
-		//AlphaBlend(_hdc, (int)pos.x - (mSpriteSheet[mIndex].size.x / 2.0f)
-		//	, (int)pos.y - (mSpriteSheet[mIndex].size.y / 2.0f)
-		//	, mSpriteSheet[mIndex].size.x
-		//	, mSpriteSheet[mIndex].size.y
-		//	, mTexture->GetHdc()
-		//	, mSpriteSheet[mIndex].leftTop.x
-		//	, mSpriteSheet[mIndex].leftTop.y
-		//	, mSpriteSheet[mIndex].size.x
-		//	, mSpriteSheet[mIndex].size.y
-		//	, func);
+		/*AlphaBlend(_hdc, (int)pos.x - (mSpriteSheet[mIndex].size.x / 2.0f) + mSpriteSheet[mIndex].offset.x
+			, (int)pos.y - (mSpriteSheet[mIndex].size.y / 2.0f) + mSpriteSheet[mIndex].offset.y
+			, mSpriteSheet[mIndex].size.x
+			, mSpriteSheet[mIndex].size.y
+			, mTexture->GetHdc()
+			, mSpriteSheet[mIndex].leftTop.x
+			, mSpriteSheet[mIndex].leftTop.y
+			, mSpriteSheet[mIndex].size.x
+			, mSpriteSheet[mIndex].size.y
+			, func);*/
 
 	}
 

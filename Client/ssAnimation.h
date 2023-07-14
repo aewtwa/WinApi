@@ -30,7 +30,7 @@ namespace ss
 		~Animation();
 
 		void Update();
-		void Render(HDC hdc);
+		void Render(HDC _hdc);
 
 		virtual HRESULT Load(const std::wstring& _path) { return S_FALSE; };
 

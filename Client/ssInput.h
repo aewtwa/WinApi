@@ -31,8 +31,9 @@ namespace ss
 
 		static void Initiailize();
 		static void Update();
+		static bool AllkeyNone();
 
-		__forceinline static bool GetKeyDown(eKeyCode _code)
+		__forceinline static bool GetKey(eKeyCode _code)
 		{
 			return mKeys[(int)_code].state == eKeyState::Down;
 		}
@@ -40,7 +41,7 @@ namespace ss
 		{
 			return mKeys[(int)_code].state == eKeyState::Up;
 		}
-		__forceinline static bool GetKey(eKeyCode _code)
+		__forceinline static bool GetKeyDown(eKeyCode _code)
 		{
 			return mKeys[(int)_code].state == eKeyState::Pressed;
 		}

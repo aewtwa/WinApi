@@ -5,7 +5,7 @@
 #include "ssTransform.h"
 #include "ssResources.h"
 #include "ssInput.h"
-#include "ssHome.h"
+#include "ssBackGround.h"
 
 namespace ss
 {
@@ -19,7 +19,7 @@ namespace ss
 	{
 		Texture* image = Resources::Load<Texture>(L"HomeBackGroundImage", L"..\\Resources\\Image\\Bg\\Lobby.bmp");
 
-		Home* bg = Object::Instantiate<Home>(eLayerType::Background);
+		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.3f, 1.3f));

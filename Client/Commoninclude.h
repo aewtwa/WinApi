@@ -5,6 +5,8 @@
 #include <set>
 #include <functional>
 #include <string>
+#include <bitset>
+#include <filesystem>
 
 #include "framework.h"
 #include "ssMath.h"
@@ -29,6 +31,15 @@ namespace ss::enums
 		SpriteRenderer,
 		Animation,
 		Animator,
+		End
+	};
+
+	enum class eDirectionType
+	{
+		Up,
+		Down,
+		Left,
+		Right,
 		End
 	};
 }

@@ -1,5 +1,6 @@
 #include "ssTexture.h"
 #include "ssApplication.h"
+#include "ssResources.h"
 
 extern ss::Application application;
 
@@ -22,6 +23,31 @@ namespace ss
 		DeleteObject(mBitmap);
 		mBitmap = NULL;
 	}
+	Texture* Texture::Create(const std::wstring& _name, UINT _width, UINT _height)
+	{
+		Texture* image = Resources::Find<Texture>(_name);
+		if (image != nullptr)
+			return image;
+
+		image = new Texture();
+		image->SetWidth(_width);
+		image->SetHeight(_height);
+		HDC hdc = application.GetHdc();
+		HBITMAP bitmap = CreateCompatibleBitmap(hdc, _width, _height);
+		image->SetHBitmap(bitmap);
+
+		HDC bitmapHdc = CreateCompatibleDC(hdc);
+		image->SetHdc(bitmapHdc);
+
+		HBITMAP defaultBitmap = (HBITMAP)SelectObject(bitmapHdc, bitmap);
+		DeleteObject(defaultBitmap);
+
+		image->SetName(_name);
+		Resources::Insert<Texture>(_name, image);
+
+		return image;
+	}
+
 	HRESULT Texture::Load(const std::wstring& _path)
 	{
 		std::wstring ext = _path.substr(_path.find_last_of(L".") + 1);

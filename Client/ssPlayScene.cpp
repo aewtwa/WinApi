@@ -6,7 +6,7 @@
 #include "ssTexture.h"
 #include "ssTransform.h"
 #include "ssResources.h"
-#include "ssPlayBackGround.h"
+#include "ssBackGround.h"
 #include "ssAnimator.h"
 
 namespace ss
@@ -21,7 +21,7 @@ namespace ss
 	{
 		// ¹è°æ »ðÀÔ
 		Texture* image = Resources::Load<Texture>(L"PlayBackGround", L"..\\Resources\\Image\\Bg\\play.bmp");
-		PlayBackGround* bg = Object::Instantiate<PlayBackGround>(eLayerType::Background);
+		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.3f, 1.3f));
@@ -36,8 +36,17 @@ namespace ss
 
 
 		Animator* at = player->AddComponent<Animator>();
-		at->CreateAnimation(L"Bazzi", Playerimage, Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), Vector2(0.0f, 0.0f), 4, 0.1f);
-		at->PlayAnimation(L"Bazzi", true);
+		at->CreateAnimation(L"Bazzi_Idle", Playerimage, Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.3f);
+		at->CreateAnimation(L"Bazzi_Up", Playerimage, Vector2(0.0f, 60.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Down", Playerimage, Vector2(0.0f, 120.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Left", Playerimage, Vector2(0.0f, 180.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Right", Playerimage, Vector2(0.0f, 240.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Death", Playerimage, Vector2(0.0f, 300.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Up_Idle", Playerimage, Vector2(0.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Down_Idle", Playerimage, Vector2(50.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Left_Idle", Playerimage, Vector2(100.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
+		at->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
+		at->PlayAnimation(L"Bazzi_Idle", true);
 	}
 	void PlayScene::Update()
 	{

@@ -17,8 +17,12 @@ namespace ss
 
 		void CreateAnimation(const std::wstring& _name
 			, class Texture* _texture
-			, Vector2 _leftTop, Vector2 _size, Vector2 _offset
-			, UINT _spriteLength, float _duration);
+			, Vector2 _leftTop, Vector2 _size, UINT _spriteLength
+			, Vector2 _offset = Vector2::Zero, float _duration = 0.1f);
+
+		void CreateAnimationFolder(const std::wstring& name
+			, const std::wstring& path
+			, Vector2 offset = Vector2::Zero, float duration = 0.1f);
 
 		Animation* FindAnimation(const std::wstring& _name);
 		void PlayAnimation(const std::wstring& _name, bool _loop = false);

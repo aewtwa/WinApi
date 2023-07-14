@@ -159,20 +159,8 @@
     <ClInclude Include="ssLoadingScene.h">
       <Filter>Contents\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ssLoading.h">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="ssHome.h">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClInclude>
     <ClInclude Include="ssPlayScene.h">
       <Filter>Contents\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ssPlayBackGround.h">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="ssEnding.h">
-      <Filter>Contents\GameObjects\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="ssCamera.h">
       <Filter>Engine\Camera</Filter>
@@ -262,20 +250,8 @@
     <ClCompile Include="ssLoadingScene.cpp">
       <Filter>Contents\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ssLoading.cpp">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="ssHome.cpp">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClCompile>
     <ClCompile Include="ssPlayScene.cpp">
       <Filter>Contents\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ssPlayBackGround.cpp">
-      <Filter>Contents\GameObjects\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="ssEnding.cpp">
-      <Filter>Contents\GameObjects\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="ssCamera.cpp">
       <Filter>Engine\Camera</Filter>

@@ -14,6 +14,6 @@ namespace ss
 		virtual void Render(HDC _hdc) override;
 
 	private:
-
+		std::bitset<(int)eDirectionType::End> mPlayerDirection;
 	};
 }
