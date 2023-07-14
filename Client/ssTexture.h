@@ -6,6 +6,7 @@ namespace ss
 	enum class eTextureType
 	{
 		Bmp,
+		AlphaBmp,
 		Png,
 		None,
 	};

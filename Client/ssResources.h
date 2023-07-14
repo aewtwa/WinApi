@@ -38,6 +38,14 @@ namespace ss
 
 			return resource;
 		}
+
+		template <typename T>
+		static void Insert(const std::wstring& _name, T* _resource)
+		{
+			_resource->SetName(_name);
+			mResources.insert(std::make_pair(_name, _resource));
+		}
+
 	private:
 		static std::map<std::wstring, Resource*> mResources;
 	};

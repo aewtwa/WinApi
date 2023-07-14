@@ -8,6 +8,7 @@
 
 #include "framework.h"
 #include "ssMath.h"
+
 #pragma comment(lib, "Msimg32.lib")
 
 namespace ss::enums
@@ -26,6 +27,8 @@ namespace ss::enums
 	{
 		Transform,
 		SpriteRenderer,
+		Animation,
+		Animator,
 		End
 	};
 }

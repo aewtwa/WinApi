@@ -75,7 +75,12 @@ namespace ss
 
 	void Application::Render()
 	{
+		HBRUSH brush = CreateSolidBrush(RGB(125, 125, 125));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, brush);
 		Rectangle(mBackHdc, -1, -1, mWidth + 1, mHeight + 1);
+		SelectObject(mBackHdc, oldBrush);
+		DeleteObject(brush);
+
 		Time::Render(mBackHdc);
 
 		SceneManager::Render(mBackHdc);

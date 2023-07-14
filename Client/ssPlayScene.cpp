@@ -7,6 +7,7 @@
 #include "ssTransform.h"
 #include "ssResources.h"
 #include "ssPlayBackGround.h"
+#include "ssAnimator.h"
 
 namespace ss
 {
@@ -28,14 +29,15 @@ namespace ss
 		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
 
 		// 캐릭터 삽입
-		Texture* Playerimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bazzi\\Idle.bmp");
+		Texture* Playerimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bazzi\\Bazzi.bmp");
 		Player* player = Object::Instantiate<Player>(eLayerType::Player);
-		SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
-		sr->SetImage(Playerimage);
-		sr->SetScale(Vector2(1.0f, 1.0f));
-		sr->SetAffectCamera(false);
-		player->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-		
+		Transform* tr = player->GetComponent<Transform>();
+		tr->SetPosition(Vector2(100.0f, 100.0f));
+
+
+		Animator* at = player->AddComponent<Animator>();
+		at->CreateAnimation(L"Bazzi", Playerimage, Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), Vector2(0.0f, 0.0f), 4, 0.1f);
+		at->PlayAnimation(L"Bazzi", true);
 	}
 	void PlayScene::Update()
 	{

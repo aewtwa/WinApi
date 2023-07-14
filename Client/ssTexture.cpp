@@ -31,11 +31,15 @@ namespace ss
 			mType = eTextureType::Bmp;
 			mBitmap = (HBITMAP)LoadImageW(nullptr, _path.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 
+
 			if (mBitmap == nullptr)
 				return S_FALSE;
 
 			BITMAP info = {};
 			GetObject(mBitmap, sizeof(BITMAP), &info);
+
+			if (info.bmBitsPixel == 32)
+				mType = eTextureType::AlphaBmp;
 
 			mWidth = info.bmWidth;
 			mHeight = info.bmHeight;

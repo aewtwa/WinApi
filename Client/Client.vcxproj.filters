@@ -70,6 +70,12 @@
     <Filter Include="Engine\Camera">
       <UniqueIdentifier>{a13a00aa-02f6-4310-83e0-d1c9a705e54f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Resource\Animation">
+      <UniqueIdentifier>{432d35a7-bb5f-4a9e-a4e7-0873b2fb7f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Animator">
+      <UniqueIdentifier>{c6e1b705-64ad-4f1d-a2aa-44485b308abd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -171,6 +177,12 @@
     <ClInclude Include="ssCamera.h">
       <Filter>Engine\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="ssAnimation.h">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="ssAnimator.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -267,6 +279,12 @@
     </ClCompile>
     <ClCompile Include="ssCamera.cpp">
       <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ssAnimation.cpp">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="ssAnimator.cpp">
+      <Filter>Engine\Component\Animator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

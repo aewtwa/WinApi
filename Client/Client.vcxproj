@@ -135,6 +135,8 @@
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ssAnimation.h" />
+    <ClInclude Include="ssAnimator.h" />
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssBackGround.h" />
     <ClInclude Include="ssCamera.h" />
@@ -167,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ssAnimation.cpp" />
+    <ClCompile Include="ssAnimator.cpp" />
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssBackGround.cpp" />
     <ClCompile Include="ssCamera.cpp" />

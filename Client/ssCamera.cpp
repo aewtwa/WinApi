@@ -47,6 +47,7 @@ namespace ss
 			mLookPosition.x += 300.0f * Time::DeltaTime();
 		}*/
 
+
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
 }
