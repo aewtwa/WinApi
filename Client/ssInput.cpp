@@ -50,10 +50,12 @@ namespace ss
 		}
 	}
 
-	bool Input::AllkeyNone()
+	bool Input::AllkeyNone(eKeyCode _code)
 	{
 		for (size_t i = 0; i < (int)eKeyCode::End; i++)
 		{
+			if (i == (int)_code)
+				continue;
 			if (mKeys[i].bPressed == true)
 			{
 				return false;

@@ -3,17 +3,15 @@
 
 namespace ss
 {
-	class WaterBomb : public GameObject
+	class Monster : public GameObject
 	{
 	public:
-		WaterBomb();
-		virtual ~WaterBomb();
+		Monster();
+		virtual ~Monster();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-	private:
-		
 	};
 }

@@ -18,7 +18,7 @@ namespace ss
 		CreateScene<EndingScene>(L"EndingScene");
 		CreateScene<PlayScene>(L"PlayScene");
 
-		LoadScene(L"LoadingScene");
+		LoadScene(L"PlayScene");
 	}
 
 	void SceneManager::Update()

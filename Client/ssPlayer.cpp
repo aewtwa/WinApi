@@ -1,8 +1,8 @@
 #include "ssPlayer.h"
 #include "ssTransform.h"
-#include "ssInput.h"
 #include "ssTime.h"
 #include "ssAnimator.h"
+#include "ssInput.h"
 
 namespace ss
 {
@@ -21,24 +21,16 @@ namespace ss
 
 		Transform* tr = GetComponent<Transform>();
 		Animator* at = GetComponent<Animator>();
-		Vector2 pos = tr->GetPosition();
+		Vector2 Pos = tr->GetPosition();
 
-		if (Input::GetKeyDown(eKeyCode::W) && pos.y > 0.0f)
-		{
-			pos.y -= 300.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyDown(eKeyCode::A) && pos.x > 0.0f)
-		{
-			pos.x -= 300.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyDown(eKeyCode::S) && pos.y < 750.0f)
-		{
-			pos.y += 300.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKeyDown(eKeyCode::D) && pos.x < 1500.0f)
-		{
-			pos.x += 300.0f * Time::DeltaTime();
-		}
+		if (Input::GetKeyDown(eKeyCode::W) && Pos.y > 0.0f)
+			Pos.y -= 300.0f * Time::DeltaTime();
+		else if (Input::GetKeyDown(eKeyCode::S) && Pos.y < 750.0f)
+			Pos.y += 300.0f * Time::DeltaTime();
+		else if (Input::GetKeyDown(eKeyCode::A) && Pos.x > 0.0f)
+			Pos.x -= 300.0f * Time::DeltaTime();
+		else if (Input::GetKeyDown(eKeyCode::D) && Pos.x < 1500.0f)
+			Pos.x += 300.0f * Time::DeltaTime();
 
 		if (Input::GetKey(eKeyCode::W))
 		{
@@ -74,12 +66,12 @@ namespace ss
 			at->PlayAnimation(L"Bazzi_Right_Idle", false);
 		}
 
-		if (Input::GetKeyUp(eKeyCode::B))
+		if (Input::GetKey(eKeyCode::B))
 		{
 			at->PlayAnimation(L"WaterBomb_Idle", true);
 		}
 
-		tr->SetPosition(pos);
+		tr->SetPosition(Pos);
 	}
 	void Player::Render(HDC _hdc)
 	{

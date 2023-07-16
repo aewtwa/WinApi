@@ -31,7 +31,7 @@ namespace ss
 
 		static void Initiailize();
 		static void Update();
-		static bool AllkeyNone();
+		static bool AllkeyNone(eKeyCode _code);
 
 		__forceinline static bool GetKey(eKeyCode _code)
 		{
