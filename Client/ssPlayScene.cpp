@@ -1,5 +1,6 @@
 #include "ssPlayScene.h"
 #include "ssPlayer.h"
+#include "ssWaterBomb.h"
 #include "ssSpriteRenderer.h"
 #include "ssObject.h"
 #include "ssInput.h"
@@ -33,8 +34,6 @@ namespace ss
 		Player* player = Object::Instantiate<Player>(eLayerType::Player);
 		Transform* tr = player->GetComponent<Transform>();
 		tr->SetPosition(Vector2(100.0f, 100.0f));
-
-
 		Animator* at = player->AddComponent<Animator>();
 		at->CreateAnimation(L"Bazzi_Idle", Playerimage, Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.3f);
 		at->CreateAnimation(L"Bazzi_Up", Playerimage, Vector2(0.0f, 60.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
@@ -47,6 +46,15 @@ namespace ss
 		at->CreateAnimation(L"Bazzi_Left_Idle", Playerimage, Vector2(100.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		at->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		at->PlayAnimation(L"Bazzi_Idle", true);
+
+		// ¹°ÆøÅº »ðÀÔ
+		Texture* WBimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bomb\\BombIdle (0).bmp");
+		WaterBomb* waterBomb = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
+		Vector2 WBpos = tr->GetPosition();
+		Transform* WBtr = waterBomb->GetComponent<Transform>();
+		WBtr->SetPosition(WBpos);
+		Animator* WBat = waterBomb->AddComponent<Animator>();
+		WBat->CreateAnimation(L"WaterBomb_Idle", WBimage, Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
 	}
 	void PlayScene::Update()
 	{

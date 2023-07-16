@@ -161,6 +161,7 @@
     <ClInclude Include="ssTime.h" />
     <ClInclude Include="ssTitleScene.h" />
     <ClInclude Include="ssTransform.h" />
+    <ClInclude Include="ssWaterBomb.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +191,7 @@
     <ClCompile Include="ssTime.cpp" />
     <ClCompile Include="ssTitleScene.cpp" />
     <ClCompile Include="ssTransform.cpp" />
+    <ClCompile Include="ssWaterBomb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

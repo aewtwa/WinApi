@@ -76,6 +76,9 @@
     <Filter Include="Engine\Component\Animator">
       <UniqueIdentifier>{c6e1b705-64ad-4f1d-a2aa-44485b308abd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\WaterBomb">
+      <UniqueIdentifier>{f33917c2-1650-4c93-822f-6b46ba545177}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -171,6 +174,9 @@
     <ClInclude Include="ssAnimator.h">
       <Filter>Engine\Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="ssWaterBomb.h">
+      <Filter>Contents\GameObjects\WaterBomb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -261,6 +267,9 @@
     </ClCompile>
     <ClCompile Include="ssAnimator.cpp">
       <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="ssWaterBomb.cpp">
+      <Filter>Contents\GameObjects\WaterBomb</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

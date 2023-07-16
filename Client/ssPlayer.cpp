@@ -74,6 +74,11 @@ namespace ss
 			at->PlayAnimation(L"Bazzi_Right_Idle", false);
 		}
 
+		if (Input::GetKeyUp(eKeyCode::B))
+		{
+			at->PlayAnimation(L"WaterBomb_Idle", true);
+		}
+
 		tr->SetPosition(pos);
 	}
 	void Player::Render(HDC _hdc)
