@@ -6,7 +6,11 @@ namespace ss
 {
 	Animator::Animator()
 		: Component(eComponentType::Animator)
+		, mActiveAnimation()
+		, mbAffectedCamera(false)
+		, mbLoop(true)
 		, mAlpha(1.0f)
+		, mScale(Vector2::One)
 	{
 	}
 	Animator::~Animator()
@@ -97,7 +101,6 @@ namespace ss
 			, Vector2(width, height), fileCout
 			, _offset, _duration);
 	}
-
 
 	Animation* Animator::FindAnimation(const std::wstring& _name)
 	{

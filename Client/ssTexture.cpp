@@ -1,6 +1,9 @@
 #include "ssTexture.h"
 #include "ssApplication.h"
 #include "ssResources.h"
+#include "ssGameObject.h"
+#include "ssTransform.h"
+#include "ssCamera.h"
 
 extern ss::Application application;
 
@@ -13,6 +16,7 @@ namespace ss
 		, mWidth(0)
 		, mHeight(0)
 		, mType(eTextureType::None)
+		, mbAffectCamera(false)
 	{
 	}
 	Texture::~Texture()
@@ -43,6 +47,7 @@ namespace ss
 		DeleteObject(defaultBitmap);
 
 		image->SetName(_name);
+		image->SetType(eTextureType::AlphaBmp);
 		Resources::Insert<Texture>(_name, image);
 
 		return image;
@@ -88,5 +93,77 @@ namespace ss
 		}
 
 		return S_OK;
+	}
+
+	void Texture::Render(HDC _hdc
+		, Vector2 _pos
+		, Vector2 _size
+		, Vector2 _leftTop
+		, Vector2 _rightBottom
+		, Vector2 _offset
+		, Vector2 _scale
+		, float _alpha)
+	{
+		if (mBitmap == nullptr && mImage == nullptr)
+			return;
+
+		if (mbAffectCamera)
+			_pos = Camera::CalculatePosition(_pos);
+
+		if (mType == eTextureType::Bmp)
+		{
+			TransparentBlt(_hdc, (int)_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x
+				, (int)_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y
+				, _size.x * _scale.x
+				, _size.y * _scale.y
+				, mHdc
+				, _leftTop.x, _leftTop.y, _rightBottom.x, _rightBottom.y
+				, RGB(255, 0, 255));
+		}
+		else if (mType == eTextureType::AlphaBmp)
+		{
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			// 0.0f ~ 1.0f -> 0 ~ 255
+			float alpha = 1.0f;
+			alpha = (int)(alpha * 255.0f);
+
+			if (alpha <= 0)
+				alpha = 0;
+			func.SourceConstantAlpha = alpha; // 0 ~ 255
+
+			AlphaBlend(_hdc, (int)_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x
+				, (int)_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y
+				, _size.x * _scale.x
+				, _size.y * _scale.y
+				, mHdc
+				, _leftTop.x, _leftTop.y
+				, _rightBottom.x, _rightBottom.y
+				, func);
+		}
+		else if (mType == eTextureType::Png)
+		{
+			//// 내가 원하는 픽셀을 투명화 시킬떄
+			Gdiplus::ImageAttributes imageAtt = {};
+			//// 투명화 시킬 픽셀 색 범위
+			imageAtt.SetColorKey(Gdiplus::Color(100, 100, 100)
+				, Gdiplus::Color(255, 255, 255));
+
+			Gdiplus::Graphics graphics(_hdc);
+			graphics.DrawImage(mImage
+				, Gdiplus::Rect
+				(
+					(int)(_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x)
+					, (int)(_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y)
+					, (int)(_size.x * _scale.x)
+					, (int)(_size.y * _scale.y)
+				)
+				, _leftTop.x, _leftTop.y
+				, _rightBottom.x, _rightBottom.y
+				, Gdiplus::UnitPixel
+				, nullptr);
+		}
 	}
 }

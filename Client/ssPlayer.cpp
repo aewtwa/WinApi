@@ -3,6 +3,7 @@
 #include "ssTime.h"
 #include "ssAnimator.h"
 #include "ssInput.h"
+#include "ssWaterBomb.h"
 
 namespace ss
 {

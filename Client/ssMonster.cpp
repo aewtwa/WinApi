@@ -23,6 +23,7 @@ namespace ss
 		Vector2 Pos = tr->GetPosition();
 
 
+		tr->SetPosition(Pos);
 	}
 	void Monster::Render(HDC _hdc)
 	{

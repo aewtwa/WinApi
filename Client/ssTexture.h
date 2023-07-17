@@ -3,6 +3,7 @@
 
 namespace ss
 {
+	using namespace math;
 	enum class eTextureType
 	{
 		Bmp,
@@ -20,17 +21,26 @@ namespace ss
 		static Texture* Create(const std::wstring& _name, UINT _width, UINT _height);
 
 		virtual HRESULT Load(const std::wstring& _path) override;
+		void Render(HDC _hdc
+			, Vector2 _pos
+			, Vector2 _size
+			, Vector2 _leftTop
+			, Vector2 _rightBottom
+			, Vector2 _offset = Vector2::Zero
+			, Vector2 _scale = Vector2::One
+			, float alpha = 1.0f);
 
 		UINT GetWidth() { return mWidth; }
-		void SetWidth(UINT width) { mWidth = width; }
+		void SetWidth(UINT _width) { mWidth = _width; }
 		UINT GetHeight() { return mHeight; }
-		void SetHeight(UINT height) { mHeight = height; }
+		void SetHeight(UINT _height) { mHeight = _height; }
 
 		HDC GetHdc() { return mHdc; }
 		eTextureType GetType() { return mType; }
+		void SetType(eTextureType _type) { mType = _type; }
 		Gdiplus::Image* GetImage() { return mImage; }
-		void SetHBitmap(HBITMAP bitmap) { mBitmap = bitmap; }
-		void SetHdc(HDC hdc) { mHdc = hdc; }
+		void SetHBitmap(HBITMAP _bitmap) { mBitmap = _bitmap; }
+		void SetHdc(HDC _hdc) { mHdc = _hdc; }
 
 	private:
 		eTextureType mType;
@@ -40,5 +50,6 @@ namespace ss
 		HDC mHdc;
 		UINT mWidth;
 		UINT mHeight;
+		bool mbAffectCamera;
 	};
 }
