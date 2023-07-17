@@ -47,22 +47,23 @@ namespace ss
 		AT->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		AT->PlayAnimation(L"Bazzi_Idle", true);
 
-		// π∞∆¯≈∫ ª¿‘
-		Texture* WBimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
-		WaterBomb* waterBomb = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
-		Vector2 WBpos = TR->GetPosition();
-		Transform* WBtr = waterBomb->GetComponent<Transform>();
-		WBtr->SetPosition(WBpos);
-		Animator* WBat = waterBomb->AddComponent<Animator>();
-		WBat->CreateAnimation(L"WaterBomb_Idle", WBimage, Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
-
 		// ∏ÛΩ∫≈Õ ª¿‘
+		Texture* Monsterimage = Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 		Monster* monster = Object::Instantiate<Monster>(eLayerType::Monster);
 		Transform* Monstertr = monster->GetComponent<Transform>();
 		Monstertr->SetPosition(Vector2(250.0f, 250.0f));
 		Animator* MonsterAT = monster->AddComponent<Animator>();
-		MonsterAT->CreateAnimationFolder(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down");
-		MonsterAT->PlayAnimation(L"Monster", true);
+		MonsterAT->CreateAnimation(L"ForestMobDown", Monsterimage, Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
+		MonsterAT->PlayAnimation(L"ForestMobDown", true);
+
+		// ∫∏Ω∫∏ÛΩ∫≈Õ ª¿‘
+		Monster* SealBoss = Object::Instantiate<Monster>(eLayerType::Monster);
+		Transform* SealBossTR = SealBoss->GetComponent<Transform>();
+		SealBossTR->SetPosition(Vector2(500.0f, 500.0f));
+		Animator* SealBossAT = SealBoss->AddComponent<Animator>();
+		SealBossAT->CreateAnimationFolder(L"SealBoss", L"..\\Resources\\Image\\Monster\\SealBoss\\Attack", Vector2(0.0f, 0.0f), 0.3f);
+		SealBossAT->PlayAnimation(L"SealBoss", true);
+		SealBossAT->SetScale(Vector2(2.0f, 2.0f));
 	}
 	void PlayScene::Update()
 	{

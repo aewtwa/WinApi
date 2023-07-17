@@ -67,9 +67,9 @@ namespace ss
 			at->PlayAnimation(L"Bazzi_Right_Idle", false);
 		}
 
-		if (Input::GetKey(eKeyCode::B))
+		if (Input::GetKey(eKeyCode::LShift))
 		{
-			at->PlayAnimation(L"WaterBomb_Idle", true);
+			at->PlayAnimation(L"Bazzi_Idle", true);
 		}
 
 		tr->SetPosition(Pos);
