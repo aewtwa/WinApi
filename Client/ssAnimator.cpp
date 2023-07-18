@@ -85,6 +85,7 @@ namespace ss
 		}
 
 		Texture* spriteSheet = Texture::Create(_name, width * fileCout, height);
+		spriteSheet->SetType(eTextureType::Bmp);
 
 		int idx = 0;
 		for (Texture* image : images)

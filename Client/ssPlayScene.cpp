@@ -8,6 +8,7 @@
 #include "ssTransform.h"
 #include "ssResources.h"
 #include "ssBackGround.h"
+#include "ssPlayGround.h"
 #include "ssAnimator.h"
 #include "ssMonster.h"
 
@@ -28,6 +29,13 @@ namespace ss
 		bgsr->SetImage(image);
 		bgsr->SetScale(Vector2(1.3f, 1.3f));
 		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
+
+		Texture* playimage = Resources::Load<Texture>(L"PlayGround", L"..\\Resources\\Image\\Bg\\ForestTile.bmp");
+		PlayGround* playbg = Object::Instantiate<PlayGround>(eLayerType::Background);
+		SpriteRenderer* playbgsr = playbg->AddComponent<SpriteRenderer>();
+		playbgsr->SetImage(playimage);
+		playbgsr->SetScale(Vector2(0.87f, 0.87f));
+		playbg->GetComponent<Transform>()->SetPosition(Vector2(416.0f, 391.0f));
 
 		// 캐릭터 삽입
 		Texture* Playerimage = Resources::Load<Texture>(L"Player", L"..\\Resources\\Image\\Bazzi\\Bazzi.bmp");

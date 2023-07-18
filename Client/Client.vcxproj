@@ -147,6 +147,7 @@
     <ClInclude Include="ssHomeScene.h" />
     <ClInclude Include="ssLoadingScene.h" />
     <ClInclude Include="ssMonster.h" />
+    <ClInclude Include="ssPlayGround.h" />
     <ClInclude Include="ssPlayScene.h" />
     <ClInclude Include="ssTexture.h" />
     <ClInclude Include="ssInput.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="ssHomeScene.cpp" />
     <ClCompile Include="ssLoadingScene.cpp" />
     <ClCompile Include="ssMonster.cpp" />
+    <ClCompile Include="ssPlayGround.cpp" />
     <ClCompile Include="ssPlayScene.cpp" />
     <ClCompile Include="ssTexture.cpp" />
     <ClCompile Include="ssInput.cpp" />
