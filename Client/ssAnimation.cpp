@@ -45,11 +45,8 @@ namespace ss
 			return;
 
 		Sprite sprite = mSpriteSheet[mIndex];
-
-		//(int)pos.x - (mSpriteSheet[mIndex].size.x / 2.0f) + mSpriteSheet[mIndex].offset.x
-
 		Transform* tr = mAnimator->GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition() - (sprite.size / 2.0f) + sprite.offset;
+		Vector2 pos = tr->GetPosition();
 
 		Animator* animator = mAnimator;
 
@@ -60,7 +57,8 @@ namespace ss
 			, sprite.size
 			, sprite.offset
 			, animator->GetScale()
-			, animator->GetAlpha());
+			, animator->GetAlpha()
+			, tr->GetRotation());
 	}
 
 	void Animation::Create(const std::wstring& _name, Texture* _texture

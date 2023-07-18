@@ -102,7 +102,8 @@ namespace ss
 		, Vector2 _rightBottom
 		, Vector2 _offset
 		, Vector2 _scale
-		, float _alpha)
+		, float _alpha
+		, float _rotate)
 	{
 		if (mBitmap == nullptr && mImage == nullptr)
 			return;
@@ -152,6 +153,9 @@ namespace ss
 				, Gdiplus::Color(255, 255, 255));
 
 			Gdiplus::Graphics graphics(_hdc);
+			graphics.TranslateTransform((float)_pos.x, (float)_pos.y);
+			graphics.RotateTransform(_rotate);
+			graphics.TranslateTransform(-(float)_pos.x, -(float)_pos.y);
 			graphics.DrawImage(mImage
 				, Gdiplus::Rect
 				(
@@ -165,5 +169,8 @@ namespace ss
 				, Gdiplus::UnitPixel
 				, nullptr);
 		}
+		Rectangle(_hdc
+			, _pos.x - 3, _pos.y - 3
+			, _pos.x + 3, _pos.y + 3);
 	}
 }

@@ -28,7 +28,8 @@ namespace ss
 			, Vector2 _rightBottom
 			, Vector2 _offset = Vector2::Zero
 			, Vector2 _scale = Vector2::One
-			, float alpha = 1.0f);
+			, float _alpha = 1.0f
+			, float _rotate = 0.0f);
 
 		UINT GetWidth() { return mWidth; }
 		void SetWidth(UINT _width) { mWidth = _width; }

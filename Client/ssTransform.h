@@ -17,8 +17,11 @@ namespace ss
 
 		void SetPosition(Vector2 _position) { mPosition = _position; }
 		Vector2 GetPosition() { return mPosition; }
+		void SetRotation(float _rotate) { mRotation = _rotate; }
+		float GetRotation() { return mRotation; }
 
 	private:
 		Vector2 mPosition;
+		float mRotation;
 	};
 }

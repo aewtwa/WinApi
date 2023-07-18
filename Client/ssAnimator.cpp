@@ -84,13 +84,16 @@ namespace ss
 			fileCout++;
 		}
 
-		Texture* spriteSheet = Texture::Create(_name, width * fileCout, height);
+		std::wstring spriteSheetName = _name + L"SpriteSheet";
+		Texture* spriteSheet = Texture::Create(spriteSheetName, width * fileCout, height);
 		spriteSheet->SetType(eTextureType::Bmp);
 
 		int idx = 0;
 		for (Texture* image : images)
 		{
-			BitBlt(spriteSheet->GetHdc(), width * idx, 0
+			BitBlt(spriteSheet->GetHdc()
+				, (width * idx) + ((width - image->GetWidth()) / 2.0f)
+				, 0
 				, image->GetWidth(), image->GetHeight()
 				, image->GetHdc(), 0, 0, SRCCOPY);
 

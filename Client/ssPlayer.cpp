@@ -69,6 +69,7 @@ namespace ss
 
 		if (Input::GetKey(eKeyCode::LShift))
 		{
+			WaterBomb* WB = new WaterBomb;
 			at->PlayAnimation(L"Bazzi_Idle", true);
 		}
 
