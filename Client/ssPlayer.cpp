@@ -8,6 +8,7 @@
 namespace ss
 {
 	Player::Player()
+		:mDirection(0)
 	{
 	}
 	Player::~Player()
@@ -25,27 +26,39 @@ namespace ss
 		Vector2 Pos = tr->GetPosition();
 
 		if (Input::GetKeyDown(eKeyCode::W) && Pos.y > 0.0f)
+		{
 			Pos.y -= 300.0f * Time::DeltaTime();
+			mDirection = 1;
+		}
 		else if (Input::GetKeyDown(eKeyCode::S) && Pos.y < 750.0f)
+		{
 			Pos.y += 300.0f * Time::DeltaTime();
+			mDirection = 2;
+		}
 		else if (Input::GetKeyDown(eKeyCode::A) && Pos.x > 0.0f)
+		{
 			Pos.x -= 300.0f * Time::DeltaTime();
+			mDirection = 3;
+		}
 		else if (Input::GetKeyDown(eKeyCode::D) && Pos.x < 1500.0f)
+		{
 			Pos.x += 300.0f * Time::DeltaTime();
+			mDirection = 4;
+		}
 
-		if (Input::GetKey(eKeyCode::W))
+		if (mDirection == 1)
 		{
 			at->PlayAnimation(L"Bazzi_Up", true);
 		}
-		else if (Input::GetKey(eKeyCode::A))
+		else if (mDirection == 2)
 		{
 			at->PlayAnimation(L"Bazzi_Left", true);
 		}
-		else if (Input::GetKey(eKeyCode::S))
+		else if (mDirection == 3)
 		{
 			at->PlayAnimation(L"Bazzi_Down", true);
 		}
-		else if (Input::GetKey(eKeyCode::D))
+		else if (mDirection == 4)
 		{
 			at->PlayAnimation(L"Bazzi_Right", true);
 		}

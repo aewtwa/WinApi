@@ -7,6 +7,7 @@
 namespace ss
 {
 	WaterBomb::WaterBomb()
+		:mPos(Vector2())
 	{
 	}
 	WaterBomb::~WaterBomb()

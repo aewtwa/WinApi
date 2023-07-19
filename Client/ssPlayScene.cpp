@@ -55,6 +55,10 @@ namespace ss
 		AT->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		AT->PlayAnimation(L"Bazzi_Idle", true);
 
+		// ¹°ÆøÅº »ğÀÔ
+		WaterBomb* waterbomb = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
+		Transform* WBTR = waterbomb->GetComponent<Transform>();
+
 		// ¸ó½ºÅÍ »ğÀÔ
 		Texture* Monsterimage = Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 		Monster* monster = Object::Instantiate<Monster>(eLayerType::Monster);

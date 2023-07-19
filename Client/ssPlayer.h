@@ -14,6 +14,5 @@ namespace ss
 		virtual void Render(HDC _hdc) override;
 
 	private:
-		int mDirection;
 	};
 }

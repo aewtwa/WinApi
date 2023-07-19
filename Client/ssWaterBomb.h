@@ -3,6 +3,7 @@
 
 namespace ss
 {
+	using namespace math;
 	class WaterBomb : public GameObject
 	{
 	public:
@@ -14,6 +15,6 @@ namespace ss
 		virtual void Render(HDC _hdc) override;
 
 	private:
-		
+		Vector2 mPos;
 	};
 }
