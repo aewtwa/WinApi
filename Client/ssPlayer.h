@@ -3,6 +3,7 @@
 
 namespace ss
 {
+	using namespace math;
 	class Player : public GameObject
 	{
 	public:
@@ -14,5 +15,6 @@ namespace ss
 		virtual void Render(HDC _hdc) override;
 
 	private:
+		Vector2 mDirection;
 	};
 }

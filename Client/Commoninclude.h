@@ -34,4 +34,13 @@ namespace ss::enums
 		Animator,
 		End
 	};
+	
+	enum class eDirectionType
+	{
+		Up,
+		Down,
+		Left,
+		Right,
+		End
+	};
 }
