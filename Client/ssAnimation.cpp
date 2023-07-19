@@ -73,6 +73,11 @@ namespace ss
 
 			sprite.leftTop.x = _leftTop.x + (_size.x * i);
 			sprite.leftTop.y = _leftTop.y;
+			if (sprite.leftTop.x >= _texture->GetWidth())
+			{
+				sprite.leftTop.x = sprite.leftTop.x - _texture->GetWidth();
+				sprite.leftTop.y = _leftTop.y + _size.y;
+			}
 			sprite.size = _size;
 			sprite.offset = _offset;
 			sprite.duration = _duration;

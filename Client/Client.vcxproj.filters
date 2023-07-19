@@ -85,6 +85,9 @@
     <Filter Include="Contents\GameObjects\PlayGround">
       <UniqueIdentifier>{1cb37f42-6347-482b-9e0e-366c329a8c91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{48032498-ce10-43ef-a668-7b1ea4d820d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -189,6 +192,9 @@
     <ClInclude Include="ssPlayGround.h">
       <Filter>Contents\GameObjects\PlayGround</Filter>
     </ClInclude>
+    <ClInclude Include="ssCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -288,6 +294,9 @@
     </ClCompile>
     <ClCompile Include="ssPlayGround.cpp">
       <Filter>Contents\GameObjects\PlayGround</Filter>
+    </ClCompile>
+    <ClCompile Include="ssCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

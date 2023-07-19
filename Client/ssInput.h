@@ -12,6 +12,8 @@ namespace ss
 		Up, Down, Left, Right,
 		// 쉬프트키
 		LShift,RShift,
+		// 마우스
+		MouseLeft, MouseRight, MouseWheel,
 		End
 	};
 	enum class eKeyState
@@ -34,7 +36,6 @@ namespace ss
 
 		static void Initiailize();
 		static void Update();
-		static bool AllkeyNone();
 
 		__forceinline static bool GetKey(eKeyCode _code)
 		{

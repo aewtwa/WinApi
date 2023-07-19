@@ -15,7 +15,7 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		void CreateAnimation(const std::wstring& _name
+		Animation* CreateAnimation(const std::wstring& _name
 			, class Texture* _texture
 			, Vector2 _leftTop, Vector2 _size, UINT _spriteLength
 			, Vector2 _offset = Vector2::Zero, float _duration = 0.1f);
@@ -27,6 +27,7 @@ namespace ss
 		Animation* FindAnimation(const std::wstring& _name);
 		void PlayAnimation(const std::wstring& _name, bool _loop = false);
 
+		bool IsAcriveAnimationComplete() { return mActiveAnimation->IsComplete(); }
 		bool GetAffectedCamera() { return mbAffectedCamera; }
 		void SetAffectedCamera(bool _enable) { mbAffectedCamera = _enable; }
 		float GetAlpha() { return mAlpha; }

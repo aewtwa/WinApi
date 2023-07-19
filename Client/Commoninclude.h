@@ -5,8 +5,8 @@
 #include <set>
 #include <functional>
 #include <string>
-#include <bitset>
 #include <filesystem>
+#include <bitset>
 
 #include "framework.h"
 #include "ssMath.h"
@@ -32,6 +32,7 @@ namespace ss::enums
 		SpriteRenderer,
 		Animation,
 		Animator,
+		Collider,
 		End
 	};
 	

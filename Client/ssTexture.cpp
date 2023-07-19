@@ -127,13 +127,11 @@ namespace ss
 			func.BlendOp = AC_SRC_OVER;
 			func.BlendFlags = 0;
 			func.AlphaFormat = AC_SRC_ALPHA;
-			// 0.0f ~ 1.0f -> 0 ~ 255
-			float alpha = 1.0f;
-			alpha = (int)(alpha * 255.0f);
+			_alpha = (int)(_alpha * 255.0f);
 
-			if (alpha <= 0)
-				alpha = 0;
-			func.SourceConstantAlpha = alpha; // 0 ~ 255
+			if (_alpha <= 0)
+				_alpha = 0;
+			func.SourceConstantAlpha = _alpha; // 0 ~ 255
 
 			AlphaBlend(_hdc, (int)_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x
 				, (int)_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y

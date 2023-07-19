@@ -8,75 +8,113 @@
 namespace ss
 {
 	Player::Player()
-		:mDirection{}
+		: mState(eState::Idle)
 	{
 	}
+
 	Player::~Player()
 	{
 	}
+
 	void Player::Initialize()
 	{
 	}
+
 	void Player::Update()
 	{
 		GameObject::Update();
 
-		Transform* tr = GetComponent<Transform>();
-		Animator* at = GetComponent<Animator>();
-		Vector2 Pos = tr->GetPosition();
-
-		if (Input::GetKeyDown(eKeyCode::W) && Pos.y > 0.0f)
+		switch (mState)
 		{
-			mDirection = Vector2(0.f, -1.f);
+		case ss::Player::eState::Idle:
+			Idle();
+			break;
+		case ss::Player::eState::Move:
+			Move();
+			break;
+		case ss::Player::eState::DropWaterBomb:
+			DropWaterBomb();
+			break;
+		case ss::Player::eState::Death:
+			Death();
+			break;
+		case ss::Player::eState::End:
+			break;
+		default:
+			break;
 		}
-		if (Input::GetKeyDown(eKeyCode::S) && Pos.y < 750.0f)
-		{
-			mDirection = Vector2(0.f, 1.f);
-		}
-		if (Input::GetKeyDown(eKeyCode::A) && Pos.x > 0.0f)
-		{
-			mDirection = Vector2(-1.f, 0.f);
-		}
-		if (Input::GetKeyDown(eKeyCode::D) && Pos.x < 1500.0f)
-		{
-			mDirection = Vector2(1.f, 0.f);
-		}
-
-		if (Input::GetKey(eKeyCode::LShift))
-		{
-			WaterBomb* WB = new WaterBomb;
-			at->PlayAnimation(L"Bazzi_Idle", true);
-		}
-
-		if (Input::AllkeyNone())
-		{
-			mDirection = Vector2::Zero;
-		}
-
-		Pos.x += mDirection.x * 200.0f * Time::DeltaTime();
-		Pos.y += mDirection.y * 200.0f * Time::DeltaTime();
-
-		if (mDirection.y == -1.f)
-		{
-			at->PlayAnimation(L"Bazzi_Up", true);
-		}
-		else if (mDirection.y == 1.f)
-		{
-			at->PlayAnimation(L"Bazzi_Down", true);
-		}
-		else if (mDirection.x == -1.f)
-		{
-			at->PlayAnimation(L"Bazzi_Left", true);
-		}
-		else if (mDirection.x == 1.f)
-		{
-			at->PlayAnimation(L"Bazzi_Right", true);
-		}
-
-		tr->SetPosition(Pos);
 	}
+
 	void Player::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
+	}
+
+	void Player::Idle()
+	{
+		Animator* animator = GetComponent<Animator>();
+
+		if (Input::GetKeyDown(eKeyCode::W))
+		{
+			animator->PlayAnimation(L"Bazzi_Up", true);
+			mState = eState::Move;
+		}
+		else if (Input::GetKeyDown(eKeyCode::A))
+		{
+			animator->PlayAnimation(L"Bazzi_Left", true);
+			mState = eState::Move;
+		}
+		else if (Input::GetKeyDown(eKeyCode::S))
+		{
+			animator->PlayAnimation(L"Bazzi_Down", true);
+			mState = eState::Move;
+		}
+		else if (Input::GetKeyDown(eKeyCode::D))
+		{
+			animator->PlayAnimation(L"Bazzi_Right", true);
+			mState = eState::Move;
+		}
+	}
+
+	void Player::Move()
+	{
+		Transform* transform = GetComponent<Transform>();
+		Vector2 pos = transform->GetPosition();
+
+		if (Input::GetKeyDown(eKeyCode::W))
+		{
+			pos.y -= 200.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKeyDown(eKeyCode::A))
+		{
+			pos.x -= 200.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKeyDown(eKeyCode::S))
+		{
+			pos.y += 200.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKeyDown(eKeyCode::D))
+		{
+			pos.x += 200.0f * Time::DeltaTime();
+		}
+		transform->SetPosition(pos);
+
+		if (Input::GetKeyUp(eKeyCode::W)
+			|| Input::GetKeyUp(eKeyCode::A)
+			|| Input::GetKeyUp(eKeyCode::S)
+			|| Input::GetKeyUp(eKeyCode::D))
+		{
+			Animator* animator = GetComponent<Animator>();
+			animator->PlayAnimation(L"Bazzi_Idle", true);
+			mState = eState::Idle;
+		}
+	}
+
+	void Player::DropWaterBomb()
+	{
+	}
+
+	void Player::Death()
+	{
 	}
 }

@@ -7,6 +7,15 @@ namespace ss
 	class Player : public GameObject
 	{
 	public:
+		enum class eState
+		{
+			Idle,
+			Move,
+			DropWaterBomb,
+			Death,
+			End
+		};
+
 		Player();
 		virtual ~Player();
 
@@ -14,7 +23,11 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
+		void Idle();
+		void Move();
+		void DropWaterBomb();
+		void Death();
 	private:
-		Vector2 mDirection;
+		eState mState;
 	};
 }

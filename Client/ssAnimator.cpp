@@ -37,16 +37,17 @@ namespace ss
 			mActiveAnimation->Render(_hdc);
 	}
 
-	void Animator::CreateAnimation(const std::wstring& _name
+	Animation* Animator::CreateAnimation(const std::wstring& _name
 		, Texture* _texture
 		, Vector2 _leftTop, Vector2 _size
 		, UINT _spriteLength, Vector2 _offset
 		, float _duration)
 	{
 		Animation* animation = nullptr;
-		animation = Resources::Find<Animation>(_name);
+		animation = FindAnimation(_name);
+
 		if (animation != nullptr)
-			return;
+			return animation;
 
 		animation = new Animation();
 		animation->Create(_name, _texture
@@ -56,6 +57,8 @@ namespace ss
 
 		mAnimations.insert(std::make_pair(_name, animation));
 		Resources::Insert<Animation>(_name, animation);
+
+		return animation;
 	}
 
 	void Animator::CreateAnimationFolder(const std::wstring& _name
