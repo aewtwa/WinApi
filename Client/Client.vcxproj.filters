@@ -88,6 +88,9 @@
     <Filter Include="Engine\Component\Collider">
       <UniqueIdentifier>{48032498-ce10-43ef-a668-7b1ea4d820d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Collision">
+      <UniqueIdentifier>{98cffe00-b155-450e-a5c3-fb3f16d590fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -195,6 +198,9 @@
     <ClInclude Include="ssCollider.h">
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="ssCollisionManager.h">
+      <Filter>Engine\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -297,6 +303,9 @@
     </ClCompile>
     <ClCompile Include="ssCollider.cpp">
       <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="ssCollisionManager.cpp">
+      <Filter>Engine\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

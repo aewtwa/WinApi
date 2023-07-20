@@ -50,6 +50,16 @@ namespace ss
 		GameObject::Render(_hdc);
 	}
 
+	void Player::OnCollisionEnter(Collider* other)
+	{
+	}
+	void Player::OnCollisionStay(Collider* other)
+	{
+	}
+	void Player::OnCollisionExit(Collider* other)
+	{
+	}
+
 	void Player::Idle()
 	{
 		Animator* animator = GetComponent<Animator>();

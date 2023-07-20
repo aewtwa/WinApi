@@ -141,6 +141,7 @@
     <ClInclude Include="ssBackGround.h" />
     <ClInclude Include="ssCamera.h" />
     <ClInclude Include="ssCollider.h" />
+    <ClInclude Include="ssCollisionManager.h" />
     <ClInclude Include="ssComponent.h" />
     <ClInclude Include="ssEndingScene.h" />
     <ClInclude Include="ssEntity.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="ssBackGround.cpp" />
     <ClCompile Include="ssCamera.cpp" />
     <ClCompile Include="ssCollider.cpp" />
+    <ClCompile Include="ssCollisionManager.cpp" />
     <ClCompile Include="ssComponent.cpp" />
     <ClCompile Include="ssEndingScene.cpp" />
     <ClCompile Include="ssEntity.cpp" />

@@ -20,6 +20,9 @@ namespace ss
 		{
 			mLayers[(int)_type].AddGameObject(_gameObj);
 		}
+
+		Layer& GetLayer(eLayerType _type) { return mLayers[(UINT)_type]; }
+
 	private:
 		std::vector<Layer> mLayers;
 	};

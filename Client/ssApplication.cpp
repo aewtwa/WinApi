@@ -1,9 +1,9 @@
 #include "ssApplication.h"
 #include "ssInput.h"
 #include "ssTime.h"
-#include "ssTitleScene.h"
 #include "ssSceneManager.h"
 #include "ssCamera.h"
+#include "ssCollisionManager.h"
 
 namespace ss
 {
@@ -55,6 +55,7 @@ namespace ss
 		Input::Initiailize();	
 		Camera::Initialize();
 
+		CollisionManager::Initialize();
 		SceneManager::Initialize();
 	}
 
@@ -70,6 +71,7 @@ namespace ss
 		Input::Update();
 		Camera::Update();
 
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 
@@ -83,6 +85,7 @@ namespace ss
 
 		Time::Render(mBackHdc);
 
+		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);

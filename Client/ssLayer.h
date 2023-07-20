@@ -19,6 +19,8 @@ namespace ss
 			mGameObjects.push_back(_gameObj);
 		}
 
+		std::vector<GameObject*>& GetGameObjects() { return mGameObjects; }
+
 	private:
 		std::vector<GameObject*> mGameObjects;
 	};
