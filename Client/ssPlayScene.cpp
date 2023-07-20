@@ -11,6 +11,8 @@
 #include "ssPlayGround.h"
 #include "ssAnimator.h"
 #include "ssMonster.h"
+#include "ssCollisionManager.h"
+#include "ssCollider.h"
 
 namespace ss
 {
@@ -54,28 +56,33 @@ namespace ss
 		AT->CreateAnimation(L"Bazzi_Left_Idle", Playerimage, Vector2(100.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		AT->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		AT->PlayAnimation(L"Bazzi_Idle", true);
-
+		Collider* COL = player->AddComponent<Collider>();
+		COL->SetSize(Vector2(50.0f, 60.0f));
 		// ¹°ÆøÅº »ğÀÔ
-		WaterBomb* waterbomb = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
-		Transform* WBTR = waterbomb->GetComponent<Transform>();
 
 		// ¸ó½ºÅÍ »ğÀÔ
 		Texture* Monsterimage = Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 		Monster* monster = Object::Instantiate<Monster>(eLayerType::Monster);
-		Transform* Monstertr = monster->GetComponent<Transform>();
-		Monstertr->SetPosition(Vector2(250.0f, 250.0f));
-		Animator* MonsterAT = monster->AddComponent<Animator>();
-		MonsterAT->CreateAnimation(L"ForestMobDown", Monsterimage, Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
-		MonsterAT->PlayAnimation(L"ForestMobDown", true);
+		TR = monster->GetComponent<Transform>();
+		TR->SetPosition(Vector2(250.0f, 250.0f));
+		AT = monster->AddComponent<Animator>();
+		AT->CreateAnimation(L"ForestMobDown", Monsterimage, Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
+		AT->PlayAnimation(L"ForestMobDown", true);
+		COL = monster->AddComponent<Collider>();
+		COL->SetSize(Vector2(35.0f, 40.0f));
 
 		// º¸½º¸ó½ºÅÍ »ğÀÔ
 		Monster* SealBoss = Object::Instantiate<Monster>(eLayerType::Monster);
-		Transform* SealBossTR = SealBoss->GetComponent<Transform>();
-		SealBossTR->SetPosition(Vector2(500.0f, 500.0f));
-		Animator* SealBossAT = SealBoss->AddComponent<Animator>();
-		SealBossAT->CreateAnimationFolder(L"SealBoss", L"..\\Resources\\Image\\Monster\\SealBoss\\Attack", Vector2(0.0f, 0.0f), 0.3f);
-		SealBossAT->PlayAnimation(L"SealBoss", true);
-		SealBossAT->SetScale(Vector2(2.0f, 2.0f));
+		TR = SealBoss->GetComponent<Transform>();
+		TR->SetPosition(Vector2(500.0f, 500.0f));
+		AT = SealBoss->AddComponent<Animator>();
+		AT->CreateAnimationFolder(L"SealBoss", L"..\\Resources\\Image\\Monster\\SealBoss\\Attack", Vector2(0.0f, 0.0f), 0.3f);
+		AT->PlayAnimation(L"SealBoss", true);
+		AT->SetScale(Vector2(2.0f, 2.0f));
+		COL = SealBoss->AddComponent<Collider>();
+		COL->SetSize(Vector2(200.0f, 180.0f));
+
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 	}
 	void PlayScene::Update()
 	{

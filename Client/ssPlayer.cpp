@@ -52,6 +52,7 @@ namespace ss
 
 	void Player::OnCollisionEnter(Collider* other)
 	{
+		
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
