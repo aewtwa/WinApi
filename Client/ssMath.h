@@ -1,91 +1,152 @@
 #pragma once
-
+#include <cmath>
 
 namespace ss::math
 {
-	struct Vector2
-	{
-		static Vector2 Zero;
-		static Vector2 One;
-		static Vector2 Right;
-		static Vector2 Up;
+#define PI 3.141592f
 
-		float x;
-		float y;
+    struct Vector2
+    {
+        static Vector2 Zero;
+        static Vector2 One;
+        static Vector2 Right;
+        static Vector2 Up;
 
-		Vector2()
-			: x(0.0f)
-			, y(0.0f)
-		{
+        float x;
+        float y;
 
-		}
+        Vector2()
+            : x(0.0f)
+            , y(0.0f)
+        {
 
-		Vector2(float _x, float _y)
-			: x(_x)
-			, y(_y)
-		{
+        }
 
-		}
+        Vector2(float _x, float _y)
+            : x(_x)
+            , y(_y)
+        {
 
-		Vector2 operator+(Vector2 _other)
-		{
-			Vector2 ret;
-			ret.x = x + _other.x;
-			ret.y = y + _other.y;
-			return ret;
-		}
+        }
 
-		Vector2 operator-(Vector2 _other)
-		{
-			Vector2 ret;
-			ret.x = x - _other.x;
-			ret.y = y - _other.y;
-			return ret;
-		}
+        Vector2 operator -()
+        {
+            return Vector2(-x, -y);
+        }
 
-		Vector2 operator/(const float value)
-		{
-			Vector2 temp;
-			temp.x = x / value;
-			temp.y = y / value;
-			return temp;
-		}
+        Vector2 operator+(const Vector2& other)
+        {
+            Vector2 temp;
+            temp.x = x + other.x;
+            temp.y = y + other.y;
 
-		Vector2 operator*(Vector2 _other)
-		{
-			Vector2 ret;
-			ret.x = x * _other.x;
-			ret.y = y * _other.y;
-			return ret;
-		}
+            return temp;
+        }
 
-		void operator+=(Vector2 other)
-		{
-			x += other.x;
-			y += other.y;
-		}
+        Vector2 operator-(const Vector2& other)
+        {
+            Vector2 temp;
+            temp.x = x - other.x;
+            temp.y = y - other.y;
 
-		
-	};
+            return temp;
+        }
 
-	// ¿ì¾ÆÇÑ ·£´ý
-	static unsigned long int seed = 1;
-	static int ss_rand(void)
-	{
-		seed = seed * 1103515245 + 12345;
-		return (unsigned int)(seed / 65536) % 32768;
-	}
+        Vector2 operator*(const Vector2& other)
+        {
+            Vector2 temp;
+            temp.x = x * other.x;
+            temp.y = y * other.y;
 
-	static void ss_srand(unsigned int _seed)
-	{
-		seed = _seed;
-	}
-	
-	static int GetRandomNumber(int _Range, int _StartNumber)
-	{
-		ss_srand(seed);
-		int randvalue = (ss_rand() % _Range) + _StartNumber;;
+            return temp;
+        }
 
-		return randvalue;
-	}
+        Vector2 operator*(const float& value)
+        {
+            Vector2 temp;
+            temp.x = x * value;
+            temp.y = y * value;
+
+            return temp;
+        }
+
+        Vector2 operator/(const float& value)
+        {
+            Vector2 temp;
+
+            temp.x = x / value;
+            temp.y = y / value;
+
+            return temp;
+        }
+
+        Vector2& operator +=(const Vector2& other)
+        {
+            x += other.x;
+            y += other.y;
+
+            return *this;
+        }
+
+        Vector2& operator -=(const Vector2& other)
+        {
+            x -= other.x;
+            y -= other.y;
+
+            return *this;
+        }
+
+        Vector2& operator *=(const float& value)
+        {
+            x *= value;
+            y *= value;
+
+            return *this;
+        }
+
+        bool operator ==(const Vector2& other)
+        {
+            return (x == other.x && y == other.y);
+        }
+
+        void clear()
+        {
+            x = 0.0f;
+            y = 0.0f;
+        }
+
+        float length()
+        {
+            return sqrtf(x * x + y * y);
+        }
+
+        Vector2 normalize()
+        {
+            float len = length();
+            x /= len;
+            y /= len;
+
+            return *this;
+        }
+    };
+
+    inline Vector2 Rotate(Vector2 vector, float degree)
+    {
+        float radian = (degree / 180.f) * PI;
+        vector.normalize();
+        float x = cosf(radian) * vector.x - sinf(radian) * vector.y;
+        float y = sinf(radian) * vector.x + cosf(radian) * vector.y;
+
+        return Vector2(x, y);
+    }
+
+    inline float Dot(Vector2& v1, Vector2& v2)
+    {
+        return v1.x * v2.x + v1.y * v2.y;
+    }
+
+    inline float Cross(Vector2 v1, Vector2 v2)
+    {
+        return v1.x * v2.y - v1.y * v2.x;
+    }
 }

@@ -35,13 +35,4 @@ namespace ss::enums
 		Collider,
 		End
 	};
-	
-	enum class eDirectionType
-	{
-		Up,
-		Down,
-		Left,
-		Right,
-		End
-	};
 }
