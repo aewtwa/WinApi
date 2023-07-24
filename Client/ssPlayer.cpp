@@ -26,19 +26,19 @@ namespace ss
 
 		switch (mState)
 		{
-		case ss::Player::eState::Idle:
+		case Player::eState::Idle:
 			Idle();
 			break;
-		case ss::Player::eState::Move:
+		case Player::eState::Move:
 			Move();
 			break;
-		case ss::Player::eState::DropWaterBomb:
+		case Player::eState::DropWaterBomb:
 			DropWaterBomb();
 			break;
-		case ss::Player::eState::Death:
+		case Player::eState::Death:
 			Death();
 			break;
-		case ss::Player::eState::End:
+		case Player::eState::End:
 			break;
 		default:
 			break;
@@ -85,6 +85,11 @@ namespace ss
 			animator->PlayAnimation(L"Bazzi_Right", true);
 			mState = eState::Move;
 		}
+
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState = eState::Death;
+		}
 	}
 
 	void Player::Move()
@@ -123,9 +128,22 @@ namespace ss
 
 	void Player::DropWaterBomb()
 	{
+
 	}
 
 	void Player::Death()
 	{
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			Animator* animator = GetComponent<Animator>();
+			animator->PlayAnimation(L"Bazzi_Trap", false);
+			mState = eState::Idle;
+		}
+		if (Input::GetKey(eKeyCode::Z))
+		{
+			Animator* animator = GetComponent<Animator>();
+			animator->PlayAnimation(L"Bazzi_Die", false);
+			mState = eState::Idle;
+		}
 	}
 }
