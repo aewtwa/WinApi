@@ -3,11 +3,14 @@
 #include "ssTime.h"
 #include "ssAnimator.h"
 #include "ssPlayer.h"
+#include "ssObject.h"
 
 namespace ss
 {
 	WaterBomb::WaterBomb()
-		:mPos(Vector2())
+		:mPos(Vector2(0.0f, 0.0f))
+		, mTransform{}
+		, mAnimator{}
 	{
 	}
 	WaterBomb::~WaterBomb()
@@ -15,13 +18,14 @@ namespace ss
 	}
 	void WaterBomb::Initialize()
 	{
+
+		mPos = mTransform->GetPosition();
+		mTransform = GetComponent<Transform>();
+		mAnimator = GetComponent<Animator>();
 	}
 	void WaterBomb::Update()
 	{
 		GameObject::Update();
-		Transform* tr = GetComponent<Transform>();
-		Animator* at = GetComponent<Animator>();
-		Vector2 pos = tr->GetPosition();
 	}
 	void WaterBomb::Render(HDC _hdc)
 	{

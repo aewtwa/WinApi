@@ -17,11 +17,15 @@ namespace ss
 	}
 	void LoadingScene::Initialize()
 	{
-		Texture* image = Resources::Load<Texture>(L"LoadingImage", L"..\\Resources\\Image\\Bg\\Logo.bmp");
+		Resources::Load<Texture>(L"LoadingImage", L"..\\Resources\\Image\\Bg\\Logo.bmp");
+		Resources::Load<Texture>(L"Bazzi", L"..\\Resources\\Image\\Bazzi\\Bazzi.bmp");
+		Resources::Load<Texture>(L"Bazzi_Trap", L"..\\Resources\\Image\\Bazzi\\trap.bmp");
+		Resources::Load<Texture>(L"Bazzi_Die", L"..\\Resources\\Image\\Bazzi\\die.bmp");
+		Resources::Load<Texture>(L"WaterBomb", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
 
 		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
+		bgsr->SetImage(Resources::Find<Texture>(L"LoadingImage"));
 		bgsr->SetScale(Vector2(1.23f, 1.23f));
 		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
 	}

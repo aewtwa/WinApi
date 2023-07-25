@@ -40,31 +40,15 @@ namespace ss
 		playbg->GetComponent<Transform>()->SetPosition(Vector2(416.0f, 391.0f));
 
 		// Ä³¸¯ÅÍ »ğÀÔ
-		Texture* Playerimage = Resources::Load<Texture>(L"Bazzi", L"..\\Resources\\Image\\Bazzi\\Bazzi.bmp");
-		Texture* Trapimage = Resources::Load<Texture>(L"Bazzi_Trap", L"..\\Resources\\Image\\Bazzi\\trap.bmp");
-		Texture* Deathimage = Resources::Load<Texture>(L"Bazzi_Die", L"..\\Resources\\Image\\Bazzi\\die.bmp");
 		Player* player = Object::Instantiate<Player>(eLayerType::Player);
 		Transform* TR = player->GetComponent<Transform>();
 		TR->SetPosition(Vector2(100.0f, 100.0f));
 		Animator* AT = player->AddComponent<Animator>();
-		AT->CreateAnimation(L"Bazzi_Idle", Playerimage, Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.3f);
-		AT->CreateAnimation(L"Bazzi_Up", Playerimage, Vector2(0.0f, 60.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Down", Playerimage, Vector2(0.0f, 120.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Left", Playerimage, Vector2(0.0f, 180.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Right", Playerimage, Vector2(0.0f, 240.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Death", Playerimage, Vector2(0.0f, 300.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Up_Idle", Playerimage, Vector2(0.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Down_Idle", Playerimage, Vector2(50.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Left_Idle", Playerimage, Vector2(100.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Right_Idle", Playerimage, Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Trap", Trapimage, Vector2(0.0f, 0.0f), Vector2(88.0f, 144.0f), 13, Vector2(0.0f, 0.0f), 0.1f);
-		AT->CreateAnimation(L"Bazzi_Die", Deathimage, Vector2(0.0f, 0.0f), Vector2(88.0f, 144.0f), 13, Vector2(0.0f, 0.0f), 0.1f);
 		AT->PlayAnimation(L"Bazzi_Idle", true);
 		Collider* COL = player->AddComponent<Collider>();
 		COL->SetSize(Vector2(50.0f, 60.0f));
 		// ¹°ÆøÅº »ğÀÔ
-		Texture* Bombimage = Resources::Load<Texture>(L"Bomb", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
-		AT->CreateAnimation(L"Bomb", Bombimage, Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
+		//AT->CreateAnimation(L"Bomb", Bombimage, Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
 		// ¸ó½ºÅÍ »ğÀÔ
 		Texture* Monsterimage = Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 		Monster* monster = Object::Instantiate<Monster>(eLayerType::Monster);

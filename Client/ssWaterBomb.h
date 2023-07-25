@@ -16,5 +16,7 @@ namespace ss
 
 	private:
 		Vector2 mPos;
+		class Transform* mTransform;
+		class Animator* mAnimator;
 	};
 }

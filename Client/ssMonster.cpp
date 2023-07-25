@@ -2,6 +2,8 @@
 #include "ssTransform.h"
 #include "ssTime.h"
 #include "ssAnimator.h"
+#include "ssPlayer.h"
+#include "ssCollider.h"
 
 namespace ss
 {
@@ -17,20 +19,18 @@ namespace ss
 	void Monster::Update()
 	{
 		GameObject::Update();
-
-		Transform* tr = GetComponent<Transform>();
-		Animator* at = GetComponent<Animator>();
-		Vector2 Pos = tr->GetPosition();
-
-
-		tr->SetPosition(Pos);
 	}
 	void Monster::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 	}
-	void Monster::OnCollisionEnter(Collider* other)
+	void Monster::OnCollisionEnter(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		Transform* tr = player->GetComponent<Transform>();
+
+		Vector2 PlayerPos = tr->GetPosition();
+
 	}
 	void Monster::OnCollisionStay(Collider* other)
 	{

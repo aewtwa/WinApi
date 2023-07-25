@@ -11,6 +11,7 @@ namespace ss::Object
 		T* gameObject = new T;
 		Scene* scene = SceneManager::GetActiveScene();
 		scene->AddGameObject(_type, gameObject);
+		gameObject->Initialize();
 
 		return gameObject;
 	}

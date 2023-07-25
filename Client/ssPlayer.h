@@ -10,7 +10,10 @@ namespace ss
 		enum class eState
 		{
 			Idle,
-			Move,
+			Up,
+			Left,
+			Down,
+			Right,
 			DropWaterBomb,
 			Death,
 			End
@@ -23,15 +26,21 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		virtual void OnCollisionEnter(class Collider* other) override;
-		virtual void OnCollisionStay(class Collider* other) override;
-		virtual void OnCollisionExit(class Collider* other) override;
+		virtual void OnCollisionEnter(class Collider* _other) override;
+		virtual void OnCollisionStay(class Collider* _other) override;
+		virtual void OnCollisionExit(class Collider* _other) override;
 
 		void Idle();
-		void Move();
+		void Up();
+		void Left();
+		void Down();
+		void Right();
 		void DropWaterBomb();
 		void Death();
 	private:
 		eState mState;
+		Vector2 mPos;
+		class Transform* mTransform;
+		class Animator* mAnimator;
 	};
 }
