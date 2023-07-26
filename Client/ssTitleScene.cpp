@@ -30,25 +30,29 @@ namespace ss
 		Scene::Update();
 
 
-		if (Input::GetKeyDown(eKeyCode::H))
+		if (Input::GetKey(eKeyCode::H))
 		{
 			SceneManager::LoadScene(L"HomeScene");
 		}
-		if (Input::GetKeyDown(eKeyCode::T))
+		if (Input::GetKey(eKeyCode::T))
 		{
 			SceneManager::LoadScene(L"TitleScene");
 		}
-		if (Input::GetKeyDown(eKeyCode::E))
+		if (Input::GetKey(eKeyCode::E))
 		{
 			SceneManager::LoadScene(L"EndingScene");
 		}
-		if (Input::GetKeyDown(eKeyCode::L))
+		if (Input::GetKey(eKeyCode::L))
 		{
 			SceneManager::LoadScene(L"LoadingScene");
 		}
-		if (Input::GetKeyDown(eKeyCode::P))
+		if (Input::GetKey(eKeyCode::P))
 		{
 			SceneManager::LoadScene(L"PlayScene");
+		}
+		if (Input::GetKey(eKeyCode::Space))
+		{
+			SceneManager::LoadScene(L"ToolScene");
 		}
 	}
 	void TitleScene::Render(HDC _hdc)

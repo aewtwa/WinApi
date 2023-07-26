@@ -4,6 +4,7 @@
 #include "ssEndingScene.h"
 #include "ssLoadingScene.h"
 #include "ssPlayScene.h"
+#include "ssToolScene.h"
 
 namespace ss
 {
@@ -17,6 +18,7 @@ namespace ss
 		CreateScene<HomeScene>(L"HomeScene");
 		CreateScene<EndingScene>(L"EndingScene");
 		CreateScene<PlayScene>(L"PlayScene");
+		CreateScene<ToolScene>(L"ToolScene");
 
 		LoadScene(L"PlayScene");
 	}

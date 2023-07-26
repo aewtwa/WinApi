@@ -8,12 +8,10 @@ namespace ss
 		Q, W, E, R, T, Y, U, I, O, P,
 		A, S, D, F, G, H, J, K, L,
 		Z, X, C, V, B, N, M,
-		// 화살표
 		Up, Down, Left, Right,
-		// 쉬프트키
 		LShift,RShift,
-		// 마우스
 		MouseLeft, MouseRight, MouseWheel,
+		Space,
 		End
 	};
 	enum class eKeyState
@@ -49,9 +47,14 @@ namespace ss
 		{
 			return mKeys[(int)_code].state == eKeyState::Pressed;
 		}
+		__forceinline static math::Vector2 GetMousePosition()
+		{
+			return mMousePosition;
+		}
 
 	private:
 		static std::vector<Key> mKeys;
+		static math::Vector2 mMousePosition;
 	};
 }
 

@@ -6,6 +6,7 @@
 #include "ssWaterBomb.h"
 #include "ssMonster.h"
 #include "ssCollider.h"
+#include "ssCollisionManager.h"
 #include "ssResources.h"
 #include "ssTexture.h"
 #include "ssObject.h"
@@ -19,6 +20,7 @@ namespace ss
 		, mAnimator{}
 		, mCollider{}
 	{
+		SetName(L"Player");
 	}
 
 	Player::~Player()
@@ -54,6 +56,7 @@ namespace ss
 
 	void Player::Update()
 	{
+
 		switch (mState)
 		{
 		case Player::eState::Idle:
@@ -93,13 +96,16 @@ namespace ss
 
 	void Player::OnCollisionEnter(Collider* _other)
 	{
-		// waterbomb을 넣을때 monster로 다이나믹캐스트하려해서 null반환
-		//Monster* monster = dynamic_cast<Monster*>(_other->GetOwner());
+		if (L"dao" == _other->GetOwner()->GetName())
+		{
+			// 여기서 다이나믹캐스트를 씁니다.
+			// _other->GetOwner()얘는 게임 오브젝트임
+			// 얘를 다오로 형변환 해주는거임 (다오는 예시)
+			// 그럼 형변환 된 _other->GetOwner()를 dao 형으로 사용할 수 있음
 
+		}
 
-		//Transform* monstertr = monster->GetComponent<Transform>();
-
-		//Vector2 MonsterPos = monstertr->GetPosition();
+		_other->GetCollisionNumber()
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
@@ -112,7 +118,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			mAnimator->PlayAnimation(L"Bazzi_Up", true);
+			mAnimator->PlayAnimation(L"Bazzi_Up");
 			mState = eState::Up;
 		}
 		else if (Input::GetKeyDown(eKeyCode::A))
@@ -211,10 +217,7 @@ namespace ss
 
 	void Player::DropWaterBomb()
 	{
-		//WaterBomb* WB = new WaterBomb;
-		WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
-		Transform* WBTF = WB->GetComponent<Transform>();
-		WBTF->SetPosition(mPos);
+		WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, mPos);
 
 		mState = eState::Idle;
 	}

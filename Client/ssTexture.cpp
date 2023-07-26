@@ -113,13 +113,15 @@ namespace ss
 
 		if (mType == eTextureType::Bmp)
 		{
-			TransparentBlt(_hdc, (int)_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x
-				, (int)_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y
+			TransparentBlt(_hdc, 
+				static_cast<int>(_pos.x) - (_size.x * _scale.x / 2.0f) + _offset.x
+				, static_cast<int>(_pos.y) - (_size.y * _scale.y / 2.0f) + _offset.y
 				, _size.x * _scale.x
 				, _size.y * _scale.y
 				, mHdc
 				, _leftTop.x, _leftTop.y, _rightBottom.x, _rightBottom.y
 				, RGB(255, 0, 255));
+			
 		}
 		else if (mType == eTextureType::AlphaBmp)
 		{
@@ -127,14 +129,14 @@ namespace ss
 			func.BlendOp = AC_SRC_OVER;
 			func.BlendFlags = 0;
 			func.AlphaFormat = AC_SRC_ALPHA;
-			_alpha = (int)(_alpha * 255.0f);
+			_alpha = static_cast<int>(_alpha * 255.0f);
 
 			if (_alpha <= 0)
 				_alpha = 0;
 			func.SourceConstantAlpha = _alpha; // 0 ~ 255
 
-			AlphaBlend(_hdc, (int)_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x
-				, (int)_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y
+			AlphaBlend(_hdc, static_cast<int>(_pos.x) - (_size.x * _scale.x / 2.0f) + _offset.x
+				, static_cast<int>(_pos.y) - (_size.y * _scale.y / 2.0f) + _offset.y
 				, _size.x * _scale.x
 				, _size.y * _scale.y
 				, mHdc
@@ -151,24 +153,25 @@ namespace ss
 				, Gdiplus::Color(255, 255, 255));
 
 			Gdiplus::Graphics graphics(_hdc);
-			graphics.TranslateTransform((float)_pos.x, (float)_pos.y);
+			graphics.TranslateTransform(static_cast<float>(_pos.x), static_cast<float>(_pos.y));
 			graphics.RotateTransform(_rotate);
-			graphics.TranslateTransform(-(float)_pos.x, -(float)_pos.y);
+			graphics.TranslateTransform(static_cast<float>(-_pos.x), static_cast<float>(-_pos.y));
 			graphics.DrawImage(mImage
 				, Gdiplus::Rect
 				(
-					(int)(_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x)
-					, (int)(_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y)
-					, (int)(_size.x * _scale.x)
-					, (int)(_size.y * _scale.y)
+					static_cast<int>(_pos.x - (_size.x * _scale.x / 2.0f) + _offset.x)
+					, static_cast<int>(_pos.y - (_size.y * _scale.y / 2.0f) + _offset.y)
+					, static_cast<int>(_size.x * _scale.x)
+					, static_cast<int>(_size.y * _scale.y)
 				)
 				, _leftTop.x, _leftTop.y
 				, _rightBottom.x, _rightBottom.y
 				, Gdiplus::UnitPixel
 				, nullptr);
 		}
-		Rectangle(_hdc
+		/*Rectangle(_hdc
 			, _pos.x - 3, _pos.y - 3
-			, _pos.x + 3, _pos.y + 3);
+			, _pos.x + 3, _pos.y + 3);*/
 	}
+
 }

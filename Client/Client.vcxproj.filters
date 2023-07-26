@@ -91,6 +91,9 @@
     <Filter Include="Engine\Collision">
       <UniqueIdentifier>{98cffe00-b155-450e-a5c3-fb3f16d590fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tool">
+      <UniqueIdentifier>{2199008c-faa3-4f4f-8ef3-dd846e80b1f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -201,6 +204,12 @@
     <ClInclude Include="ssCollisionManager.h">
       <Filter>Engine\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="ssTile.h">
+      <Filter>Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="ssToolScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -306,6 +315,12 @@
     </ClCompile>
     <ClCompile Include="ssCollisionManager.cpp">
       <Filter>Engine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ssTile.cpp">
+      <Filter>Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="ssToolScene.cpp">
+      <Filter>Contents\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

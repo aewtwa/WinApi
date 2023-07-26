@@ -13,11 +13,15 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+#define TILE_WIDTH 40
+#define TILE_HEIGHT 40
+
 namespace ss::enums
 {
 	enum class eLayerType
 	{
 		Background,
+		Tile,
 		WaterBomb,
 		Player,
 		Monster,

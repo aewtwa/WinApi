@@ -18,6 +18,9 @@ namespace ss
 	{
 		for (GameObject* obj : mGameObjects)
 		{
+			if (obj->GetState() == GameObject::eState::Pause)
+				continue;
+
 			obj->Update();
 		}
 	}
@@ -26,7 +29,22 @@ namespace ss
 	{
 		for (GameObject* obj : mGameObjects)
 		{
+			if (obj->GetState() == GameObject::eState::Pause)
+				continue;
+
 			obj->Render(_hdc);
+		}
+
+		for (std::vector<GameObject*>::iterator iter = mGameObjects.begin(); iter != mGameObjects.end();)
+		{
+			if ((*iter)->GetState() == GameObject::eState::Dead)
+			{
+				iter = mGameObjects.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
 		}
 	}
 }

@@ -31,6 +31,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -38,12 +39,14 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -51,6 +54,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -162,8 +166,10 @@
     <ClInclude Include="ssScene.h" />
     <ClInclude Include="ssSceneManager.h" />
     <ClInclude Include="ssSpriteRenderer.h" />
+    <ClInclude Include="ssTile.h" />
     <ClInclude Include="ssTime.h" />
     <ClInclude Include="ssTitleScene.h" />
+    <ClInclude Include="ssToolScene.h" />
     <ClInclude Include="ssTransform.h" />
     <ClInclude Include="ssWaterBomb.h" />
     <ClInclude Include="targetver.h" />
@@ -196,8 +202,10 @@
     <ClCompile Include="ssScene.cpp" />
     <ClCompile Include="ssSceneManager.cpp" />
     <ClCompile Include="ssSpriteRenderer.cpp" />
+    <ClCompile Include="ssTile.cpp" />
     <ClCompile Include="ssTime.cpp" />
     <ClCompile Include="ssTitleScene.cpp" />
+    <ClCompile Include="ssToolScene.cpp" />
     <ClCompile Include="ssTransform.cpp" />
     <ClCompile Include="ssWaterBomb.cpp" />
   </ItemGroup>

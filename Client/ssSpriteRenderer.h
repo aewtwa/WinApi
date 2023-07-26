@@ -20,9 +20,15 @@ namespace ss
 		void SetAffectCamera(bool _enable) { mbAffectCamera = _enable; }
 		float GetAlpha() { return mAlpha; }
 		void SetAlpha(float _alpha) { mAlpha = _alpha; }
+		void SetTile(int _x, int _y) { mbTile = true; mTileIndexX = _x; mTileIndexY = _y; }
 
 	private:
 		bool mbAffectCamera;
+
+		bool mbTile;
+		int mTileIndexX;
+		int mTileIndexY;
+
 		Texture* mTexture;
 		Vector2 mScale;
 		float mAlpha;

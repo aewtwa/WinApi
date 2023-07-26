@@ -5,6 +5,7 @@
 namespace ss
 {
 	GameObject::GameObject()
+		: mState(eState::Active)
 	{
 		AddComponent<Transform>();
 	}

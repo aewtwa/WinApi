@@ -21,6 +21,7 @@ namespace ss
 		static Texture* Create(const std::wstring& _name, UINT _width, UINT _height);
 
 		virtual HRESULT Load(const std::wstring& _path) override;
+
 		void Render(HDC _hdc
 			, Vector2 _pos
 			, Vector2 _size

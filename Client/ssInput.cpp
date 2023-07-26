@@ -1,8 +1,12 @@
 #include "ssInput.h"
+#include "ssApplication.h"
+
+extern ss::Application application;
 
 namespace ss
 {
 	std::vector<Input::Key> Input::mKeys = {};
+	math::Vector2 Input::mMousePosition = math::Vector2::Zero;
 
 	int ASCII[(int)eKeyCode::End] =
 	{
@@ -11,7 +15,8 @@ namespace ss
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT,
 		VK_LSHIFT,VK_RSHIFT,
-		VK_LBUTTON, VK_RBUTTON, VK_MBUTTON
+		VK_LBUTTON, VK_RBUTTON, VK_MBUTTON,
+		VK_SPACE
 	};
 
 	void Input::Initiailize()
@@ -50,5 +55,11 @@ namespace ss
 				mKeys[i].bPressed = false;
 			}
 		}
+
+		POINT mousePos = {};
+		GetCursorPos(&mousePos);
+		ScreenToClient(application.GetHwnd(), &mousePos);
+		mMousePosition.x = (float)mousePos.x;
+		mMousePosition.y = (float)mousePos.y;
 	}
 }
