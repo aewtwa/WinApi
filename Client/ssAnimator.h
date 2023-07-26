@@ -27,7 +27,7 @@ namespace ss
 		Animation* FindAnimation(const std::wstring& _name);
 		void PlayAnimation(const std::wstring& _name, bool _loop = false);
 
-		bool IsAcriveAnimationComplete() { return mActiveAnimation->IsComplete(); }
+		bool IsActiveAnimationComplete() { return mActiveAnimation->IsComplete(); }
 		bool GetAffectedCamera() { return mbAffectedCamera; }
 		void SetAffectedCamera(bool _enable) { mbAffectedCamera = _enable; }
 		float GetAlpha() { return mAlpha; }

@@ -39,39 +39,16 @@ namespace ss
 		playbgsr->SetScale(Vector2(0.87f, 0.87f));
 		playbg->GetComponent<Transform>()->SetPosition(Vector2(416.0f, 391.0f));
 
-		// Ä³¸¯ÅÍ »ğÀÔ
-		Player* player = Object::Instantiate<Player>(eLayerType::Player);
-		Transform* TR = player->GetComponent<Transform>();
-		TR->SetPosition(Vector2(100.0f, 100.0f));
-		Animator* AT = player->AddComponent<Animator>();
-		AT->PlayAnimation(L"Bazzi_Idle", true);
-		Collider* COL = player->AddComponent<Collider>();
-		COL->SetSize(Vector2(50.0f, 60.0f));
-		// ¹°ÆøÅº »ğÀÔ
-		//AT->CreateAnimation(L"Bomb", Bombimage, Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
-		// ¸ó½ºÅÍ »ğÀÔ
-		Texture* Monsterimage = Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
-		Monster* monster = Object::Instantiate<Monster>(eLayerType::Monster);
-		TR = monster->GetComponent<Transform>();
-		TR->SetPosition(Vector2(250.0f, 250.0f));
-		AT = monster->AddComponent<Animator>();
-		AT->CreateAnimation(L"ForestMobDown", Monsterimage, Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
-		AT->PlayAnimation(L"ForestMobDown", true);
-		COL = monster->AddComponent<Collider>();
-		COL->SetSize(Vector2(35.0f, 40.0f));
 
-		// º¸½º¸ó½ºÅÍ »ğÀÔ
-		Monster* SealBoss = Object::Instantiate<Monster>(eLayerType::Monster);
-		TR = SealBoss->GetComponent<Transform>();
-		TR->SetPosition(Vector2(500.0f, 500.0f));
-		AT = SealBoss->AddComponent<Animator>();
-		AT->CreateAnimationFolder(L"SealBoss", L"..\\Resources\\Image\\Monster\\SealBoss\\Attack", Vector2(0.0f, 0.0f), 0.3f);
-		AT->PlayAnimation(L"SealBoss", true);
-		AT->SetScale(Vector2(2.0f, 2.0f));
-		COL = SealBoss->AddComponent<Collider>();
-		COL->SetSize(Vector2(200.0f, 180.0f));
+		// Ä³¸¯ÅÍ »ğÀÔ
+		Object::Instantiate<Player>(eLayerType::Player);
+		// ¹°ÆøÅº »ğÀÔ
+		Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
+		// ¸ó½ºÅÍ »ğÀÔ
+		Object::Instantiate<Monster>(eLayerType::Monster);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
 	}
 	void PlayScene::Update()
 	{

@@ -8,14 +8,16 @@
 #include "ssCollider.h"
 #include "ssResources.h"
 #include "ssTexture.h"
+#include "ssObject.h"
 
 namespace ss
 {
 	Player::Player()
 		: mState(eState::Idle)
-		, mPos(Vector2(0.0f,0.0f))
-		, mTransform{}
+		, mTransform{ GetComponent<Transform>() }
+		, mPos()
 		, mAnimator{}
+		, mCollider{}
 	{
 	}
 
@@ -25,10 +27,9 @@ namespace ss
 
 	void Player::Initialize()
 	{
-		GameObject::Initialize();
-
-		mTransform = AddComponent<Transform>();
 		mPos = mTransform->GetPosition();
+		mPos = Vector2(100.0f, 100.0f);
+		mTransform->SetPosition(mPos);
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Bazzi_Idle", Resources::Find<Texture>(L"Bazzi"), Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.3f);
@@ -43,8 +44,12 @@ namespace ss
 		mAnimator->CreateAnimation(L"Bazzi_Right_Idle", Resources::Find<Texture>(L"Bazzi"), Vector2(150.0f, 360.0f), Vector2(50.0f, 60.0f), 1, Vector2(0.0f, 0.0f), 0.1f);
 		mAnimator->CreateAnimation(L"Bazzi_Trap", Resources::Find<Texture>(L"Bazzi_Trap"), Vector2(0.0f, 0.0f), Vector2(88.0f, 144.0f), 13, Vector2(0.0f, 0.0f), 0.1f);
 		mAnimator->CreateAnimation(L"Bazzi_Die", Resources::Find<Texture>(L"Bazzi_Die"), Vector2(0.0f, 0.0f), Vector2(88.0f, 144.0f), 13, Vector2(0.0f, 0.0f), 0.1f);
-
 		mAnimator->PlayAnimation(L"Bazzi_Idle", true);
+
+		mCollider = AddComponent<Collider>();
+		mCollider->SetSize(Vector2(50.0f, 60.0f));
+
+		GameObject::Initialize();
 	}
 
 	void Player::Update()
@@ -92,6 +97,11 @@ namespace ss
 		Transform* monstertr = monster->GetComponent<Transform>();
 
 		Vector2 MonsterPos = monstertr->GetPosition();
+
+		/*WaterBomb* waterbomb = dynamic_cast<WaterBomb*>(_other->GetOwner());
+		Transform* waterbombtr = waterbomb->GetComponent<Transform>();
+
+		Vector2 waterbombPos = waterbombtr->GetPosition();*/
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
@@ -131,83 +141,93 @@ namespace ss
 
 	void Player::Up()
 	{
-		Transform* TR = GetComponent<Transform>();
-		Vector2 pos = TR->GetPosition();
-
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			pos.y -= 200.0f * Time::DeltaTime();
+			mPos.y -= 200.0f * Time::DeltaTime();
 		}
-		TR->SetPosition(pos);
+		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Up_Idle", true);
 			mState = eState::Idle;
 		}
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState = eState::DropWaterBomb;
+		}
 	}
 
 	void Player::Left()
 	{
-		Transform* TR = GetComponent<Transform>();
-		Vector2 pos = TR->GetPosition();
-
 		if (Input::GetKeyDown(eKeyCode::A))
 		{
-			pos.x -= 200.0f * Time::DeltaTime();
+			mPos.x -= 200.0f * Time::DeltaTime();
 		}
-		TR->SetPosition(pos);
+		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::A))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Left_Idle", true);
 			mState = eState::Idle;
 		}
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState = eState::DropWaterBomb;
+		}
 	}
 
 	void Player::Down()
 	{
-		Transform* TR = GetComponent<Transform>();
-		Vector2 pos = TR->GetPosition();
-
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
-			pos.y += 200.0f * Time::DeltaTime();
+			mPos.y += 200.0f * Time::DeltaTime();
 		}
-		TR->SetPosition(pos);
+		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Down_Idle", true);
 			mState = eState::Idle;
 		}
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState = eState::DropWaterBomb;
+		}
 	}
 
 	void Player::Right()
 	{
-		Transform* TR = GetComponent<Transform>();
-		Vector2 pos = TR->GetPosition();
-
 		if (Input::GetKeyDown(eKeyCode::D))
 		{
-			pos.x += 200.0f * Time::DeltaTime();
+			mPos.x += 200.0f * Time::DeltaTime();
 		}
-		TR->SetPosition(pos);
+		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::D))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Right_Idle", true);
 			mState = eState::Idle;
 		}
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState = eState::DropWaterBomb;
+		}
 	}
 
 	void Player::DropWaterBomb()
 	{
-		Transform* transform = GetComponent<Transform>();
-		Vector2 pos = transform->GetPosition();
-
 		WaterBomb* WB = new WaterBomb;
-		Transform* WBTR = WB->GetComponent<Transform>();
-		WBTR->SetPosition(pos);
+		WB->Initialize();
+		//Instantiate<WaterBomb>(eLayerType::WaterBomb);
+		Transform* WBTF = WB->GetComponent<Transform>();
+		WBTF->SetPosition(mPos);
+		Animator* WBAT = WB->GetComponent<Animator>();
+		WBAT->PlayAnimation(L"WaterBomb", true);
+		Collider* WBCOL = WB->GetComponent<Collider>();
+		WB->Update();
+
+		mState = eState::Idle;
 	}
 
 	void Player::Death()
 	{
+
 	}
 }

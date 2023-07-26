@@ -22,6 +22,7 @@ namespace ss
 		Resources::Load<Texture>(L"Bazzi_Trap", L"..\\Resources\\Image\\Bazzi\\trap.bmp");
 		Resources::Load<Texture>(L"Bazzi_Die", L"..\\Resources\\Image\\Bazzi\\die.bmp");
 		Resources::Load<Texture>(L"WaterBomb", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
+		Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 
 		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();

@@ -39,8 +39,9 @@ namespace ss
 		void Death();
 	private:
 		eState mState;
-		Vector2 mPos;
 		class Transform* mTransform;
+		Vector2 mPos;
 		class Animator* mAnimator;
+		class Collider* mCollider;
 	};
 }

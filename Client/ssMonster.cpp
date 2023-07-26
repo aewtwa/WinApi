@@ -4,10 +4,16 @@
 #include "ssAnimator.h"
 #include "ssPlayer.h"
 #include "ssCollider.h"
+#include "ssResources.h"
+#include "ssTexture.h"
 
 namespace ss
 {
 	Monster::Monster()
+		: mTransform{ GetComponent<Transform>() }
+		, mPos()
+		, mAnimator{}
+		, mCollider{}
 	{
 	}
 	Monster::~Monster()
@@ -15,6 +21,17 @@ namespace ss
 	}
 	void Monster::Initialize()
 	{
+		mPos = mTransform->GetPosition();
+		mPos = Vector2(250.0f, 250.0f);
+		mTransform->SetPosition(mPos);
+
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimation(L"ForestMobDown", Resources::Find<Texture>(L"Monster"), Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
+		mAnimator->PlayAnimation(L"ForestMobDown", true);
+		mCollider = AddComponent<Collider>();
+		mCollider->SetSize(Vector2(35.0f, 41.0f));
+
+		GameObject::Initialize();
 	}
 	void Monster::Update()
 	{
@@ -26,11 +43,6 @@ namespace ss
 	}
 	void Monster::OnCollisionEnter(Collider* _other)
 	{
-		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		Transform* tr = player->GetComponent<Transform>();
-
-		Vector2 PlayerPos = tr->GetPosition();
-
 	}
 	void Monster::OnCollisionStay(Collider* other)
 	{

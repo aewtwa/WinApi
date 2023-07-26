@@ -3,6 +3,7 @@
 
 namespace ss
 {
+	using namespace math;
 	class Monster : public GameObject
 	{
 	public:
@@ -17,5 +18,10 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other);
 		virtual void OnCollisionExit(class Collider* _other);
 
+	private:
+		class Transform* mTransform;
+		Vector2 mPos;
+		class Animator* mAnimator;
+		class Collider* mCollider;
 	};
 }
