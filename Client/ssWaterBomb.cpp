@@ -9,9 +9,7 @@
 namespace ss
 {
 	WaterBomb::WaterBomb()
-		: mTransform{ GetComponent<Transform>() }
-		, mPos()
-		, mAnimator{}
+		: mAnimator{}
 		, mCollider{}
 	{
 	}
@@ -20,15 +18,12 @@ namespace ss
 	}
 	void WaterBomb::Initialize()
 	{
-		mPos = mTransform->GetPosition();
-		mPos = Vector2(250.0f, 250.0f);
-		mTransform->SetPosition(mPos);
-
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"WaterBomb", Resources::Find<Texture>(L"WaterBomb"), Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 0.0f), 0.3f);
+		mAnimator->CreateAnimation(L"WaterBomb", Resources::Find<Texture>(L"WaterBomb"), Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 11.0f), 0.3f);
 		mAnimator->PlayAnimation(L"WaterBomb", true);
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(44.0f, 41.0f));
+		mCollider->SetOffset(Vector2(0.0f, 11.0f));
 
 		GameObject::Initialize();
 	}

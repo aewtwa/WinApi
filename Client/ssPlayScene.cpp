@@ -42,13 +42,11 @@ namespace ss
 
 		// Ä³¸¯ÅÍ »ğÀÔ
 		Object::Instantiate<Player>(eLayerType::Player);
-		// ¹°ÆøÅº »ğÀÔ
-		Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
 		// ¸ó½ºÅÍ »ğÀÔ
 		Object::Instantiate<Monster>(eLayerType::Monster);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
-		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
 	}
 	void PlayScene::Update()
 	{

@@ -19,8 +19,6 @@ namespace ss
 		virtual void OnCollisionExit(class Collider* _other);
 
 	private:
-		class Transform* mTransform;
-		Vector2 mPos;
 		class Animator* mAnimator;
 		class Collider* mCollider;
 	};

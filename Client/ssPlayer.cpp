@@ -93,15 +93,13 @@ namespace ss
 
 	void Player::OnCollisionEnter(Collider* _other)
 	{
-		Monster* monster = dynamic_cast<Monster*>(_other->GetOwner());
-		Transform* monstertr = monster->GetComponent<Transform>();
+		// waterbomb을 넣을때 monster로 다이나믹캐스트하려해서 null반환
+		//Monster* monster = dynamic_cast<Monster*>(_other->GetOwner());
 
-		Vector2 MonsterPos = monstertr->GetPosition();
 
-		/*WaterBomb* waterbomb = dynamic_cast<WaterBomb*>(_other->GetOwner());
-		Transform* waterbombtr = waterbomb->GetComponent<Transform>();
+		//Transform* monstertr = monster->GetComponent<Transform>();
 
-		Vector2 waterbombPos = waterbombtr->GetPosition();*/
+		//Vector2 MonsterPos = monstertr->GetPosition();
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
@@ -213,15 +211,10 @@ namespace ss
 
 	void Player::DropWaterBomb()
 	{
-		WaterBomb* WB = new WaterBomb;
-		WB->Initialize();
-		//Instantiate<WaterBomb>(eLayerType::WaterBomb);
+		//WaterBomb* WB = new WaterBomb;
+		WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb);
 		Transform* WBTF = WB->GetComponent<Transform>();
 		WBTF->SetPosition(mPos);
-		Animator* WBAT = WB->GetComponent<Animator>();
-		WBAT->PlayAnimation(L"WaterBomb", true);
-		Collider* WBCOL = WB->GetComponent<Collider>();
-		WB->Update();
 
 		mState = eState::Idle;
 	}
