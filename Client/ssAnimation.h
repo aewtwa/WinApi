@@ -44,7 +44,6 @@ namespace ss
 		bool IsComplete() { return mbComplete; }
 		void SetAnimator(Animator* _animator) { mAnimator = _animator; }
 
-
 	private:
 		Animator* mAnimator;
 		Texture* mTexture;

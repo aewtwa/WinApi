@@ -57,6 +57,7 @@ namespace ss
 		eState GetState() { return mState; }
 		void Pause() { mState = eState::Pause; }
 
+
 	private:
 		void death() { mState = eState::Dead; }
 

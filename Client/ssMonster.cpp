@@ -15,6 +15,7 @@ namespace ss
 		, mAnimator{}
 		, mCollider{}
 	{
+		SetName(L"Monster");
 	}
 	Monster::~Monster()
 	{

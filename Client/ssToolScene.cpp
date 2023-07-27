@@ -29,7 +29,7 @@ namespace ss
 	{
 		Scene::Update();
 
-		if (Input::GetKey(eKeyCode::MouseLeft) && GetFocus())
+		if (Input::GetKeyDown(eKeyCode::MouseLeft) && GetFocus())
 		{
 			Vector2 mousePos = Input::GetMousePosition();
 
@@ -38,9 +38,6 @@ namespace ss
 
 			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
 			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile, Vector2(idxX * (TILE_WIDTH) + offset.x, idxY * (TILE_HEIGHT) + offset.y));
-
-			int a = Tile::mSelectedX;
-			int b = Tile::mSelectedY;
 
 			tile->SetTile(Tile::mSelectedX, Tile::mSelectedY);
 		}

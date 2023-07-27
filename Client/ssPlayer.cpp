@@ -56,7 +56,6 @@ namespace ss
 
 	void Player::Update()
 	{
-
 		switch (mState)
 		{
 		case Player::eState::Idle:
@@ -96,16 +95,19 @@ namespace ss
 
 	void Player::OnCollisionEnter(Collider* _other)
 	{
-		if (L"dao" == _other->GetOwner()->GetName())
+		if (L"Monster" == _other->GetOwner()->GetName())
 		{
+			mAnimator->PlayAnimation(L"Bazzi_Trap");
+			mState = eState::Death;
 			// 여기서 다이나믹캐스트를 씁니다.
 			// _other->GetOwner()얘는 게임 오브젝트임
 			// 얘를 다오로 형변환 해주는거임 (다오는 예시)
 			// 그럼 형변환 된 _other->GetOwner()를 dao 형으로 사용할 수 있음
-
 		}
-
-		_other->GetCollisionNumber()
+		if (L"WaterBomb" == _other->GetOwner()->GetName())
+		{
+			int a = 0;
+		}
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
@@ -118,7 +120,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			mAnimator->PlayAnimation(L"Bazzi_Up");
+			mAnimator->PlayAnimation(L"Bazzi_Up", true);
 			mState = eState::Up;
 		}
 		else if (Input::GetKeyDown(eKeyCode::A))
@@ -147,7 +149,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			mPos.y -= 200.0f * Time::DeltaTime();
+			mPos.y -= 150.0f * Time::DeltaTime();
 		}
 		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::W))
@@ -165,7 +167,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::A))
 		{
-			mPos.x -= 200.0f * Time::DeltaTime();
+			mPos.x -= 150.0f * Time::DeltaTime();
 		}
 		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::A))
@@ -183,7 +185,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
-			mPos.y += 200.0f * Time::DeltaTime();
+			mPos.y += 150.0f * Time::DeltaTime();
 		}
 		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::S))
@@ -201,7 +203,7 @@ namespace ss
 	{
 		if (Input::GetKeyDown(eKeyCode::D))
 		{
-			mPos.x += 200.0f * Time::DeltaTime();
+			mPos.x += 150.0f * Time::DeltaTime();
 		}
 		mTransform->SetPosition(mPos);
 		if (Input::GetKeyUp(eKeyCode::D))
@@ -224,6 +226,6 @@ namespace ss
 
 	void Player::Death()
 	{
-
+		mAnimator->PlayAnimation(L"Bazzi_Die");
 	}
 }
