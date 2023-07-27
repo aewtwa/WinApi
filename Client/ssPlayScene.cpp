@@ -41,9 +41,9 @@ namespace ss
 
 
 		// 캐릭터 삽입
-		Object::Instantiate<Player>(eLayerType::Player);
+		Object::Instantiate<Player>(eLayerType::Player, Vector2(100.0f, 100.0f));
 		// 몬스터 삽입
-		Object::Instantiate<Monster>(eLayerType::Monster);
+		Object::Instantiate<Monster>(eLayerType::Monster, Vector2(250.0f, 250.0f));
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);

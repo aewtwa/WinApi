@@ -21,12 +21,7 @@ namespace ss
 	{
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"WaterBomb", Resources::Find<Texture>(L"WaterBomb"), Vector2(0.0f, 0.0f), Vector2(44.0f, 41.0f), 3, Vector2(0.0f, 11.0f), 0.3f);
-
-		mAnimator->PlayAnimation(L"WaterBomb");
-		if (mAnimator->IsActiveAnimationComplete())
-		{
-
-		}
+		mAnimator->PlayAnimation(L"WaterBomb", true);
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(44.0f, 41.0f));
 		mCollider->SetOffset(Vector2(0.0f, 11.0f));
