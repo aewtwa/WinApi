@@ -16,7 +16,6 @@ namespace ss
 	Player::Player()
 		: mState(eState::Idle)
 		, mTransform{ GetComponent<Transform>() }
-		, mPos()
 		, mAnimator{}
 		, mCollider{}
 	{
@@ -76,7 +75,7 @@ namespace ss
 		case Player::eState::DropWaterBomb:
 			DropWaterBomb();
 			break;
-		case Player::eState::Death:
+		case Player::eState::death:
 			Death();
 			break;
 		case Player::eState::End:
@@ -97,8 +96,7 @@ namespace ss
 	{
 		if (L"Monster" == _other->GetOwner()->GetName())
 		{
-			//mAnimator->PlayAnimation(L"Bazzi_Trap");
-			//mState = eState::Death;
+			mState = eState::death;
 			// 여기서 다이나믹캐스트를 씁니다.
 			// _other->GetOwner()얘는 게임 오브젝트임
 			// 얘를 다오로 형변환 해주는거임 (다오는 예시)
@@ -226,6 +224,6 @@ namespace ss
 
 	void Player::Death()
 	{
-		mAnimator->PlayAnimation(L"Bazzi_Die");
+		mAnimator->PlayAnimation(L"Bazzi_Trap");
 	}
 }

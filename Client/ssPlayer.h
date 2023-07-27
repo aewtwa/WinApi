@@ -15,7 +15,7 @@ namespace ss
 			Down,
 			Right,
 			DropWaterBomb,
-			Death,
+			death,
 			End
 		};
 

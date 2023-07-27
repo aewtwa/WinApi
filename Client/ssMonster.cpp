@@ -11,7 +11,6 @@ namespace ss
 {
 	Monster::Monster()
 		: mTransform{ GetComponent<Transform>() }
-		, mPos()
 		, mAnimator{}
 		, mCollider{}
 	{

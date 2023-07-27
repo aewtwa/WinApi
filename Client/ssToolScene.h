@@ -1,5 +1,6 @@
 #pragma once
 #include "ssScene.h"
+#include "ssTile.h"
 
 namespace ss
 {
@@ -13,7 +14,10 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
-	private:
+		void Save();
+		void Load();
 
+	private:
+		std::vector<Tile*> mTiles;
 	};
 }

@@ -16,6 +16,10 @@ namespace ss
 
 	void GameObject::Initialize()
 	{
+		for (Component* comp : mComponents)
+		{
+			comp->Initialize();
+		}
 	}
 
 	void GameObject::Update()

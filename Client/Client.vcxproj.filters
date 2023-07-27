@@ -94,6 +94,9 @@
     <Filter Include="Tool">
       <UniqueIdentifier>{2199008c-faa3-4f4f-8ef3-dd846e80b1f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Sound">
+      <UniqueIdentifier>{74412eb5-411d-43c3-926f-b68fcda2fafd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -210,6 +213,12 @@
     <ClInclude Include="ssToolScene.h">
       <Filter>Contents\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ssSound.h">
+      <Filter>Engine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="ssSoundManager.h">
+      <Filter>Engine\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -321,6 +330,12 @@
     </ClCompile>
     <ClCompile Include="ssToolScene.cpp">
       <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssSound.cpp">
+      <Filter>Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="ssSoundManager.cpp">
+      <Filter>Engine\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

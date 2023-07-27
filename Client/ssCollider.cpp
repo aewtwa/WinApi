@@ -25,6 +25,9 @@ namespace ss
 
 	void Collider::Initialize()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		mPosition = pos + mOffset;
 	}
 
 	void Collider::Update()

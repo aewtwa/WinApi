@@ -4,6 +4,7 @@
 #include "ssSceneManager.h"
 #include "ssCamera.h"
 #include "ssCollisionManager.h"
+#include "ssSoundManager.h"
 
 namespace ss
 {
@@ -53,6 +54,7 @@ namespace ss
 
 		Time::Initiailize();
 		Input::Initiailize();	
+		SoundManager::Initialize();
 		Camera::Initialize();
 
 		CollisionManager::Initialize();
