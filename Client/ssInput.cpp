@@ -62,4 +62,19 @@ namespace ss
 		mMousePosition.x = (float)mousePos.x;
 		mMousePosition.y = (float)mousePos.y;
 	}
+	bool Input::AllKeyNone()
+	{
+		for (size_t i = 0; i < (int)eKeyCode::End; i++)
+		{
+			if (GetKey((eKeyCode)i) == 1)
+			{
+				return false;
+			}
+			if (GetKeyDown((eKeyCode)i) == 1)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

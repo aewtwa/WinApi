@@ -16,7 +16,7 @@ namespace ss
 
 		void Save();
 		void Load();
-
+		
 	private:
 		std::vector<Tile*> mTiles;
 	};

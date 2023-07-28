@@ -1,23 +1,22 @@
 #pragma once
 #include "ssScene.h"
+#include "ssTile.h"
 
 namespace ss
 {
-	using namespace math;
-	class PlayScene : public Scene
+	class IceMap1 : public Scene
 	{
 	public:
-		PlayScene();
-		virtual ~PlayScene();
+		IceMap1();
+		virtual ~IceMap1();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		Vector2 GetMapidx() { return Vector2(mMapidxX, mMapidxY); }
+		void Load();
 
 	private:
-		UINT mMapidxX;
-		UINT mMapidxY;
+		std::vector<Tile*> mTiles;
 	};
 }

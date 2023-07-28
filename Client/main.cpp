@@ -140,7 +140,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       0, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
    
    HWND hWndTool = CreateWindowW(L"Tool", szTitle, WS_OVERLAPPEDWINDOW,
-       0, 0, 640, 160, nullptr, nullptr, hInstance, nullptr);
+       0, 0, 780, 364, nullptr, nullptr, hInstance, nullptr);
 
    // Gdiplus 초기화
    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
@@ -157,7 +157,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    // tool
-   RECT rect = { 0, 0, 640, 160 };
+   RECT rect = { 0, 0, 780, 364 };
    AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
    SetWindowPos(hWndTool, nullptr, 1041, 0, rect.right - rect.left, rect.bottom - rect.top, 0);
    ShowWindow(hWndTool, nCmdShow);
@@ -258,7 +258,7 @@ LRESULT CALLBACK WndToolProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         //Rectangle(hdc, 0, 0, 100, 100);
         //여기서 이미지 를 그려준다.
 
-        ss::Texture* Campmap = ss::Resources::Find<ss::Texture>(L"CampmapTile");
+        ss::Texture* Campmap = ss::Resources::Find<ss::Texture>(L"Tile");
 
         TransparentBlt(hdc
             , 0, 0, Campmap->GetWidth(), Campmap->GetHeight()

@@ -18,8 +18,13 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other);
 		virtual void OnCollisionExit(class Collider* _other);
 
+		void Bomb();
+
 	private:
 		class Animator* mAnimator;
 		class Collider* mCollider;
+		class Transform* mTransform;
+		float mBombtime;
+		bool mbBomb;
 	};
 }

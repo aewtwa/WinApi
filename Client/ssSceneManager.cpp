@@ -5,6 +5,7 @@
 #include "ssLoadingScene.h"
 #include "ssPlayScene.h"
 #include "ssToolScene.h"
+#include "ssIceMap1.h"
 
 namespace ss
 {
@@ -19,6 +20,7 @@ namespace ss
 		CreateScene<EndingScene>(L"EndingScene");
 		CreateScene<PlayScene>(L"PlayScene");
 		CreateScene<ToolScene>(L"ToolScene");
+		CreateScene<IceMap1>(L"IceMap1");
 
 		LoadScene(L"PlayScene");
 	}

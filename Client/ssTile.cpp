@@ -27,10 +27,9 @@ namespace ss
 		mSpriteRenderer = AddComponent<SpriteRenderer>();
 		//AddComponent<Collider>();
 
-		ss::Texture* Campmap = ss::Resources::Find<ss::Texture>(L"CampmapTile");
+		ss::Texture* Campmap = ss::Resources::Find<ss::Texture>(L"Tile");
 
 		mSpriteRenderer->SetImage(Campmap);
-		mSpriteRenderer->SetScale(Vector2(1.0f, 1.0f));
 	}
 
 	void Tile::Update()

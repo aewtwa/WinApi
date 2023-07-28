@@ -17,6 +17,8 @@
 namespace ss
 {
 	PlayScene::PlayScene()
+		: mMapidxX(0)
+		, mMapidxY(0)
 	{
 	}
 	PlayScene::~PlayScene()
@@ -25,21 +27,7 @@ namespace ss
 	void PlayScene::Initialize()
 	{
 		// 배경 삽입
-		Texture* image = Resources::Load<Texture>(L"PlayBackGround", L"..\\Resources\\Image\\Bg\\play.bmp");
-		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(Vector2(1.3f, 1.3f));
-		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
-
-		Texture* playimage = Resources::Load<Texture>(L"PlayGround", L"..\\Resources\\Image\\Bg\\ForestTile.bmp");
-		PlayGround* playbg = Object::Instantiate<PlayGround>(eLayerType::Background);
-		SpriteRenderer* playbgsr = playbg->AddComponent<SpriteRenderer>();
-		playbgsr->SetImage(playimage);
-		playbgsr->SetScale(Vector2(0.87f, 0.87f));
-		playbg->GetComponent<Transform>()->SetPosition(Vector2(416.0f, 391.0f));
-
-
+		Object::Instantiate<BackGround>(eLayerType::Background);
 		// 캐릭터 삽입
 		Object::Instantiate<Player>(eLayerType::Player);
 		// 몬스터 삽입
@@ -50,9 +38,6 @@ namespace ss
 	}
 	void PlayScene::Update()
 	{
-		Scene::Update();
-
-
 		if (Input::GetKey(eKeyCode::H))
 		{
 			SceneManager::LoadScene(L"HomeScene");
@@ -73,13 +58,36 @@ namespace ss
 		{
 			SceneManager::LoadScene(L"PlayScene");
 		}
+		if (Input::GetKey(eKeyCode::I))
+		{
+			SceneManager::LoadScene(L"IceMap1");
+		}
 		if (Input::GetKey(eKeyCode::Space))
 		{
 			SceneManager::LoadScene(L"ToolScene");
 		}
+
+		Scene::Update();
 	}
 	void PlayScene::Render(HDC _hdc)
 	{
+
+		int maxRow = 520 * 1.3f / (TILE_HEIGHT) + 1;
+		for (size_t y = 0; y < maxRow; y++)
+		{
+			MoveToEx(_hdc, 2.0f, TILE_HEIGHT * y + BLANK_HEIGHT, NULL);      //      라인(선) 시작
+			LineTo(_hdc, 600 * 1.3f + BLANK_WIDTH, TILE_HEIGHT * y + BLANK_HEIGHT);        //          라인(선) 끝
+		}
+
+		int maxColumn = 600 * 1.3f / (TILE_WIDTH) + 1;
+		for (size_t x = 0; x < maxColumn; x++)
+		{
+			MoveToEx(_hdc, TILE_WIDTH * x + BLANK_WIDTH, 0 + BLANK_HEIGHT, NULL);      //      라인(선) 시작
+			LineTo(_hdc, TILE_WIDTH * x + BLANK_WIDTH, 520 * 1.3f + BLANK_HEIGHT);        //          라인(선) 끝
+		}
+
+
 		Scene::Render(_hdc);
+
 	}
 }

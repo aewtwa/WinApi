@@ -21,8 +21,14 @@
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "dsound.lib")
 
-#define TILE_WIDTH 40
-#define TILE_HEIGHT 40
+#define TILE_WIDTH 52.0f
+#define TILE_HEIGHT 52.0f
+
+#define MAP_WIDTH 15
+#define MAP_HEIGHT 13
+
+#define BLANK_WIDTH 26.0f
+#define BLANK_HEIGHT 53.0f
 
 namespace ss::enums
 {
@@ -45,6 +51,15 @@ namespace ss::enums
 		Animation,
 		Animator,
 		Collider,
+		End
+	};
+
+	enum class eDirection
+	{
+		Up,
+		Down,
+		Left,
+		Right,
 		End
 	};
 }

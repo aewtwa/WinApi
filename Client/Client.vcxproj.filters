@@ -219,6 +219,9 @@
     <ClInclude Include="ssSoundManager.h">
       <Filter>Engine\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="ssIceMap1.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -336,6 +339,9 @@
     </ClCompile>
     <ClCompile Include="ssSoundManager.cpp">
       <Filter>Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="ssIceMap1.cpp">
+      <Filter>Contents\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

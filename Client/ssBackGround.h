@@ -3,6 +3,7 @@
 
 namespace ss
 {
+	using namespace math;
 	class BackGround : public GameObject
 	{
 	public:
@@ -14,7 +15,9 @@ namespace ss
 		virtual void Render(HDC _hdc) override;
 
 	private:
-
+		class Transform* mTransform;
+		Vector2 mPos;
+		class Texture* mTexture;
+		class SpriteRenderer* mSpriteRenderer;
 	};
 }
-

@@ -10,14 +10,12 @@ namespace ss
 		enum class eState
 		{
 			Idle,
-			Up,
-			Left,
-			Down,
-			Right,
+			Move,
 			DropWaterBomb,
-			death,
+			Trap,
 			End
 		};
+		
 
 		Player();
 		virtual ~Player();
@@ -30,18 +28,20 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other) override;
 		virtual void OnCollisionExit(class Collider* _other) override;
 
+		Vector2 GetMapIDX();
+
 		void Idle();
-		void Up();
-		void Left();
-		void Down();
-		void Right();
+		void Move();
 		void DropWaterBomb();
-		void Death();
+		void Trap();
+
 	private:
-		eState mState;
+		std::bitset<static_cast<UINT>(eState::End)> mState;
+		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
 		class Transform* mTransform;
 		Vector2 mPos;
 		class Animator* mAnimator;
 		class Collider* mCollider;
+		float mDeathTime;
 	};
 }

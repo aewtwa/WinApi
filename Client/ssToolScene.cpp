@@ -22,7 +22,6 @@ namespace ss
 	}
 	void ToolScene::Initialize()
 	{
-		Texture* springFloor = Resources::Load<Texture>(L"CampmapTile", L"..\\Resources\\Image\\Map\\campmap.bmp");
 	}
 
 	void ToolScene::Update()
@@ -50,7 +49,7 @@ namespace ss
 		{
 			Save();
 		}
-		if (Input::GetKeyDown(eKeyCode::L))
+		if (Input::GetKeyDown(eKeyCode::M))
 		{
 			Load();
 		}
@@ -84,18 +83,18 @@ namespace ss
 	{
 		Scene::Render(hdc);
 
-		int maxRow = 780 / (TILE_HEIGHT) + 1;
+		int maxRow = 520 * 1.3f / (TILE_HEIGHT) + 1;
 		for (size_t y = 0; y < maxRow; y++)
 		{
 			MoveToEx(hdc, 0, TILE_HEIGHT * y, NULL);      //      라인(선) 시작
-			LineTo(hdc, 1040, TILE_HEIGHT * y);        //          라인(선) 끝
+			LineTo(hdc, 600 * 1.3f, TILE_HEIGHT * y);        //          라인(선) 끝
 		}
 
-		int maxColumn = 1040 / (TILE_WIDTH) + 1;
+		int maxColumn = 600 * 1.3f / (TILE_WIDTH) + 1;
 		for (size_t x = 0; x < maxColumn; x++)
 		{
 			MoveToEx(hdc, TILE_WIDTH * x, 0, NULL);      //      라인(선) 시작
-			LineTo(hdc, TILE_WIDTH * x, 780);        //          라인(선) 끝
+			LineTo(hdc, TILE_WIDTH * x, 520 * 1.3f);        //          라인(선) 끝
 		}
 	}
 
@@ -199,10 +198,10 @@ namespace ss
 			if (fread(&myY, sizeof(int), 1, pFile) == NULL)
 				break;
 
-			Vector2 offset = Vector2((TILE_WIDTH * 3) / 2.0f, (TILE_HEIGHT * 3) / 2.0f);
+			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
 			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile
-				, Vector2(myX * (TILE_WIDTH * 3) + offset.x
-					, myY * (TILE_HEIGHT * 3) + offset.y));
+				, Vector2(myX * (TILE_WIDTH) + offset.x
+					, myY * (TILE_HEIGHT) + offset.y));
 
 			tile->SetTile(sourceX, sourceY);
 			tile->SetSourceTileIdx(sourceX, sourceY);
