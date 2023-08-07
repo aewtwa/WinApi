@@ -29,6 +29,7 @@ namespace ss
 		virtual void OnCollisionExit(class Collider* _other) override;
 
 		Vector2 GetMapIDX();
+		void SetMapIDX() {}
 
 		void Idle();
 		void Move();
@@ -43,5 +44,6 @@ namespace ss
 		class Animator* mAnimator;
 		class Collider* mCollider;
 		float mDeathTime;
+		bool mOnCollision;
 	};
 }

@@ -97,6 +97,9 @@
     <Filter Include="Engine\Sound">
       <UniqueIdentifier>{74412eb5-411d-43c3-926f-b68fcda2fafd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\Floor">
+      <UniqueIdentifier>{8771aa85-782a-4819-8161-bbb84d82fc36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -222,6 +225,9 @@
     <ClInclude Include="ssIceMap1.h">
       <Filter>Contents\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ssIceFloor.h">
+      <Filter>Contents\GameObjects\Floor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -342,6 +348,9 @@
     </ClCompile>
     <ClCompile Include="ssIceMap1.cpp">
       <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ssIceFloor.cpp">
+      <Filter>Contents\GameObjects\Floor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

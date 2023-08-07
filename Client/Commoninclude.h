@@ -35,6 +35,7 @@ namespace ss::enums
 	enum class eLayerType
 	{
 		Background,
+		Floor,
 		Tile,
 		WaterBomb,
 		Player,

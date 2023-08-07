@@ -13,6 +13,7 @@
 #include "ssMonster.h"
 #include "ssCollisionManager.h"
 #include "ssCollider.h"
+#include "ssIceFloor.h"
 
 namespace ss
 {
@@ -26,6 +27,11 @@ namespace ss
 	{
 		Object::Instantiate<BackGround>(eLayerType::Background);
 		Object::Instantiate<Player>(eLayerType::Player);
+		Object::Instantiate<IceFloor>(eLayerType::Floor);
+
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Tile, true);
 	}
 	void IceMap1::Update()
 	{
@@ -92,10 +98,11 @@ namespace ss
 			if (fread(&myY, sizeof(int), 1, pFile) == NULL)
 				break;
 
-			Vector2 offset = Vector2((TILE_WIDTH * 1.3f) / 2.0f, (TILE_HEIGHT * 1.3f) / 2.0f);
-			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile
-				, Vector2(myX * (TILE_WIDTH * 1.3f)+offset.x
-					, myY * (TILE_HEIGHT * 1.3f)+offset.y));
+			float starttileX = 26.0f;
+			float starttileY = 52.0f;
+
+			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
+			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile, Vector2(myX * (TILE_WIDTH)+offset.x + starttileX, myY * (TILE_HEIGHT)+offset.y + starttileY));
 
 			tile->SetTile(sourceX, sourceY);
 			tile->SetSourceTileIdx(sourceX, sourceY);

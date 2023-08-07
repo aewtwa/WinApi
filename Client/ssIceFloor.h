@@ -3,11 +3,11 @@
 
 namespace ss
 {
-	class BackGround : public GameObject
+	class IceFloor : public GameObject
 	{
 	public:
-		BackGround();
-		virtual ~BackGround();
+		IceFloor();
+		virtual ~IceFloor();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

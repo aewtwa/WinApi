@@ -1,4 +1,4 @@
-#include "ssBackGround.h"
+#include "ssIceFloor.h"
 #include "ssAnimator.h"
 #include "ssResources.h"
 #include "ssTexture.h"
@@ -7,32 +7,28 @@
 
 namespace ss
 {
-	BackGround::BackGround()
+	IceFloor::IceFloor()
 		: mTransform{ GetComponent<Transform>() }
 		, mTexture(nullptr)
 		, mSpriteRenderer(nullptr)
 	{
 	}
-
-	BackGround::~BackGround()
+	IceFloor::~IceFloor()
 	{
 	}
-
-	void BackGround::Initialize()
+	void IceFloor::Initialize()
 	{
-		mTexture = Resources::Load<Texture>(L"PlayBackGround", L"..\\Resources\\Image\\Bg\\play.bmp");
+		mTexture = Resources::Load<Texture>(L"ICETILE", L"..\\Resources\\Image\\Bg\\ICETILE.bmp");
 		mSpriteRenderer = AddComponent<SpriteRenderer>();
 		mSpriteRenderer->SetImage(mTexture);
-		mSpriteRenderer->SetScale(Vector2(1.3f, 1.3f));
-		GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
+		mSpriteRenderer->SetScale(Vector2(0.87f, 0.87f));
+		GetComponent<Transform>()->SetPosition(Vector2(417.0f, 391.0f));
 	}
-
-	void BackGround::Update()
+	void IceFloor::Update()
 	{
 		GameObject::Update();
 	}
-
-	void BackGround::Render(HDC _hdc)
+	void IceFloor::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 	}

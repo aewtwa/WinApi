@@ -17,6 +17,10 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
+		virtual void OnCollisionEnter(class Collider* _other) override;
+		virtual void OnCollisionStay(class Collider* _other) override;
+		virtual void OnCollisionExit(class Collider* _other) override;
+
 		Vector2 GetSourceTileIdx() { return Vector2(mSourceIndexX, mSourceIndexY); }
 		void SetSourceTileIdx(int _x, int _y) { mSourceIndexX = _x;  mSourceIndexY = _y; }
 		Vector2 GetTileIdx() { return Vector2(mIndexX, mIndexY); }
@@ -26,6 +30,7 @@ namespace ss
 
 	private:
 		class SpriteRenderer* mSpriteRenderer;
+		class Collider* mCollider;
 
 		UINT mSourceIndexX;
 		UINT mSourceIndexY;

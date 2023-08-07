@@ -20,6 +20,7 @@ namespace ss
 		, mAnimator{}
 		, mCollider{}
 		, mDeathTime(0.0f)
+		, mOnCollision(false)
 	{
 		SetName(L"Player");
 	}
@@ -99,7 +100,11 @@ namespace ss
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
-			int a = 0;
+
+		}
+		if (L"Tile" == _other->GetOwner()->GetName())
+		{
+			
 		}
 	}
 	void Player::OnCollisionStay(Collider* _other)

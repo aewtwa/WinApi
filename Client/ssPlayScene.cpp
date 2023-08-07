@@ -13,6 +13,7 @@
 #include "ssMonster.h"
 #include "ssCollisionManager.h"
 #include "ssCollider.h"
+#include "ssIceFloor.h"
 
 namespace ss
 {
@@ -32,9 +33,12 @@ namespace ss
 		Object::Instantiate<Player>(eLayerType::Player);
 		// ¸ó½ºÅÍ »ðÀÔ
 		Object::Instantiate<Monster>(eLayerType::Monster);
+		// ¹Ù´Ú »ðÀÔ
+		//Object::Instantiate<IceFloor>(eLayerType::Floor);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Tile, true);
 	}
 	void PlayScene::Update()
 	{

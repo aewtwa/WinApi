@@ -28,15 +28,18 @@ namespace ss
 	{
 		Scene::Update();
 
-		if (Input::GetKeyDown(eKeyCode::MouseLeft) && GetFocus())
+		if (Input::GetKey(eKeyCode::MouseLeft) && GetFocus())
 		{
 			Vector2 mousePos = Input::GetMousePosition();
 
-			int idxX = mousePos.x / (TILE_WIDTH);
-			int idxY = mousePos.y / (TILE_HEIGHT);
+			float starttileX = 26.0f;
+			float starttileY = 52.0f;
+
+			int idxX = (mousePos.x - starttileX) / (TILE_WIDTH);
+			int idxY = (mousePos.y - starttileY) / (TILE_HEIGHT);
 
 			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
-			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile, Vector2(idxX * (TILE_WIDTH)+offset.x, idxY * (TILE_HEIGHT)+offset.y));
+			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile, Vector2(idxX * (TILE_WIDTH)+offset.x + starttileX, idxY * (TILE_HEIGHT)+offset.y + starttileY));
 
 			tile->SetTile(Tile::mSelectedX, Tile::mSelectedY);
 			tile->SetSourceTileIdx(Tile::mSelectedX, Tile::mSelectedY);
@@ -83,18 +86,21 @@ namespace ss
 	{
 		Scene::Render(hdc);
 
-		int maxRow = 520 * 1.3f / (TILE_HEIGHT) + 1;
+		float starttileX = 26.0f;
+		float starttileY = 52.0f;
+
+		int maxRow = 520 * 1.3f / (TILE_HEIGHT)+1;
 		for (size_t y = 0; y < maxRow; y++)
 		{
-			MoveToEx(hdc, 0, TILE_HEIGHT * y, NULL);      //      라인(선) 시작
-			LineTo(hdc, 600 * 1.3f, TILE_HEIGHT * y);        //          라인(선) 끝
+			MoveToEx(hdc, starttileX, TILE_HEIGHT * y + starttileY, NULL);      //      라인(선) 시작
+			LineTo(hdc, 600 * 1.3f + starttileX, TILE_HEIGHT * y + starttileY);        //          라인(선) 끝
 		}
 
-		int maxColumn = 600 * 1.3f / (TILE_WIDTH) + 1;
+		int maxColumn = 600 * 1.3f / (TILE_WIDTH)+1;
 		for (size_t x = 0; x < maxColumn; x++)
 		{
-			MoveToEx(hdc, TILE_WIDTH * x, 0, NULL);      //      라인(선) 시작
-			LineTo(hdc, TILE_WIDTH * x, 520 * 1.3f);        //          라인(선) 끝
+			MoveToEx(hdc, TILE_WIDTH * x + starttileX, starttileY, NULL);      //      라인(선) 시작
+			LineTo(hdc, TILE_WIDTH * x + starttileX, 520 * 1.3f + starttileY);        //          라인(선) 끝
 		}
 	}
 
@@ -198,10 +204,11 @@ namespace ss
 			if (fread(&myY, sizeof(int), 1, pFile) == NULL)
 				break;
 
+			float starttileX = 26.0f;
+			float starttileY = 52.0f;
+
 			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
-			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile
-				, Vector2(myX * (TILE_WIDTH) + offset.x
-					, myY * (TILE_HEIGHT) + offset.y));
+			Tile* tile = Object::Instantiate<Tile>(eLayerType::Tile, Vector2(myX * (TILE_WIDTH) + offset.x + starttileX, myY * (TILE_HEIGHT) + offset.y + starttileY));
 
 			tile->SetTile(sourceX, sourceY);
 			tile->SetSourceTileIdx(sourceX, sourceY);
