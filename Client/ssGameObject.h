@@ -54,6 +54,8 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
+		RECT GetInterSectColliderRect(class Collider* other);
+
 		eState GetState() { return mState; }
 		void Pause() { mState = eState::Pause; }
 

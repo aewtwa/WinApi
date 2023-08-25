@@ -253,9 +253,6 @@
     <ClCompile Include="ssTime.cpp">
       <Filter>Engine\Common\Time</Filter>
     </ClCompile>
-    <ClCompile Include="ssScene.cpp">
-      <Filter>Engine\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="ssComponent.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
@@ -351,6 +348,9 @@
     </ClCompile>
     <ClCompile Include="ssIceFloor.cpp">
       <Filter>Contents\GameObjects\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="ssScene.cpp">
+      <Filter>Engine\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

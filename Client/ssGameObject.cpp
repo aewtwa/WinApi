@@ -1,6 +1,7 @@
 #include "ssGameObject.h"
 #include "ssTransform.h"
 #include "ssSpriteRenderer.h"
+#include "ssCollider.h"
 
 namespace ss
 {
@@ -46,5 +47,35 @@ namespace ss
 	}
 	void GameObject::OnCollisionExit(Collider* other)
 	{
+	}
+	RECT GameObject::GetInterSectColliderRect(Collider* other)
+	{
+		Collider* col = nullptr;
+		col = GetComponent<Collider>();
+		RECT resultRect = {};
+		if (col)
+		{
+			const Vector2 thisCollPos = col->GetPosition();
+			const Vector2 thisCollSize = col->GetSize() / 2.f;
+			const Vector2 otherCollPos = other->GetPosition();
+			const Vector2 otherCollSize = other->GetSize() / 2.f;
+
+			const RECT thisRect =
+			{
+				thisCollPos.x - thisCollSize.x,
+				thisCollPos.y - thisCollSize.y,
+				thisCollPos.x + thisCollSize.x,
+				thisCollPos.y + thisCollSize.y,
+			};
+			const RECT otherRect =
+			{
+				otherCollPos.x - otherCollSize.x,
+				otherCollPos.y - otherCollSize.y,
+				otherCollPos.x + otherCollSize.x,
+				otherCollPos.y + otherCollSize.y,
+			};
+			IntersectRect(&resultRect, &thisRect, &otherRect);
+		}
+		return resultRect;
 	}
 }

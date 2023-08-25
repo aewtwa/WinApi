@@ -36,6 +36,10 @@ namespace ss
 		void DropWaterBomb();
 		void Trap();
 
+		void SetDirection(eDirection _dir);
+		eDirection CurDirection_flag();
+		Vector2 CurDirection();
+
 	private:
 		std::bitset<static_cast<UINT>(eState::End)> mState;
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
@@ -45,5 +49,7 @@ namespace ss
 		class Collider* mCollider;
 		float mDeathTime;
 		bool mOnCollision;
+
+		float mSpeed;
 	};
 }

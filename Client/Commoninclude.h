@@ -48,10 +48,10 @@ namespace ss::enums
 	enum class eComponentType
 	{
 		Transform,
+		Collider,
 		SpriteRenderer,
 		Animation,
 		Animator,
-		Collider,
 		End
 	};
 
