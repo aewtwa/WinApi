@@ -33,4 +33,10 @@ namespace ss
 			layer.Render(_hdc);
 		}
 	}
+	void Scene::SceneEnter()
+	{
+	}
+	void Scene::SceneExit()
+	{
+	}
 }

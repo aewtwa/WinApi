@@ -22,7 +22,12 @@ namespace ss
 		CreateScene<ToolScene>(L"ToolScene");
 		CreateScene<IceMap1>(L"IceMap1");
 
-		LoadScene(L"PlayScene");
+
+		mActiveScene = nullptr;
+
+		LoadScene(L"LoadingScene");
+
+
 	}
 
 	void SceneManager::Update()
@@ -37,12 +42,18 @@ namespace ss
 
 	Scene* SceneManager::LoadScene(const std::wstring& _name)
 	{
+		if (mActiveScene != nullptr)
+		{
+			mActiveScene->SceneExit();
+		}
 		std::map<std::wstring, Scene*>::iterator iter = mScenes.find(_name);
 
 		if (iter == mScenes.end())
 			return nullptr;
 
 		mActiveScene = iter->second;
+
+		mActiveScene->SceneEnter();
 		return iter->second;
 	}
 }

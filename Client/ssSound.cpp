@@ -139,4 +139,15 @@ namespace ss
 			iVolume = -10000;
 		return  iVolume;
 	}
+	bool Sound::IsPlaying()
+	{
+		DWORD status;
+		mSoundBuffer->GetStatus(&status);
+		if (status == DSBSTATUS_PLAYING)
+		{
+			return true;
+		}
+
+		return false;
+	}
 }

@@ -14,6 +14,8 @@ namespace ss
 		void SetVolume(float volume);
 		int GetDecibel(float volume);
 
+		bool IsPlaying();
+
 	private:
 		LPDIRECTSOUNDBUFFER		mSoundBuffer;
 		DSBUFFERDESC			mBufferDesc;

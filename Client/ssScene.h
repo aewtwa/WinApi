@@ -15,6 +15,8 @@ namespace ss
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render(HDC hdc);
+		virtual void SceneEnter();
+		virtual void SceneExit();
 
 		void AddGameObject(eLayerType _type, GameObject* _gameObj)
 		{

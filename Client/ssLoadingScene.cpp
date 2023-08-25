@@ -6,10 +6,12 @@
 #include "ssResources.h"
 #include "ssBackGround.h"
 #include "ssInput.h"
+#include "ssSound.h"
 
 namespace ss
 {
 	LoadingScene::LoadingScene()
+		: mLoadingSound(nullptr)
 	{
 	}
 	LoadingScene::~LoadingScene()
@@ -26,16 +28,25 @@ namespace ss
 		Resources::Load<Texture>(L"WaterBomb", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
 		Resources::Load<Texture>(L"BombLeftflow", L"..\\Resources\\Image\\Bomb\\Leftflow");
 		Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
+		
 
 		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(Resources::Find<Texture>(L"LoadingImage"));
 		bgsr->SetScale(Vector2(1.23f, 1.23f));
-		bg->GetComponent<Transform>()->SetPosition(Vector2(520.0f, 390.0f));
+		bg->GetComponent<Transform>()->SetPosition(Vector2(520.f, 390.f));
 	}
 	void LoadingScene::Update()
 	{
 		Scene::Update();
+
+		if (mLoadingSound)
+		{
+			if (!mLoadingSound->IsPlaying())
+			{
+				SceneManager::LoadScene(L"TitleScene");
+			}
+		}
 
 		if (Input::GetKey(eKeyCode::H))
 		{
@@ -61,9 +72,19 @@ namespace ss
 		{
 			SceneManager::LoadScene(L"ToolScene");
 		}
+
+		
 	}
 	void LoadingScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
+	}
+	void LoadingScene::SceneEnter()
+	{
+		mLoadingSound = Resources::Load<Sound>(L"LoadingSound", L"..\\Resources\\Sound\\logo.wav");
+		mLoadingSound->Play(false);
+	}
+	void LoadingScene::SceneExit()
+	{
 	}
 }
