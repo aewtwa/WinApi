@@ -55,7 +55,6 @@ namespace ss
 				mKeys[i].bPressed = false;
 			}
 		}
-
 		POINT mousePos = {};
 		GetCursorPos(&mousePos);
 		ScreenToClient(application.GetHwnd(), &mousePos);

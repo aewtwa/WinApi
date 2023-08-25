@@ -32,13 +32,16 @@ namespace ss
 
 	void Collider::Update()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		mPosition = pos + mOffset;
 	}
 
 	void Collider::Render(HDC hdc)
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
-		mPosition = pos + mOffset;
+		//mPosition = pos + mOffset;
 
 		pos.x -= mSize.x / 2.0f;
 		pos.y -= mSize.y / 2.0f;

@@ -61,6 +61,8 @@ namespace ss
 	{
 		if (Input::AllKeyNone())
 		{
+			mState.reset();
+			mDirection.reset();
 			mState[static_cast<UINT>(Player::eState::Idle)] = true;
 		}
 		if (mState[static_cast<UINT>(Player::eState::Idle)])
@@ -79,7 +81,6 @@ namespace ss
 		{
 			Trap();
 		}
-
 		GameObject::Update();
 	}
 
@@ -163,6 +164,7 @@ namespace ss
 
 				mPos -= curDir * interSectVec;
 			}
+			mTransform->SetPosition(mPos);
 		}
 	}
 	void Player::OnCollisionExit(Collider* _other)

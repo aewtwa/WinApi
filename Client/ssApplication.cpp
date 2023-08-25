@@ -73,7 +73,7 @@ namespace ss
 		Input::Update();
 		Camera::Update();
 
-		SceneManager::Update();
+		SceneManager::Update(); 
 		CollisionManager::Update();
 	}
 
@@ -87,7 +87,7 @@ namespace ss
 
 		Time::Render(mBackHdc);
 
-		CollisionManager::Render(mBackHdc);
+//		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);

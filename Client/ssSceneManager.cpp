@@ -25,7 +25,7 @@ namespace ss
 
 		mActiveScene = nullptr;
 
-		LoadScene(L"IceMap1");
+		LoadScene(L"PlayScene");
 
 
 	}
