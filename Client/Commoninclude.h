@@ -38,6 +38,7 @@ namespace ss::enums
 		Floor,
 		Tile,
 		WaterBomb,
+		WaterFlow,
 		Player,
 		Monster,
 		Effect,

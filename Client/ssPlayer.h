@@ -29,7 +29,7 @@ namespace ss
 		virtual void OnCollisionExit(class Collider* _other) override;
 
 		Vector2 GetMapIDX();
-		void SetMapIDX() {}
+		Vector2 GetPos() { return mPos; }
 
 		void Idle();
 		void Move();
@@ -39,6 +39,11 @@ namespace ss
 		void SetDirection(eDirection _dir);
 		eDirection CurDirection_flag();
 		Vector2 CurDirection();
+
+		int GetWaterBombs() { return mWaterBombs; }
+		void SetWaterBombs(int _WaterBombs) { mWaterBombs = _WaterBombs; }
+		int GetWaterBombPower() { return mWaterBombPower; }
+		void SetWaterBombPower(int _WaterBombPower) { mWaterBombPower = _WaterBombPower; }
 
 	private:
 		std::bitset<static_cast<UINT>(eState::End)> mState;
@@ -51,5 +56,7 @@ namespace ss
 		bool mOnCollision;
 
 		float mSpeed;
+		int mWaterBombs;
+		int mWaterBombPower;
 	};
 }

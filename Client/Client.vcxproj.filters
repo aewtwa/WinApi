@@ -100,6 +100,12 @@
     <Filter Include="Contents\GameObjects\Floor">
       <UniqueIdentifier>{8771aa85-782a-4819-8161-bbb84d82fc36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\Item">
+      <UniqueIdentifier>{6a68a38b-3933-4c98-b856-f3297d4337d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\WaterFlow">
+      <UniqueIdentifier>{2c4118c5-37d0-49f0-a281-ec975b13501d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -228,6 +234,12 @@
     <ClInclude Include="ssIceFloor.h">
       <Filter>Contents\GameObjects\Floor</Filter>
     </ClInclude>
+    <ClInclude Include="ssItem.h">
+      <Filter>Contents\GameObjects\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ssWaterFlow.h">
+      <Filter>Contents\GameObjects\WaterFlow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -351,6 +363,12 @@
     </ClCompile>
     <ClCompile Include="ssScene.cpp">
       <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ssItem.cpp">
+      <Filter>Contents\GameObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ssWaterFlow.cpp">
+      <Filter>Contents\GameObjects\WaterFlow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

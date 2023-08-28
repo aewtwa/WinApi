@@ -21,7 +21,9 @@ namespace ss
 		, mCollider{}
 		, mDeathTime(0.0f)
 		, mOnCollision(false)
-		, mSpeed(600.f)
+		, mSpeed(200.f)
+		, mWaterBombs(1)
+		, mWaterBombPower(1)
 	{
 		SetName(L"Player");
 	}
@@ -212,38 +214,6 @@ namespace ss
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 
-		if (Input::GetKey(eKeyCode::LShift))
-		{
-			mState[static_cast<int>(eState::DropWaterBomb)] = true;
-		}
-	}
-
-	void Player::Move()
-	{
-		if (mDirection[static_cast<UINT>(eDirection::Up)])
-		{
-			mPos.y -= mSpeed * Time::DeltaTime();
-		}
-		else if (mDirection[static_cast<UINT>(eDirection::Down)])
-		{
-			mPos.y += mSpeed * Time::DeltaTime();
-		}
-		else if (mDirection[static_cast<UINT>(eDirection::Left)])
-		{
-			mPos.x -= mSpeed * Time::DeltaTime();
-		}
-		else if (mDirection[static_cast<UINT>(eDirection::Right)])
-		{
-			mPos.x += mSpeed * Time::DeltaTime();
-		}
-		mTransform->SetPosition(mPos);
-
-		if (Input::GetKey(eKeyCode::LShift))
-		{
-			mState[static_cast<int>(eState::DropWaterBomb)] = true;
-		}
-
-
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
 			mDirection[static_cast<UINT>(eDirection::Up)] = false;
@@ -275,6 +245,37 @@ namespace ss
 			{
 				mAnimator->PlayAnimation(L"Bazzi_Right_Idle");
 			}
+		}
+
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState[static_cast<int>(eState::DropWaterBomb)] = true;
+		}
+	}
+
+	void Player::Move()
+	{
+		if (mDirection[static_cast<UINT>(eDirection::Up)])
+		{
+			mPos.y -= mSpeed * Time::DeltaTime();
+		}
+		else if (mDirection[static_cast<UINT>(eDirection::Down)])
+		{
+			mPos.y += mSpeed * Time::DeltaTime();
+		}
+		else if (mDirection[static_cast<UINT>(eDirection::Left)])
+		{
+			mPos.x -= mSpeed * Time::DeltaTime();
+		}
+		else if (mDirection[static_cast<UINT>(eDirection::Right)])
+		{
+			mPos.x += mSpeed * Time::DeltaTime();
+		}
+		mTransform->SetPosition(mPos);
+
+		if (Input::GetKey(eKeyCode::LShift))
+		{
+			mState[static_cast<int>(eState::DropWaterBomb)] = true;
 		}
 	}
 
@@ -310,9 +311,9 @@ namespace ss
 	}
 	Vector2 Player::CurDirection()
 	{
-		eDirection dir = CurDirection_flag();
+		eDirection Dir = CurDirection_flag();
 
-		switch (dir)
+		switch (Dir)
 		{
 		case ss::enums::eDirection::Up:
 			return { 0.f, -1.f };
@@ -333,6 +334,5 @@ namespace ss
 		}
 
 		return { 0.f, 0.f };
-		
 	}
 }

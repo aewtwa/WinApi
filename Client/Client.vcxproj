@@ -153,6 +153,7 @@
     <ClInclude Include="ssGameObject.h" />
     <ClInclude Include="ssHomeScene.h" />
     <ClInclude Include="ssIceMap1.h" />
+    <ClInclude Include="ssItem.h" />
     <ClInclude Include="ssLoadingScene.h" />
     <ClInclude Include="ssMonster.h" />
     <ClInclude Include="ssPlayGround.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="ssToolScene.h" />
     <ClInclude Include="ssTransform.h" />
     <ClInclude Include="ssWaterBomb.h" />
+    <ClInclude Include="ssWaterFlow.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +196,7 @@
     <ClCompile Include="ssGameObject.cpp" />
     <ClCompile Include="ssHomeScene.cpp" />
     <ClCompile Include="ssIceMap1.cpp" />
+    <ClCompile Include="ssItem.cpp" />
     <ClCompile Include="ssLoadingScene.cpp" />
     <ClCompile Include="ssMonster.cpp" />
     <ClCompile Include="ssPlayGround.cpp" />
@@ -216,6 +219,7 @@
     <ClCompile Include="ssToolScene.cpp" />
     <ClCompile Include="ssTransform.cpp" />
     <ClCompile Include="ssWaterBomb.cpp" />
+    <ClCompile Include="ssWaterFlow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
