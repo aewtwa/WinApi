@@ -29,7 +29,7 @@ namespace ss
 		mSpriteRenderer = AddComponent<SpriteRenderer>();
 		//AddComponent<Collider>();
 
-		ss::Texture* Campmap = ss::Resources::Find<ss::Texture>(L"Tile");
+		Texture* Campmap = Resources::Find<Texture>(L"Tile");
 		mSpriteRenderer->SetImage(Campmap);
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(52.0f, 52.0f));

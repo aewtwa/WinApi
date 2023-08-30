@@ -104,7 +104,11 @@ namespace ss
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
-
+			WaterBomb* wb = dynamic_cast<WaterBomb*>(_other->GetOwner());
+			if (wb->GetWaterBombState(eWaterBombState::Flow))
+			{
+				int aaa = 0;
+			}
 		}
 		if (L"Tile" == _other->GetOwner()->GetName())
 		{
@@ -135,6 +139,12 @@ namespace ss
 			}
 
 			mTransform->SetPosition(mPos);
+		}
+		if (L"ballon" == _other->GetOwner()->GetName())
+		{
+			mWaterBombs++;
+
+			int a = 0;
 		}
 	}
 	void Player::OnCollisionStay(Collider* _other)
@@ -168,9 +178,23 @@ namespace ss
 			}
 			mTransform->SetPosition(mPos);
 		}
+		if (L"WaterBomb" == _other->GetOwner()->GetName())
+		{
+			WaterBomb* wb = dynamic_cast<WaterBomb*>(_other->GetOwner());
+			if (wb->GetWaterBombState(eWaterBombState::Flow))
+			{
+				int aaa = 0;
+			}
+		}
+
 	}
 	void Player::OnCollisionExit(Collider* _other)
 	{
+		if (L"ballon" == _other->GetOwner()->GetName())
+		{
+
+			int a = 0;
+		}
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

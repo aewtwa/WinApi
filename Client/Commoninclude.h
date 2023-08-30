@@ -40,6 +40,7 @@ namespace ss::enums
 		WaterBomb,
 		WaterFlow,
 		Player,
+		Item,
 		Monster,
 		Effect,
 		UI,

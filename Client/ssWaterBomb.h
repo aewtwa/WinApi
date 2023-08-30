@@ -3,6 +3,14 @@
 
 namespace ss
 {
+	enum class eWaterBombState
+	{
+		Created,
+		Idle,
+		Flow,
+		End,
+	};
+
 	using namespace math;
 	class WaterBomb : public GameObject
 	{
@@ -18,17 +26,23 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other);
 		virtual void OnCollisionExit(class Collider* _other);
 
+		void Created();
 		void Idle();
 		void Bomb();
+
+		void SetDirection(eDirection dir);
+		bool GetWaterBombState(eWaterBombState state);
 
 	private:
 		class Animator* mAnimator;
 		class Collider* mCollider;
 		class Transform* mTransform;
 
-		bool mCreated;
 		float mBombtime;
-		bool mbBomb;
+
+		std::bitset<static_cast<UINT>(eWaterBombState::End)> mState;
+		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
+
 
 		Vector2 mPos;
 	};

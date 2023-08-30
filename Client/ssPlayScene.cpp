@@ -36,10 +36,16 @@ namespace ss
 		Object::Instantiate<Monster>(eLayerType::Monster);
 		// ¹Ù´Ú »ğÀÔ
 		//Object::Instantiate<IceFloor>(eLayerType::Floor);
+		// ¹°ÆøÅº ¾ÆÀÌÅÛ »ğÀÔ
+		Vector2 bp = {};
+		bp.x = 400.f;
+		bp.y = 400.f;
+		Object::Instantiate<ballon>(eLayerType::Item, bp);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Tile, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Item, true);
 	}
 	void PlayScene::Update()
 	{
