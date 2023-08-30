@@ -1,14 +1,14 @@
 #pragma once
-#include "ssGameObject.h"
+#include "ssItem.h"
 
 namespace ss
 {
 	using namespace math;
-	class Item : public GameObject
+	class ballon : public Item
 	{
 	public:
-		Item();
-		virtual ~Item();
+		ballon();
+		virtual ~ballon();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

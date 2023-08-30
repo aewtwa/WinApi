@@ -143,6 +143,7 @@
     <ClInclude Include="ssAnimator.h" />
     <ClInclude Include="ssApplication.h" />
     <ClInclude Include="ssBackGround.h" />
+    <ClInclude Include="ssballon.h" />
     <ClInclude Include="ssCamera.h" />
     <ClInclude Include="ssCollider.h" />
     <ClInclude Include="ssCollisionManager.h" />
@@ -158,6 +159,8 @@
     <ClInclude Include="ssMonster.h" />
     <ClInclude Include="ssPlayGround.h" />
     <ClInclude Include="ssPlayScene.h" />
+    <ClInclude Include="sspotion.h" />
+    <ClInclude Include="ssskate.h" />
     <ClInclude Include="ssSound.h" />
     <ClInclude Include="ssSoundManager.h" />
     <ClInclude Include="ssTexture.h" />
@@ -186,6 +189,7 @@
     <ClCompile Include="ssAnimator.cpp" />
     <ClCompile Include="ssApplication.cpp" />
     <ClCompile Include="ssBackGround.cpp" />
+    <ClCompile Include="ssballon.cpp" />
     <ClCompile Include="ssCamera.cpp" />
     <ClCompile Include="ssCollider.cpp" />
     <ClCompile Include="ssCollisionManager.cpp" />
@@ -201,6 +205,8 @@
     <ClCompile Include="ssMonster.cpp" />
     <ClCompile Include="ssPlayGround.cpp" />
     <ClCompile Include="ssPlayScene.cpp" />
+    <ClCompile Include="sspotion.cpp" />
+    <ClCompile Include="ssskate.cpp" />
     <ClCompile Include="ssSound.cpp" />
     <ClCompile Include="ssSoundManager.cpp" />
     <ClCompile Include="ssTexture.cpp" />

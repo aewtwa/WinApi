@@ -7,6 +7,7 @@
 #include "ssTexture.h"
 #include "ssPlayer.h"
 #include "ssObject.h"
+#include "ssWaterFlow.h"
 
 namespace ss
 {
@@ -45,7 +46,6 @@ namespace ss
 		if (mCreated)
 		{
 			Idle();
-
 		}
 
 		mBombtime += Time::DeltaTime();
@@ -78,8 +78,9 @@ namespace ss
 
 	void WaterBomb::Bomb()
 	{
-			mAnimator->PlayAnimation(L"BombCenterflow", false);
-			mPos = mTransform->GetPosition();
-			mBombtime = 0.0f;
+		mAnimator->PlayAnimation(L"BombCenterflow", false);
+		mPos = mTransform->GetPosition();
+		WaterFlow* WF = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, mPos);
+		mBombtime = 0.0f;
 	}
 }

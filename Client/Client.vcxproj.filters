@@ -106,6 +106,15 @@
     <Filter Include="Contents\GameObjects\WaterFlow">
       <UniqueIdentifier>{2c4118c5-37d0-49f0-a281-ec975b13501d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\Item\ballon">
+      <UniqueIdentifier>{fcd14ca2-27ff-48e1-9536-1fcc0d42fe8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\Item\potion">
+      <UniqueIdentifier>{f0b762df-33ae-49cd-b775-8d0f708432eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\Item\skate">
+      <UniqueIdentifier>{a3516fb8-2b0e-41d7-9dd6-47e2bca18193}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -240,6 +249,15 @@
     <ClInclude Include="ssWaterFlow.h">
       <Filter>Contents\GameObjects\WaterFlow</Filter>
     </ClInclude>
+    <ClInclude Include="ssballon.h">
+      <Filter>Contents\GameObjects\Item\ballon</Filter>
+    </ClInclude>
+    <ClInclude Include="sspotion.h">
+      <Filter>Contents\GameObjects\Item\potion</Filter>
+    </ClInclude>
+    <ClInclude Include="ssskate.h">
+      <Filter>Contents\GameObjects\Item\skate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -369,6 +387,15 @@
     </ClCompile>
     <ClCompile Include="ssWaterFlow.cpp">
       <Filter>Contents\GameObjects\WaterFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="ssballon.cpp">
+      <Filter>Contents\GameObjects\Item\ballon</Filter>
+    </ClCompile>
+    <ClCompile Include="sspotion.cpp">
+      <Filter>Contents\GameObjects\Item\potion</Filter>
+    </ClCompile>
+    <ClCompile Include="ssskate.cpp">
+      <Filter>Contents\GameObjects\Item\skate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

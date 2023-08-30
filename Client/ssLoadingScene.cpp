@@ -28,6 +28,9 @@ namespace ss
 		Resources::Load<Texture>(L"WaterBomb", L"..\\Resources\\Image\\Bomb\\Idle\\BombIdle.bmp");
 		Resources::Load<Texture>(L"BombLeftflow", L"..\\Resources\\Image\\Bomb\\Leftflow");
 		Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
+		Resources::Load<Texture>(L"ballon", L"..\\Resources\\Image\\Items\\ballon.bmp");
+		Resources::Load<Texture>(L"potion", L"..\\Resources\\Image\\Items\\potion.bmp");
+		Resources::Load<Texture>(L"skate", L"..\\Resources\\Image\\Items\\skate.bmp");
 		
 
 		BackGround* bg = Object::Instantiate<BackGround>(eLayerType::Background);

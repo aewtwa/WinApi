@@ -14,6 +14,7 @@
 #include "ssCollisionManager.h"
 #include "ssCollider.h"
 #include "ssIceFloor.h"
+#include "ssballon.h"
 
 namespace ss
 {

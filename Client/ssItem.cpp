@@ -1,16 +1,14 @@
-#include "ssMonster.h"
 #include "ssTransform.h"
-#include "ssTime.h"
 #include "ssAnimator.h"
-#include "ssPlayer.h"
 #include "ssCollider.h"
-#include "ssResources.h"
-#include "ssTexture.h"
 #include "ssItem.h"
 
 namespace ss
 {
 	ss::Item::Item()
+		: mAnimator{}
+		, mCollider{}
+		, mTransform{ GetComponent<Transform>() }
 	{
 	}
 
@@ -20,14 +18,17 @@ namespace ss
 
 	void Item::Initialize()
 	{
+		GameObject::Initialize();
 	}
 
 	void Item::Update()
 	{
+		GameObject::Update();
 	}
 
 	void Item::Render(HDC _hdc)
 	{
+		GameObject::Render(_hdc);
 	}
 
 	void Item::OnCollisionEnter(Collider* _other)
