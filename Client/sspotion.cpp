@@ -3,6 +3,9 @@
 namespace ss
 {
 	potion::potion()
+		: mAnimator{}
+		, mCollider{}
+		, mTransform{ GetComponent<Transform>() }
 	{
 	}
 
@@ -12,6 +15,7 @@ namespace ss
 
 	void potion::Initialize()
 	{
+		mAnimator = AddComponent<Animator>();
 	}
 
 	void potion::Update()

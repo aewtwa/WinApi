@@ -3,6 +3,9 @@
 namespace ss
 {
 	skate::skate()
+		: mAnimator{}
+		, mCollider{}
+		, mTransform{ GetComponent<Transform>() }
 	{
 	}
 
@@ -12,6 +15,7 @@ namespace ss
 
 	void skate::Initialize()
 	{
+		mAnimator = AddComponent<Animator>();
 	}
 
 	void skate::Update()

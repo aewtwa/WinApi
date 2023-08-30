@@ -1,8 +1,12 @@
 #include "ssballon.h"
+#include "ssAnimator.h"
 
 namespace ss
 {
 	ballon::ballon()
+		: mAnimator{}
+		, mCollider{}
+		, mTransform{ GetComponent<Transform>() }
 	{
 	}
 
@@ -12,6 +16,8 @@ namespace ss
 
 	void ballon::Initialize()
 	{
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimationFolder(L"ballon", L"..\\Resources\\Image\\Items\\ballon.bmp", Vector2(0.0f, 0.0f), 0.1f);
 	}
 
 	void ballon::Update()
