@@ -1,10 +1,10 @@
 #pragma once
-#include "ssGameObject.h"
+#include "ssStatObject.h"
 
 namespace ss
 {
 	using namespace math;
-	class Player : public GameObject
+	class Player : public StatObject
 	{
 	public:
 		enum class eState
@@ -33,30 +33,25 @@ namespace ss
 
 		void Idle();
 		void Move();
-		void DropWaterBomb();
 		void Trap();
+		void DropWaterBomb() override;
 
 		void SetDirection(eDirection _dir);
 		eDirection CurDirection_flag();
 		Vector2 CurDirection();
 
-		int GetWaterBombs() { return mWaterBombs; }
-		void SetWaterBombs(int _WaterBombs) { mWaterBombs = _WaterBombs; }
-		int GetWaterBombPower() { return mWaterBombPower; }
-		void SetWaterBombPower(int _WaterBombPower) { mWaterBombPower = _WaterBombPower; }
-
 	private:
 		std::bitset<static_cast<UINT>(eState::End)> mState;
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
+
 		class Transform* mTransform;
 		Vector2 mPos;
 		class Animator* mAnimator;
 		class Collider* mCollider;
+
 		float mDeathTime;
 		bool mOnCollision;
 
-		float mSpeed;
-		int mWaterBombs;
-		int mWaterBombPower;
+		Stat mStats;
 	};
 }

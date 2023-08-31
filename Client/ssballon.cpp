@@ -58,11 +58,9 @@ namespace ss
 
 	void ballon::OnCollisionExit(Collider* _other)
 	{
-		if (L"Player" == _other->GetOwner()->GetName())
-		{
-			Destroy(this);
-		}
+
 	}
+
 	void ballon::Idle()
 	{
 		mAnimator->PlayAnimation(L"ballon", true);

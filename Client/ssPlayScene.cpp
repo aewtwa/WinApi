@@ -15,6 +15,8 @@
 #include "ssCollider.h"
 #include "ssIceFloor.h"
 #include "ssballon.h"
+#include "ssskate.h"
+#include "sspotion.h"
 
 namespace ss
 {
@@ -41,6 +43,12 @@ namespace ss
 		bp.x = 400.f;
 		bp.y = 400.f;
 		Object::Instantiate<ballon>(eLayerType::Item, bp);
+		bp.x = 300.f;
+		bp.y = 300.f;
+		Object::Instantiate<potion>(eLayerType::Item, bp);
+		bp.x = 200.f;
+		bp.y = 200.f;
+		Object::Instantiate<skate>(eLayerType::Item, bp);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);

@@ -163,6 +163,7 @@
     <ClInclude Include="ssskate.h" />
     <ClInclude Include="ssSound.h" />
     <ClInclude Include="ssSoundManager.h" />
+    <ClInclude Include="ssStatObject.h" />
     <ClInclude Include="ssTexture.h" />
     <ClInclude Include="ssInput.h" />
     <ClInclude Include="ssLayer.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="ssskate.cpp" />
     <ClCompile Include="ssSound.cpp" />
     <ClCompile Include="ssSoundManager.cpp" />
+    <ClCompile Include="ssStatObject.cpp" />
     <ClCompile Include="ssTexture.cpp" />
     <ClCompile Include="ssInput.cpp" />
     <ClCompile Include="ssLayer.cpp" />

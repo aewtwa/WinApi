@@ -8,6 +8,8 @@
 #include "ssPlayer.h"
 #include "ssObject.h"
 #include "ssWaterFlow.h"
+#include "ssStatObject.h"
+#include "ssGameObject.h"
 
 namespace ss
 {
@@ -19,6 +21,7 @@ namespace ss
 		, mPos(Vector2::Zero)
 		, mState{}
 		, mDirection{}
+		, mOwner{nullptr}
 	{
 		SetName(L"WaterBomb");
 	}
@@ -31,11 +34,6 @@ namespace ss
 	{
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimationFolder(L"WaterBombIdle", L"..\\Resources\\Image\\Bomb\\Idle", Vector2(0.0f, 0.0f), 0.16f);
-		mAnimator->CreateAnimationFolder(L"BombCenterflow", L"..\\Resources\\Image\\Bomb\\Centerflow", Vector2(0.0f, 0.0f), 0.1f);
-		mAnimator->CreateAnimationFolder(L"BombLeftflow", L"..\\Resources\\Image\\Bomb\\Leftflow", Vector2(0.0f, 0.0f), 0.1f);
-		mAnimator->CreateAnimationFolder(L"BombRightflow", L"..\\Resources\\Image\\Bomb\\Rightflow", Vector2(0.0f, 0.0f), 0.1f);
-		mAnimator->CreateAnimationFolder(L"BombUpflow", L"..\\Resources\\Image\\Bomb\\Upflow", Vector2(0.0f, 0.0f), 0.1f);
-		mAnimator->CreateAnimationFolder(L"BombDownflow", L"..\\Resources\\Image\\Bomb\\Downflow", Vector2(0.0f, 0.0f), 0.1f);
 		mAnimator->SetScale(Vector2(1.2f, 1.2f));
 
 		mCollider = AddComponent<Collider>();
@@ -54,13 +52,6 @@ namespace ss
 		if (mState[static_cast<UINT>(eWaterBombState::Idle)])
 		{
 			Idle();
-		}
-		if (mState[static_cast<UINT>(eWaterBombState::Flow)])
-		{
-			if (mAnimator->IsActiveAnimationComplete())
-			{
-				Destroy(this);
-			}
 		}
 
 		GameObject::Update();
@@ -90,52 +81,35 @@ namespace ss
 	{
 		if (2.0f < mBombtime)
 		{
-			//Bomb();
 			mPos = mTransform->GetPosition();
+
 			WaterFlow* WF = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, mPos);
+			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
+			{
+				Vector2 UpPos = mPos;
+				UpPos.y -= TILE_HEIGHT * i;
+				WaterFlow* WFU = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, UpPos);
+				Vector2 DownPos = mPos;
+				DownPos.y += TILE_HEIGHT * i;
+				WaterFlow* WFD = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, DownPos);
+				Vector2 LeftPos = mPos;
+				LeftPos.x -= TILE_WIDTH * i;
+				WaterFlow* WFL = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, LeftPos);
+				Vector2 RightPos = mPos;
+				RightPos.x += TILE_WIDTH * i;
+				WaterFlow* WFR = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, RightPos);
+			}
+
+			Stat stat = this->mOwner->GetStat();
+			stat.Bombs++;
+			this->mOwner->SetStat(stat);
+
+			Destroy(this);
 		}
 		else
 		{
 			mBombtime += Time::DeltaTime();
 		}
 
-	}
-
-	void WaterBomb::Bomb()
-	{
-		mAnimator->PlayAnimation(L"BombCenterflow", false);
-		mState.reset();
-		mState[static_cast<UINT>(eWaterBombState::Flow)] = true;
-
-		mPos = mTransform->GetPosition();
-
-		/*Vector2 LeftPos = mPos;
-		LeftPos.x = LeftPos.x - TILE_WIDTH;
-		WaterBomb* WFL = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, LeftPos);
-		WFL->SetDirection(eDirection::Left);
-
-		Vector2 RightPos = mPos;
-		RightPos.x = RightPos.x + TILE_WIDTH;
-		WaterBomb* WFR = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, RightPos);
-		WFR->SetDirection(eDirection::Right);
-
-		Vector2 UpPos = mPos;
-		UpPos.y = UpPos.y - TILE_HEIGHT;
-		WaterBomb* WFU = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, UpPos);
-		WFU->SetDirection(eDirection::Up);
-
-		Vector2 DownPos = mPos;
-		DownPos.y = DownPos.y + TILE_HEIGHT;
-		WaterBomb* WFD = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, DownPos);
-		WFD->SetDirection(eDirection::Down);*/
-	}
-	void WaterBomb::SetDirection(eDirection dir)
-	{
-		mState.reset();
-		mState[static_cast<UINT>(dir)] = true;
-	}
-	bool WaterBomb::GetWaterBombState(eWaterBombState state)
-	{
-		return mState[static_cast<UINT>(state)];
 	}
 }

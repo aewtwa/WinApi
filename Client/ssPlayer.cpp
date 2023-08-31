@@ -21,9 +21,7 @@ namespace ss
 		, mCollider{}
 		, mDeathTime(0.0f)
 		, mOnCollision(false)
-		, mSpeed(200.f)
-		, mWaterBombs(1)
-		, mWaterBombPower(1)
+		, mStats{}
 	{
 		SetName(L"Player");
 	}
@@ -34,6 +32,13 @@ namespace ss
 
 	void Player::Initialize()
 	{
+		mStats = this->GetStat();
+		mStats.Speed = 200.0f;
+		mStats.BombPower = 1;
+		mStats.Hp = 1;
+		mStats.Bombs = 4;
+		SetStat(mStats);
+
 		mPos = mTransform->GetPosition();
 		mPos = Vector2((BLANK_WIDTH + TILE_WIDTH / 2) + TILE_WIDTH, (BLANK_HEIGHT + TILE_HEIGHT / 2) + TILE_HEIGHT);
 		mTransform->SetPosition(mPos);
@@ -83,6 +88,7 @@ namespace ss
 		{
 			Trap();
 		}
+
 		GameObject::Update();
 	}
 
@@ -105,7 +111,7 @@ namespace ss
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
 			WaterBomb* wb = dynamic_cast<WaterBomb*>(_other->GetOwner());
-			if (wb->GetWaterBombState(eWaterBombState::Flow))
+			//if (wb->GetWaterBombState(eWaterBombState::Flow))
 			{
 				int aaa = 0;
 			}
@@ -142,9 +148,8 @@ namespace ss
 		}
 		if (L"ballon" == _other->GetOwner()->GetName())
 		{
-			mWaterBombs++;
-
-			int a = 0;
+			mStats.Bombs++;
+			SetStat(mStats);
 		}
 	}
 	void Player::OnCollisionStay(Collider* _other)
@@ -181,7 +186,7 @@ namespace ss
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
 			WaterBomb* wb = dynamic_cast<WaterBomb*>(_other->GetOwner());
-			if (wb->GetWaterBombState(eWaterBombState::Flow))
+			//if (wb->GetWaterBombState(eWaterBombState::Flow))
 			{
 				int aaa = 0;
 			}
@@ -281,19 +286,19 @@ namespace ss
 	{
 		if (mDirection[static_cast<UINT>(eDirection::Up)])
 		{
-			mPos.y -= mSpeed * Time::DeltaTime();
+			mPos.y -= this->GetStat().Speed * Time::DeltaTime();
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Down)])
 		{
-			mPos.y += mSpeed * Time::DeltaTime();
+			mPos.y += this->GetStat().Speed * Time::DeltaTime();
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Left)])
 		{
-			mPos.x -= mSpeed * Time::DeltaTime();
+			mPos.x -= this->GetStat().Speed * Time::DeltaTime();
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Right)])
 		{
-			mPos.x += mSpeed * Time::DeltaTime();
+			mPos.x += this->GetStat().Speed * Time::DeltaTime();
 		}
 		mTransform->SetPosition(mPos);
 
@@ -305,8 +310,14 @@ namespace ss
 
 	void Player::DropWaterBomb()
 	{
-		Vector2 BombPos = GetMapIDX();
-		WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, BombPos);
+		if (mStats.Bombs > 0)
+		{
+			Vector2 BombPos = GetMapIDX();
+			WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, BombPos);
+			WB->SetOwner(this);
+			mStats.Bombs--;
+			SetStat(mStats);
+		}
 		mState[static_cast<int>(eState::DropWaterBomb)] = false;
 	}
 

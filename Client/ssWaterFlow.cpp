@@ -5,6 +5,7 @@
 #include "ssCollider.h"
 #include "ssResources.h"
 #include "ssTexture.h"
+#include "ssObject.h"
 
 namespace ss
 {
@@ -12,6 +13,9 @@ namespace ss
 		: mAnimator{}
 		, mCollider{}
 		, mTransform{ GetComponent<Transform>() }
+		, mDirection{}
+		, mPos(Vector2::Zero)
+		, mbBomb(true)
 	{
 		SetName(L"WaterFlow");
 	}
@@ -33,13 +37,41 @@ namespace ss
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(50.0f, 50.0f));
 
-		mAnimator->PlayAnimation(L"BombCenterflow");
-
 		GameObject::Initialize();
 	}
 
 	void WaterFlow::Update()
 	{
+		if (mbBomb)
+		{
+			Bomb();
+		}
+
+		if (mAnimator->IsActiveAnimationComplete())
+		{
+			Destroy(this);
+		}
+
+		if (mDirection[static_cast<UINT>(eDirection::Up)])
+		{
+			mAnimator->PlayAnimation(L"BombUpflow", false);
+			mDirection.reset();
+		}
+		if (mDirection[static_cast<UINT>(eDirection::Down)])
+		{
+			mAnimator->PlayAnimation(L"BombDownflow", false);
+			mDirection.reset();
+		}
+		if (mDirection[static_cast<UINT>(eDirection::Left)])
+		{
+			mAnimator->PlayAnimation(L"BombLeftflow", false);
+			mDirection.reset();
+		}
+		if (mDirection[static_cast<UINT>(eDirection::Right)])
+		{
+			mAnimator->PlayAnimation(L"BombRightflow", false);
+			mDirection.reset();
+		}
 		GameObject::Update();
 	}
 
@@ -62,5 +94,52 @@ namespace ss
 
 	void WaterFlow::Bomb()
 	{
+		mPos = mTransform->GetPosition();
+
+		mAnimator->PlayAnimation(L"BombCenterflow", false);
+
+
+		/*Up(mPos);
+		Down(mPos);
+		Left(mPos);
+		Right(mPos);*/
+
+		mbBomb = false;
+	}
+
+	void WaterFlow::Up(Vector2 _Up)
+	{
+		_Up.y = _Up.y - TILE_HEIGHT;
+		WaterFlow* WFU = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, _Up);
+		WFU->mbBomb = false;
+		mDirection.reset();
+		mDirection[static_cast<UINT>(eDirection::Up)] = true;
+	}
+
+	void WaterFlow::Down(Vector2 _Down)
+	{
+		_Down.y = _Down.y + TILE_HEIGHT;
+		WaterFlow* WFD = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, _Down);
+		WFD->mbBomb = false;
+		mDirection.reset();
+		mDirection[static_cast<UINT>(eDirection::Down)] = true;
+	}
+
+	void WaterFlow::Left(Vector2 _Left)
+	{
+		_Left.x = _Left.x - TILE_HEIGHT;
+		WaterFlow* WFL = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, _Left);
+		WFL->mbBomb = false;
+		mDirection.reset();
+		mDirection[static_cast<UINT>(eDirection::Left)] = true;
+	}
+
+	void WaterFlow::Right(Vector2 _Right)
+	{
+		_Right.x = _Right.x + TILE_HEIGHT;
+		WaterFlow* WFR = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, _Right);
+		WFR->mbBomb = false;
+		mDirection.reset();
+		mDirection[static_cast<UINT>(eDirection::Right)] = true;
 	}
 }

@@ -55,9 +55,6 @@
     <Filter Include="Contents\Scenes">
       <UniqueIdentifier>{bd5aef61-213a-47be-8012-4f6ef60ef327}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObjects\Player">
-      <UniqueIdentifier>{76b99871-0039-437c-a86b-677bc91bf310}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Resource">
       <UniqueIdentifier>{0748240f-cb05-430d-824a-ad0743c076d9}</UniqueIdentifier>
     </Filter>
@@ -78,9 +75,6 @@
     </Filter>
     <Filter Include="Contents\GameObjects\WaterBomb">
       <UniqueIdentifier>{f33917c2-1650-4c93-822f-6b46ba545177}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObjects\Monster">
-      <UniqueIdentifier>{4ff8f540-3a75-4ea3-9207-2b1a035e9a05}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObjects\PlayGround">
       <UniqueIdentifier>{1cb37f42-6347-482b-9e0e-366c329a8c91}</UniqueIdentifier>
@@ -114,6 +108,15 @@
     </Filter>
     <Filter Include="Contents\GameObjects\Item\skate">
       <UniqueIdentifier>{a3516fb8-2b0e-41d7-9dd6-47e2bca18193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\StatObject">
+      <UniqueIdentifier>{7945d504-db29-4bbe-b86c-c704e3101b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\StatObject\Player">
+      <UniqueIdentifier>{76b99871-0039-437c-a86b-677bc91bf310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObjects\StatObject\Monster">
+      <UniqueIdentifier>{4ff8f540-3a75-4ea3-9207-2b1a035e9a05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +178,7 @@
       <Filter>Contents\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ssPlayer.h">
-      <Filter>Contents\GameObjects\Player</Filter>
+      <Filter>Contents\GameObjects\StatObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="ssTexture.h">
       <Filter>Engine\Resource\Image</Filter>
@@ -214,7 +217,7 @@
       <Filter>Contents\GameObjects\WaterBomb</Filter>
     </ClInclude>
     <ClInclude Include="ssMonster.h">
-      <Filter>Contents\GameObjects\Monster</Filter>
+      <Filter>Contents\GameObjects\StatObject\Monster</Filter>
     </ClInclude>
     <ClInclude Include="ssPlayGround.h">
       <Filter>Contents\GameObjects\PlayGround</Filter>
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="ssskate.h">
       <Filter>Contents\GameObjects\Item\skate</Filter>
+    </ClInclude>
+    <ClInclude Include="ssStatObject.h">
+      <Filter>Contents\GameObjects\StatObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,7 +314,7 @@
       <Filter>Contents\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ssPlayer.cpp">
-      <Filter>Contents\GameObjects\Player</Filter>
+      <Filter>Contents\GameObjects\StatObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="ssTexture.cpp">
       <Filter>Engine\Resource\Image</Filter>
@@ -350,7 +356,7 @@
       <Filter>Contents\GameObjects\WaterBomb</Filter>
     </ClCompile>
     <ClCompile Include="ssMonster.cpp">
-      <Filter>Contents\GameObjects\Monster</Filter>
+      <Filter>Contents\GameObjects\StatObject\Monster</Filter>
     </ClCompile>
     <ClCompile Include="ssPlayGround.cpp">
       <Filter>Contents\GameObjects\PlayGround</Filter>
@@ -396,6 +402,9 @@
     </ClCompile>
     <ClCompile Include="ssskate.cpp">
       <Filter>Contents\GameObjects\Item\skate</Filter>
+    </ClCompile>
+    <ClCompile Include="ssStatObject.cpp">
+      <Filter>Contents\GameObjects\StatObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #pragma once
-#include "ssGameObject.h"
+#include "ssStatObject.h"
 
 namespace ss
 {
@@ -12,7 +12,7 @@ namespace ss
 	};
 
 	using namespace math;
-	class WaterBomb : public GameObject
+	class WaterBomb : public StatObject
 	{
 	public:
 		WaterBomb();
@@ -28,10 +28,9 @@ namespace ss
 
 		void Created();
 		void Idle();
-		void Bomb();
 
-		void SetDirection(eDirection dir);
-		bool GetWaterBombState(eWaterBombState state);
+		StatObject* GetOwner() const { return mOwner; }
+		void SetOwner(StatObject* _Owner) { mOwner = _Owner; }
 
 	private:
 		class Animator* mAnimator;
@@ -43,7 +42,7 @@ namespace ss
 		std::bitset<static_cast<UINT>(eWaterBombState::End)> mState;
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
 
-
+		StatObject* mOwner;
 		Vector2 mPos;
 	};
 }
