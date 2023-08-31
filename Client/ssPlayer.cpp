@@ -10,6 +10,7 @@
 #include "ssResources.h"
 #include "ssTexture.h"
 #include "ssObject.h"
+#include "ssTile.h"
 
 namespace ss
 {
@@ -21,7 +22,6 @@ namespace ss
 		, mCollider{}
 		, mDeathTime(0.0f)
 		, mOnCollision(false)
-		, mStats{}
 	{
 		SetName(L"Player");
 	}
@@ -32,12 +32,13 @@ namespace ss
 
 	void Player::Initialize()
 	{
-		mStats = this->GetStat();
-		mStats.Speed = 200.0f;
-		mStats.BombPower = 1;
-		mStats.Hp = 1;
-		mStats.Bombs = 4;
-		SetStat(mStats);
+		Stat stat = {};
+		stat.Speed = 200.0f;
+		stat.BombPower = 1;
+		stat.Bombs = 1;
+		SetStat(stat);
+
+		mState[static_cast<UINT>(Player::eState::Idle)] = true;
 
 		mPos = mTransform->GetPosition();
 		mPos = Vector2((BLANK_WIDTH + TILE_WIDTH / 2) + TILE_WIDTH, (BLANK_HEIGHT + TILE_HEIGHT / 2) + TILE_HEIGHT);
@@ -59,19 +60,22 @@ namespace ss
 		mAnimator->PlayAnimation(L"Bazzi_Idle", true);
 
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50.0f, 60.0f));
 
-		GameObject::Initialize();
+		// 콜라이더 홀수로 지정하면 1픽셀씩 밀어냄
+		mCollider->SetSize(Vector2(50.f, 50.f));
+		mCollider->SetOffset(Vector2(0.f, 5.f));
+
+		StatObject::Initialize();
 	}
 
 	void Player::Update()
 	{
-		if (Input::AllKeyNone())
+		/*if (Input::AllKeyNone())
 		{
 			mState.reset();
 			mDirection.reset();
 			mState[static_cast<UINT>(Player::eState::Idle)] = true;
-		}
+		}*/
 		if (mState[static_cast<UINT>(Player::eState::Idle)])
 		{
 			Idle();
@@ -89,32 +93,23 @@ namespace ss
 			Trap();
 		}
 
-		GameObject::Update();
+		StatObject::Update();
 	}
 
 	void Player::Render(HDC _hdc)
 	{
-		GameObject::Render(_hdc);
+		StatObject::Render(_hdc);
 	}
 
 	void Player::OnCollisionEnter(Collider* _other)
 	{
 		if (L"Monster" == _other->GetOwner()->GetName())
 		{
-			mAnimator->PlayAnimation(L"Bazzi_Trap", true);
 			mState[static_cast<UINT>(Player::eState::Trap)] = true;
-			// 여기서 다이나믹캐스트를 씁니다.
-			// _other->GetOwner()얘는 게임 오브젝트임
-			// 얘를 다오로 형변환 해주는거임 (다오는 예시)
-			// 그럼 형변환 된 _other->GetOwner()를 dao 형으로 사용할 수 있음
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
-			WaterBomb* wb = dynamic_cast<WaterBomb*>(_other->GetOwner());
-			//if (wb->GetWaterBombState(eWaterBombState::Flow))
-			{
-				int aaa = 0;
-			}
+
 		}
 		if (L"Tile" == _other->GetOwner()->GetName())
 		{
@@ -148,8 +143,25 @@ namespace ss
 		}
 		if (L"ballon" == _other->GetOwner()->GetName())
 		{
-			mStats.Bombs++;
-			SetStat(mStats);
+			Stat stat = this->GetStat();
+			stat.Bombs++;
+			SetStat(stat);
+		}
+		if (L"potion" == _other->GetOwner()->GetName())
+		{
+			Stat stat = this->GetStat();
+			stat.BombPower++;
+			SetStat(stat);
+		}
+		if (L"skate" == _other->GetOwner()->GetName())
+		{
+			Stat stat = this->GetStat();
+			stat.Speed *= 2.2f;
+			SetStat(stat);
+		}
+		if (L"WaterFlow" == _other->GetOwner()->GetName())
+		{
+			mState[static_cast<UINT>(Player::eState::Trap)] = true;
 		}
 	}
 	void Player::OnCollisionStay(Collider* _other)
@@ -191,30 +203,15 @@ namespace ss
 				int aaa = 0;
 			}
 		}
-
+		
 	}
 	void Player::OnCollisionExit(Collider* _other)
 	{
-		if (L"ballon" == _other->GetOwner()->GetName())
-		{
-
-			int a = 0;
-		}
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	Vector2 Player::GetMapIDX()
-	{
-		Vector2 MapIdx = {};
-
-		MapIdx.x = floor((mPos.x - BLANK_WIDTH) / TILE_WIDTH) * TILE_WIDTH + BLANK_WIDTH + TILE_WIDTH / 2;
-		MapIdx.y = floor((mPos.y - BLANK_HEIGHT) / TILE_HEIGHT) * TILE_HEIGHT + BLANK_HEIGHT + TILE_HEIGHT / 2;
-
-		return MapIdx;
-	}
 
 	void Player::Idle()
 	{
@@ -310,23 +307,14 @@ namespace ss
 
 	void Player::DropWaterBomb()
 	{
-		if (mStats.Bombs > 0)
-		{
-			Vector2 BombPos = GetMapIDX();
-			WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, BombPos);
-			WB->SetOwner(this);
-			mStats.Bombs--;
-			SetStat(mStats);
-		}
+		StatObject::DropWaterBomb();
+
 		mState[static_cast<int>(eState::DropWaterBomb)] = false;
 	}
 
 	void Player::Trap()
 	{
-		mState[static_cast<int>(eState::Idle)] = false;
-		mState[static_cast<int>(eState::Move)] = false;
-		mState[static_cast<int>(eState::DropWaterBomb)] = false;
-		mState[static_cast<int>(eState::Trap)] = false;
+		mState.reset();
 		mAnimator->PlayAnimation(L"Bazzi_Trap");
 	}
 	void Player::SetDirection(eDirection _dir)

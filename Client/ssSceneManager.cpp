@@ -25,7 +25,7 @@ namespace ss
 
 		mActiveScene = nullptr;
 
-		LoadScene(L"LoadingScene");
+		LoadScene(L"PlayScene");
 
 
 	}

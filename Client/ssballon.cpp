@@ -50,6 +50,10 @@ namespace ss
 		{
 			Destroy(this);
 		}
+		if (L"WaterFlow" == _other->GetOwner()->GetName())
+		{
+			Destroy(this);
+		}
 	}
 
 	void ballon::OnCollisionStay(Collider* _other)

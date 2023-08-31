@@ -37,7 +37,7 @@ namespace ss
 		mAnimator->SetScale(Vector2(1.2f, 1.2f));
 
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50.0f, 50.0f));
+		mCollider->SetSize(Vector2(45.0f, 45.0f));
 
 		mState[static_cast<UINT>(eWaterBombState::Created)] = true;
 
@@ -84,20 +84,26 @@ namespace ss
 			mPos = mTransform->GetPosition();
 
 			WaterFlow* WF = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, mPos);
+			WF->GetComponent<Animator>()->PlayAnimation(L"BombCenterflow");
 			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
 			{
 				Vector2 UpPos = mPos;
 				UpPos.y -= TILE_HEIGHT * i;
 				WaterFlow* WFU = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, UpPos);
+				WFU->GetComponent<Animator>()->PlayAnimation(L"BombUpflow");
+
 				Vector2 DownPos = mPos;
 				DownPos.y += TILE_HEIGHT * i;
 				WaterFlow* WFD = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, DownPos);
+				WFD->GetComponent<Animator>()->PlayAnimation(L"BombDownflow");
 				Vector2 LeftPos = mPos;
 				LeftPos.x -= TILE_WIDTH * i;
 				WaterFlow* WFL = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, LeftPos);
+				WFL->GetComponent<Animator>()->PlayAnimation(L"BombLeftflow");
 				Vector2 RightPos = mPos;
 				RightPos.x += TILE_WIDTH * i;
 				WaterFlow* WFR = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, RightPos);
+				WFR->GetComponent<Animator>()->PlayAnimation(L"BombRightflow");
 			}
 
 			Stat stat = this->mOwner->GetStat();

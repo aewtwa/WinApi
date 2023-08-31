@@ -13,6 +13,7 @@ namespace ss
 		: mTransform{ GetComponent<Transform>() }
 		, mAnimator{}
 		, mCollider{}
+		, mbDeath(false)
 	{
 		SetName(L"Monster");
 	}
@@ -21,20 +22,25 @@ namespace ss
 	}
 	void Monster::Initialize()
 	{
-		mPos = mTransform->GetPosition();
-		mPos = Vector2(250.0f, 250.0f);
-		mTransform->SetPosition(mPos);
+		/*mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimationFolder(L"ForestMobUp", L"..\\Resources\\Image\\Monster\\Forest\\Up", Vector2(0.0f, 0.0f), 0.16f);
+		mAnimator->CreateAnimationFolder(L"ForestMobDown", L"..\\Resources\\Image\\Monster\\Forest\\Down", Vector2(0.0f, 0.0f), 0.16f);
+		mAnimator->CreateAnimationFolder(L"ForestMobLeft", L"..\\Resources\\Image\\Monster\\Forest\\Left", Vector2(0.0f, 0.0f), 0.16f);
+		mAnimator->CreateAnimationFolder(L"ForestMobRight", L"..\\Resources\\Image\\Monster\\Forest\\Right", Vector2(0.0f, 0.0f), 0.16f);
+		mAnimator->CreateAnimationFolder(L"ForestMobDie", L"..\\Resources\\Image\\Monster\\Forest\\Die", Vector2(0.0f, 0.0f), 0.16f);
 
-		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"ForestMobDown", Resources::Find<Texture>(L"Monster"), Vector2(0.0f, 0.0f), Vector2(35.0f, 41.0f), 2, Vector2(0.0f, 0.0f), 0.3f);
-		mAnimator->PlayAnimation(L"ForestMobDown", true);
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(35.0f, 41.0f));
+		mCollider->SetSize(Vector2(35.0f, 41.0f));*/
 
 		GameObject::Initialize();
 	}
 	void Monster::Update()
 	{
+		if (!mbDeath)
+		{
+			Move();
+		}
+
 		GameObject::Update();
 	}
 	void Monster::Render(HDC _hdc)
@@ -43,11 +49,24 @@ namespace ss
 	}
 	void Monster::OnCollisionEnter(Collider* _other)
 	{
+		if (L"WaterFlow" == _other->GetOwner()->GetName())
+		{
+			Die();
+		}
 	}
 	void Monster::OnCollisionStay(Collider* other)
 	{
 	}
 	void Monster::OnCollisionExit(Collider* other)
 	{
+	}
+
+	void Monster::Move()
+	{
+
+	}
+	void Monster::Die()
+	{
+		Destroy(this);
 	}
 }

@@ -9,6 +9,7 @@ namespace ss
 	public:
 		static UINT mSelectedX;
 		static UINT mSelectedY;
+		static Vector2 ConvertPosToTile(const Vector2& _pos);
 
 		Tile();
 		~Tile();
@@ -20,6 +21,7 @@ namespace ss
 		virtual void OnCollisionEnter(class Collider* _other) override;
 		virtual void OnCollisionStay(class Collider* _other) override;
 		virtual void OnCollisionExit(class Collider* _other) override;
+
 
 		Vector2 GetSourceTileIdx() { return Vector2(mSourceIndexX, mSourceIndexY); }
 		void SetSourceTileIdx(int _x, int _y) { mSourceIndexX = _x;  mSourceIndexY = _y; }

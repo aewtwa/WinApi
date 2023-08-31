@@ -51,7 +51,5 @@ namespace ss
 
 		float mDeathTime;
 		bool mOnCollision;
-
-		Stat mStats;
 	};
 }

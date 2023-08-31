@@ -35,7 +35,7 @@ namespace ss
 		mAnimator->SetScale(Vector2(1.2f, 1.2f));
 
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50.0f, 50.0f));
+		mCollider->SetSize(Vector2(45.0f, 45.0f));
 
 		GameObject::Initialize();
 	}
@@ -96,7 +96,7 @@ namespace ss
 	{
 		mPos = mTransform->GetPosition();
 
-		mAnimator->PlayAnimation(L"BombCenterflow", false);
+		//mAnimator->PlayAnimation(L"BombCenterflow", false);
 
 
 		/*Up(mPos);

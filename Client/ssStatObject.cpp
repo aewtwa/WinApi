@@ -2,6 +2,7 @@
 #include "ssWaterBomb.h"
 #include "ssObject.h"
 #include "ssPlayer.h"
+#include "ssTile.h"
 
 namespace ss
 {
@@ -35,8 +36,14 @@ namespace ss
 	}
 	void StatObject::DropWaterBomb()
 	{
-		/*Vector2 BombPos = GetMapIDX();
-		WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, BombPos);
-		WB->SetOwner(this);*/
+		if (this->GetStat().Bombs > 0)
+		{
+			Vector2 BombPos = Tile::ConvertPosToTile(GetComponent<Transform>()->GetPosition());
+			WaterBomb* WB = Object::Instantiate<WaterBomb>(eLayerType::WaterBomb, BombPos);
+			WB->SetOwner(this);
+			Stat stat = this->GetStat();
+			stat.Bombs--;
+			SetStat(stat);
+		}
 	}
 }

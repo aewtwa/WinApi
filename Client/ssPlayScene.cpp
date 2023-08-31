@@ -54,6 +54,10 @@ namespace ss
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Tile, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Item, true);
+
+		CollisionManager::CollisionLayerCheck(eLayerType::WaterFlow, eLayerType::Player, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::WaterFlow, eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::WaterFlow, eLayerType::Item, true);
 	}
 	void PlayScene::Update()
 	{

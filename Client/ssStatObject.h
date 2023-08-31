@@ -8,7 +8,6 @@ namespace ss
 	public:
 		struct Stat
 		{
-			UINT Hp;
 			float Speed;
 			UINT BombPower;
 			UINT Bombs;

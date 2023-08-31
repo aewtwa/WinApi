@@ -18,10 +18,14 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other);
 		virtual void OnCollisionExit(class Collider* _other);
 
+		void Move();
+		void Die();
+
 	private:
 		class Transform* mTransform;
-		Vector2 mPos;
 		class Animator* mAnimator;
 		class Collider* mCollider;
+
+		bool mbDeath;
 	};
 }

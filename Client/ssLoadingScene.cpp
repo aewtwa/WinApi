@@ -25,7 +25,6 @@ namespace ss
 		Resources::Load<Texture>(L"Bazzi", L"..\\Resources\\Image\\Bazzi\\Bazzi.bmp");
 		Resources::Load<Texture>(L"Bazzi_Trap", L"..\\Resources\\Image\\Bazzi\\trap.bmp");
 		Resources::Load<Texture>(L"Bazzi_Die", L"..\\Resources\\Image\\Bazzi\\die.bmp");
-		Resources::Load<Texture>(L"Monster", L"..\\Resources\\Image\\Monster\\Forest\\Down\\ForestMob.bmp");
 		Resources::Load<Texture>(L"ballon", L"..\\Resources\\Image\\Items\\ballon.bmp");
 		Resources::Load<Texture>(L"potion", L"..\\Resources\\Image\\Items\\potion.bmp");
 		Resources::Load<Texture>(L"skate", L"..\\Resources\\Image\\Items\\skate.bmp");

@@ -9,6 +9,16 @@ namespace ss
 	UINT Tile::mSelectedX = 0;
 	UINT Tile::mSelectedY = 0;
 
+	Vector2 Tile::ConvertPosToTile(const Vector2& _pos)
+	{
+		Vector2 MapIdx = {};
+
+		MapIdx.x = floor((_pos.x - BLANK_WIDTH) / TILE_WIDTH) * TILE_WIDTH + BLANK_WIDTH + TILE_WIDTH / 2;
+		MapIdx.y = floor((_pos.y - BLANK_HEIGHT) / TILE_HEIGHT) * TILE_HEIGHT + BLANK_HEIGHT + TILE_HEIGHT / 2;
+
+		return MapIdx;
+	}
+
 	Tile::Tile()
 		: mSpriteRenderer(nullptr)
 		, mCollider(nullptr)
