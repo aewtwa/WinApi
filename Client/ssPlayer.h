@@ -32,6 +32,7 @@ namespace ss
 		void Move();
 		void Trap();
 		void DropWaterBomb() override;
+		void CollideWall(Collider* _other) override;
 
 		void SetDirection(eDirection _dir);
 		eDirection CurDirection_flag();
@@ -41,8 +42,6 @@ namespace ss
 		std::bitset<static_cast<UINT>(eState::End)> mState;
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
 
-		class Transform* mTransform;
-		Vector2 mPos;
 		class Animator* mAnimator;
 		class Collider* mCollider;
 

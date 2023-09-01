@@ -10,10 +10,7 @@
 namespace ss
 {
 	Monster::Monster()
-		: mTransform{ GetComponent<Transform>() }
-		, mAnimator{}
-		, mCollider{}
-		, mbDeath(false)
+		: mbDeath(false)
 	{
 		SetName(L"Monster");
 	}
@@ -22,16 +19,6 @@ namespace ss
 	}
 	void Monster::Initialize()
 	{
-		/*mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimationFolder(L"ForestMobUp", L"..\\Resources\\Image\\Monster\\Forest\\Up", Vector2(0.0f, 0.0f), 0.16f);
-		mAnimator->CreateAnimationFolder(L"ForestMobDown", L"..\\Resources\\Image\\Monster\\Forest\\Down", Vector2(0.0f, 0.0f), 0.16f);
-		mAnimator->CreateAnimationFolder(L"ForestMobLeft", L"..\\Resources\\Image\\Monster\\Forest\\Left", Vector2(0.0f, 0.0f), 0.16f);
-		mAnimator->CreateAnimationFolder(L"ForestMobRight", L"..\\Resources\\Image\\Monster\\Forest\\Right", Vector2(0.0f, 0.0f), 0.16f);
-		mAnimator->CreateAnimationFolder(L"ForestMobDie", L"..\\Resources\\Image\\Monster\\Forest\\Die", Vector2(0.0f, 0.0f), 0.16f);
-
-		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(35.0f, 41.0f));*/
-
 		StatObject::Initialize();
 	}
 	void Monster::Update()

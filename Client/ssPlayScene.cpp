@@ -21,6 +21,7 @@
 #include "ssTileBox.h"
 #include "ssTileObject.h"
 #include "ssTileObjectBack.h"
+#include "ssPirate1.h"
 
 namespace ss
 {
@@ -39,7 +40,7 @@ namespace ss
 		// 캐릭터 삽입
 		Object::Instantiate<Player>(eLayerType::Player);
 		// 몬스터 삽입
-		Object::Instantiate<Monster>(eLayerType::Monster);
+		Object::Instantiate<Pirate1>(eLayerType::Monster, Tile::ConvertNumberToTile(2, 6));
 		// 타일 삽입
 		Texture* IceTileImage = Resources::Load<Texture>(L"IceTile", L"..\\Resources\\Image\\Map\\iceobject.bmp");
 		Texture* SnowTileImage = Resources::Load<Texture>(L"SnowTile", L"..\\Resources\\Image\\Map\\icetile.bmp");
@@ -216,7 +217,7 @@ namespace ss
 		{
 			SceneManager::LoadScene(L"IceMap1");
 		}
-		if (Input::GetKey(eKeyCode::Space))
+		if (Input::GetKey(eKeyCode::Z))
 		{
 			SceneManager::LoadScene(L"ToolScene");
 		}

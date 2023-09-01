@@ -14,18 +14,16 @@ namespace ss
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		virtual void OnCollisionEnter(class Collider* _other);
-		virtual void OnCollisionStay(class Collider* _other);
-		virtual void OnCollisionExit(class Collider* _other);
+		virtual void OnCollisionEnter(class Collider* _other) override;
+		virtual void OnCollisionStay(class Collider* _other) override;
+		virtual void OnCollisionExit(class Collider* _other) override;
 
+		bool GetisDeath() { return mbDeath; }
+		void SetisDeath(bool _death) { mbDeath = _death; }
 		void Move();
 		void Die();
 
 	private:
-		class Transform* mTransform;
-		class Animator* mAnimator;
-		class Collider* mCollider;
-
 		bool mbDeath;
 	};
 }

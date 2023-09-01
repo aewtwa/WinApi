@@ -94,16 +94,6 @@ namespace ss
 
 	void WaterFlow::Bomb()
 	{
-		mPos = mTransform->GetPosition();
-
-		//mAnimator->PlayAnimation(L"BombCenterflow", false);
-
-
-		/*Up(mPos);
-		Down(mPos);
-		Left(mPos);
-		Right(mPos);*/
-
 		mbBomb = false;
 	}
 

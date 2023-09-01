@@ -17,7 +17,6 @@ namespace ss
 	Player::Player()
 		: mState{}
 		, mDirection{}
-		, mTransform{ GetComponent<Transform>() }
 		, mAnimator{}
 		, mCollider{}
 		, mDeathTime(0.0f)
@@ -40,9 +39,12 @@ namespace ss
 
 		mState[static_cast<UINT>(Player::eState::Idle)] = true;
 
-		mPos = mTransform->GetPosition();
-		mPos = Vector2(Tile::ConvertNumberToTile(9,9));
-		mTransform->SetPosition(mPos);
+		Vector2 Pos = this->GetPos();
+		Pos = Vector2(Tile::ConvertNumberToTile(9,9));
+		Transform* transform = GetComponent<Transform>();
+		transform->SetPosition(Pos);
+		SetTransform(transform);
+		SetPos(Pos);
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Bazzi_Idle", Resources::Find<Texture>(L"Bazzi"), Vector2(0.0f, 0.0f), Vector2(50.0f, 60.0f), 4, Vector2(0.0f, 0.0f), 0.3f);
@@ -70,12 +72,6 @@ namespace ss
 
 	void Player::Update()
 	{
-		/*if (Input::AllKeyNone())
-		{
-			mState.reset();
-			mDirection.reset();
-			mState[static_cast<UINT>(Player::eState::Idle)] = true;
-		}*/
 		if (mState[static_cast<UINT>(Player::eState::Idle)])
 		{
 			Idle();
@@ -113,7 +109,10 @@ namespace ss
 		}
 		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
-			eDirection CurDir = CurDirection_flag();
+			Vector2 Pos = this->GetPos();
+			Transform* transform = GetTransform();
+			CollideWall(_other);
+			/*eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
 			{
 				RECT resultRect = GetInterSectColliderRect(_other);
@@ -124,7 +123,8 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos += curDir * interSectVec;
+				Pos += curDir * interSectVec;
+				SetPos(Pos);
 			}
 			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
 			{
@@ -136,14 +136,18 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos -= curDir * interSectVec;
+				Pos -= curDir * interSectVec;
+				SetPos(Pos);
 			}
-
-			mTransform->SetPosition(mPos);
+			SetPos(Pos);*/
+			transform->SetPosition(Pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
 		{
-			eDirection CurDir = CurDirection_flag();
+			Vector2 Pos = this->GetPos();
+			Transform* transform = GetTransform();
+			CollideWall(_other);
+			/*eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
 			{
 				RECT resultRect = GetInterSectColliderRect(_other);
@@ -154,7 +158,8 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos += curDir * interSectVec;
+				Pos += curDir * interSectVec;
+				SetPos(Pos);
 			}
 			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
 			{
@@ -166,10 +171,11 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos -= curDir * interSectVec;
-			}
+				Pos -= curDir * interSectVec;
+				SetPos(Pos);
+			}*/
 
-			mTransform->SetPosition(mPos);
+			transform->SetPosition(Pos);
 		}
 		if (L"ballon" == _other->GetOwner()->GetName())
 		{
@@ -198,7 +204,10 @@ namespace ss
 	{
 		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
-			eDirection CurDir = CurDirection_flag();
+			Vector2 Pos = this->GetPos();
+			Transform* transform = GetTransform();
+			CollideWall(_other);
+			/*eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
 			{
 				RECT resultRect = GetInterSectColliderRect(_other);
@@ -209,7 +218,8 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos += curDir * interSectVec;
+				Pos += curDir * interSectVec;
+				SetPos(Pos);
 			}
 			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
 			{
@@ -221,13 +231,17 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos -= curDir * interSectVec;
-			}
-			mTransform->SetPosition(mPos);
+				Pos -= curDir * interSectVec;
+				SetPos(Pos);
+			}*/
+			transform->SetPosition(Pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
 		{
-			eDirection CurDir = CurDirection_flag();
+			Vector2 Pos = this->GetPos();
+			Transform* transform = GetTransform();
+			CollideWall(_other);
+			/*eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
 			{
 				RECT resultRect = GetInterSectColliderRect(_other);
@@ -238,7 +252,8 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos += curDir * interSectVec;
+				Pos += curDir * interSectVec;
+				SetPos(Pos);
 			}
 			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
 			{
@@ -250,10 +265,11 @@ namespace ss
 				Vector2 curDir = CurDirection();
 				interSectVec = curDir * interSectVec;
 
-				mPos -= curDir * interSectVec;
-			}
+				Pos -= curDir * interSectVec;
+				SetPos(Pos);
+			}*/
 
-			mTransform->SetPosition(mPos);
+			transform->SetPosition(Pos);
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
@@ -275,32 +291,32 @@ namespace ss
 
 	void Player::Idle()
 	{
-		if (Input::GetKey(eKeyCode::W))
+		if (Input::GetKey(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Up", true);
 			SetDirection(eDirection::Up);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
-		if (Input::GetKey(eKeyCode::S))
+		if (Input::GetKey(eKeyCode::Down))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Down", true);
 			SetDirection(eDirection::Down);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
-		if (Input::GetKey(eKeyCode::A))
+		if (Input::GetKey(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Left", true);
 			SetDirection(eDirection::Left);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
-		if (Input::GetKey(eKeyCode::D))
+		if (Input::GetKey(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Right", true);
 			SetDirection(eDirection::Right);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 
-		if (Input::GetKeyUp(eKeyCode::W))
+		if (Input::GetKeyUp(eKeyCode::Up))
 		{
 			mDirection[static_cast<UINT>(eDirection::Up)] = false;
 			if (Input::AllKeyNone())
@@ -308,7 +324,7 @@ namespace ss
 				mAnimator->PlayAnimation(L"Bazzi_Up_Idle");
 			}
 		}
-		else if (Input::GetKeyUp(eKeyCode::S))
+		else if (Input::GetKeyUp(eKeyCode::Down))
 		{
 			mDirection[static_cast<UINT>(eDirection::Down)] = false;
 			if (Input::AllKeyNone())
@@ -316,7 +332,7 @@ namespace ss
 				mAnimator->PlayAnimation(L"Bazzi_Down_Idle");
 			}
 		}
-		else if (Input::GetKeyUp(eKeyCode::A))
+		else if (Input::GetKeyUp(eKeyCode::Left))
 		{
 			mDirection[static_cast<UINT>(eDirection::Left)] = false;
 			if (Input::AllKeyNone())
@@ -324,7 +340,7 @@ namespace ss
 				mAnimator->PlayAnimation(L"Bazzi_Left_Idle");
 			}
 		}
-		else if (Input::GetKeyUp(eKeyCode::D))
+		else if (Input::GetKeyUp(eKeyCode::Right))
 		{
 			mDirection[static_cast<UINT>(eDirection::Right)] = false;
 			if (Input::AllKeyNone())
@@ -333,7 +349,7 @@ namespace ss
 			}
 		}
 
-		if (Input::GetKey(eKeyCode::LShift))
+		if (Input::GetKey(eKeyCode::Space))
 		{
 			mState[static_cast<int>(eState::DropWaterBomb)] = true;
 		}
@@ -341,23 +357,29 @@ namespace ss
 
 	void Player::Move()
 	{
+		Vector2 Pos = this->GetPos();
+		Transform* transform = GetTransform();
 		if (mDirection[static_cast<UINT>(eDirection::Up)])
 		{
-			mPos.y -= this->GetStat().Speed * Time::DeltaTime();
+			Pos.y -= this->GetStat().Speed * Time::DeltaTime();
+			SetPos(Pos);
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Down)])
 		{
-			mPos.y += this->GetStat().Speed * Time::DeltaTime();
+			Pos.y += this->GetStat().Speed * Time::DeltaTime();
+			SetPos(Pos);
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Left)])
 		{
-			mPos.x -= this->GetStat().Speed * Time::DeltaTime();
+			Pos.x -= this->GetStat().Speed * Time::DeltaTime();
+			SetPos(Pos);
 		}
 		else if (mDirection[static_cast<UINT>(eDirection::Right)])
 		{
-			mPos.x += this->GetStat().Speed * Time::DeltaTime();
+			Pos.x += this->GetStat().Speed * Time::DeltaTime();
+			SetPos(Pos);
 		}
-		mTransform->SetPosition(mPos);
+		transform->SetPosition(Pos);
 
 		if (Input::GetKey(eKeyCode::LShift))
 		{
@@ -370,6 +392,11 @@ namespace ss
 		StatObject::DropWaterBomb();
 
 		mState[static_cast<int>(eState::DropWaterBomb)] = false;
+	}
+
+	void Player::CollideWall(Collider* _other)
+	{
+		StatObject::CollideWall(_other);
 	}
 
 	void Player::Trap()
