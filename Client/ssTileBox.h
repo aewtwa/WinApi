@@ -1,14 +1,14 @@
 #pragma once
-#include "ssStatObject.h"
+#include "ssGameObject.h"
 
 namespace ss
 {
 	using namespace math;
-	class Monster : public StatObject
+	class TileBox : public GameObject
 	{
 	public:
-		Monster();
-		virtual ~Monster();
+		TileBox();
+		virtual ~TileBox();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -18,14 +18,9 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other);
 		virtual void OnCollisionExit(class Collider* _other);
 
-		void Move();
-		void Die();
-
 	private:
 		class Transform* mTransform;
-		class Animator* mAnimator;
+		class SpriteRenderer* mSpriteRenderer;
 		class Collider* mCollider;
-
-		bool mbDeath;
 	};
 }

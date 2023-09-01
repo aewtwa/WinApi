@@ -157,6 +157,8 @@
     <ClInclude Include="ssItem.h" />
     <ClInclude Include="ssLoadingScene.h" />
     <ClInclude Include="ssMonster.h" />
+    <ClInclude Include="ssPirate1.h" />
+    <ClInclude Include="ssPirate2.h" />
     <ClInclude Include="ssPlayGround.h" />
     <ClInclude Include="ssPlayScene.h" />
     <ClInclude Include="sspotion.h" />
@@ -176,6 +178,9 @@
     <ClInclude Include="ssSceneManager.h" />
     <ClInclude Include="ssSpriteRenderer.h" />
     <ClInclude Include="ssTile.h" />
+    <ClInclude Include="ssTileBox.h" />
+    <ClInclude Include="ssTileObject.h" />
+    <ClInclude Include="ssTileObjectBack.h" />
     <ClInclude Include="ssTime.h" />
     <ClInclude Include="ssTitleScene.h" />
     <ClInclude Include="ssToolScene.h" />
@@ -204,6 +209,8 @@
     <ClCompile Include="ssItem.cpp" />
     <ClCompile Include="ssLoadingScene.cpp" />
     <ClCompile Include="ssMonster.cpp" />
+    <ClCompile Include="ssPirate1.cpp" />
+    <ClCompile Include="ssPirate2.cpp" />
     <ClCompile Include="ssPlayGround.cpp" />
     <ClCompile Include="ssPlayScene.cpp" />
     <ClCompile Include="sspotion.cpp" />
@@ -222,6 +229,9 @@
     <ClCompile Include="ssSceneManager.cpp" />
     <ClCompile Include="ssSpriteRenderer.cpp" />
     <ClCompile Include="ssTile.cpp" />
+    <ClCompile Include="ssTileBox.cpp" />
+    <ClCompile Include="ssTileObject.cpp" />
+    <ClCompile Include="ssTileObjectBack.cpp" />
     <ClCompile Include="ssTime.cpp" />
     <ClCompile Include="ssTitleScene.cpp" />
     <ClCompile Include="ssToolScene.cpp" />

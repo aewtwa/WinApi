@@ -32,7 +32,7 @@ namespace ss
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(35.0f, 41.0f));*/
 
-		GameObject::Initialize();
+		StatObject::Initialize();
 	}
 	void Monster::Update()
 	{
@@ -41,11 +41,11 @@ namespace ss
 			Move();
 		}
 
-		GameObject::Update();
+		StatObject::Update();
 	}
 	void Monster::Render(HDC _hdc)
 	{
-		GameObject::Render(_hdc);
+		StatObject::Render(_hdc);
 	}
 	void Monster::OnCollisionEnter(Collider* _other)
 	{

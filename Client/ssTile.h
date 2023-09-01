@@ -9,6 +9,7 @@ namespace ss
 	public:
 		static UINT mSelectedX;
 		static UINT mSelectedY;
+		static Vector2 ConvertNumberToTile(const UINT& _UINT1, const UINT& _UINT2);
 		static Vector2 ConvertPosToTile(const Vector2& _pos);
 
 		Tile();

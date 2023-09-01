@@ -41,7 +41,7 @@ namespace ss
 		mState[static_cast<UINT>(Player::eState::Idle)] = true;
 
 		mPos = mTransform->GetPosition();
-		mPos = Vector2((BLANK_WIDTH + TILE_WIDTH / 2) + TILE_WIDTH, (BLANK_HEIGHT + TILE_HEIGHT / 2) + TILE_HEIGHT);
+		mPos = Vector2(Tile::ConvertNumberToTile(9,9));
 		mTransform->SetPosition(mPos);
 
 		mAnimator = AddComponent<Animator>();
@@ -63,7 +63,7 @@ namespace ss
 
 		// 콜라이더 홀수로 지정하면 1픽셀씩 밀어냄
 		mCollider->SetSize(Vector2(50.f, 50.f));
-		mCollider->SetOffset(Vector2(0.f, 5.f));
+		mCollider->SetOffset(Vector2(0.f, 2.f));
 
 		StatObject::Initialize();
 	}
@@ -111,7 +111,37 @@ namespace ss
 		{
 
 		}
-		if (L"Tile" == _other->GetOwner()->GetName())
+		if (L"TileBox" == _other->GetOwner()->GetName())
+		{
+			eDirection CurDir = CurDirection_flag();
+			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
+			{
+				RECT resultRect = GetInterSectColliderRect(_other);
+
+				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
+					, static_cast<float>(resultRect.top - resultRect.bottom) };
+
+				Vector2 curDir = CurDirection();
+				interSectVec = curDir * interSectVec;
+
+				mPos += curDir * interSectVec;
+			}
+			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
+			{
+				RECT resultRect = GetInterSectColliderRect(_other);
+
+				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
+					, static_cast<float>(resultRect.top - resultRect.bottom) };
+
+				Vector2 curDir = CurDirection();
+				interSectVec = curDir * interSectVec;
+
+				mPos -= curDir * interSectVec;
+			}
+
+			mTransform->SetPosition(mPos);
+		}
+		if (L"TileObject" == _other->GetOwner()->GetName())
 		{
 			eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
@@ -166,7 +196,7 @@ namespace ss
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
-		if (L"Tile" == _other->GetOwner()->GetName())
+		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
 			eDirection CurDir = CurDirection_flag();
 			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
@@ -193,6 +223,36 @@ namespace ss
 
 				mPos -= curDir * interSectVec;
 			}
+			mTransform->SetPosition(mPos);
+		}
+		if (L"TileObject" == _other->GetOwner()->GetName())
+		{
+			eDirection CurDir = CurDirection_flag();
+			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
+			{
+				RECT resultRect = GetInterSectColliderRect(_other);
+
+				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
+					, static_cast<float>(resultRect.top - resultRect.bottom) };
+
+				Vector2 curDir = CurDirection();
+				interSectVec = curDir * interSectVec;
+
+				mPos += curDir * interSectVec;
+			}
+			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
+			{
+				RECT resultRect = GetInterSectColliderRect(_other);
+
+				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
+					, static_cast<float>(resultRect.top - resultRect.bottom) };
+
+				Vector2 curDir = CurDirection();
+				interSectVec = curDir * interSectVec;
+
+				mPos -= curDir * interSectVec;
+			}
+
 			mTransform->SetPosition(mPos);
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())

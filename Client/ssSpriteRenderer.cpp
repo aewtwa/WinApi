@@ -41,6 +41,8 @@ namespace ss
 		: Component(eComponentType::SpriteRenderer)
 		, mbAffectCamera(true)
 		, mbTile(false)
+		, mTileIndexX(0)
+		, mTileIndexY(0)
 		, mTexture(nullptr)
 		, mScale(Vector2::One)
 		, mAlpha(1.0f)

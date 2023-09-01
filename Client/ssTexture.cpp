@@ -15,6 +15,7 @@ namespace ss
 		, mHdc(NULL)
 		, mWidth(0)
 		, mHeight(0)
+		, mOffset(Vector2::Zero)
 		, mType(eTextureType::None)
 		, mbAffectCamera(false)
 	{
@@ -114,8 +115,8 @@ namespace ss
 		if (mType == eTextureType::Bmp)
 		{
 			TransparentBlt(_hdc, 
-				static_cast<int>(_pos.x) - (_size.x * _scale.x / 2.0f) + _offset.x
-				, static_cast<int>(_pos.y) - (_size.y * _scale.y / 2.0f) + _offset.y
+				static_cast<int>(_pos.x) - (_size.x * _scale.x / 2.0f) + mOffset.x
+				, static_cast<int>(_pos.y) - (_size.y * _scale.y / 2.0f) + mOffset.y
 				, _size.x * _scale.x
 				, _size.y * _scale.y
 				, mHdc

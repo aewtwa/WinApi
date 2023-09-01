@@ -9,6 +9,16 @@ namespace ss
 	UINT Tile::mSelectedX = 0;
 	UINT Tile::mSelectedY = 0;
 
+	Vector2 Tile::ConvertNumberToTile(const UINT& _UINT1, const UINT& _UINT2)
+	{
+		Vector2 MapIdx = {};
+
+		MapIdx.x = _UINT1 * TILE_WIDTH + BLANK_WIDTH + TILE_WIDTH / 2;
+		MapIdx.y = _UINT2 * TILE_HEIGHT + BLANK_HEIGHT + TILE_HEIGHT / 2;
+
+		return MapIdx;
+	}
+
 	Vector2 Tile::ConvertPosToTile(const Vector2& _pos)
 	{
 		Vector2 MapIdx = {};

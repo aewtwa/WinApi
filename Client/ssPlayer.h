@@ -28,9 +28,6 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other) override;
 		virtual void OnCollisionExit(class Collider* _other) override;
 
-		Vector2 GetMapIDX();
-		Vector2 GetPos() { return mPos; }
-
 		void Idle();
 		void Move();
 		void Trap();

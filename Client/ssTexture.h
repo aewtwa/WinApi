@@ -36,6 +36,8 @@ namespace ss
 		void SetWidth(UINT _width) { mWidth = _width; }
 		UINT GetHeight() { return mHeight; }
 		void SetHeight(UINT _height) { mHeight = _height; }
+		Vector2 GetOffset() { return mOffset; }
+		void SetOffset(Vector2 _offset) { mOffset = _offset; }
 
 		HDC GetHdc() { return mHdc; }
 		eTextureType GetType() { return mType; }
@@ -52,6 +54,7 @@ namespace ss
 		HDC mHdc;
 		UINT mWidth;
 		UINT mHeight;
+		Vector2 mOffset;
 		bool mbAffectCamera;
 	};
 }
