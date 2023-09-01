@@ -31,14 +31,18 @@ namespace ss
 		eDirection CurDirection_flag();
 		Vector2 CurDirection();
 
-		Stat GetStat() const { return mStats; }
-		void SetStat(Stat _Stat) { mStats = _Stat; }
+
+		Transform* GetTransform() { return mTransform; }
+		void SetTransform(Transform* _transform) { mTransform = _transform; }
+
+		std::bitset<static_cast<UINT>(eDirection::End)> GetDirect() { return mDirection; }
+		void SetDirect(std::bitset<static_cast<UINT>(eDirection::End)> _direct) { mDirection = _direct; }
 
 		Vector2 GetPos() { return mPos; }
 		void SetPos(Vector2 _pos) { mPos = _pos; }
 
-		Transform* GetTransform() { return mTransform; }
-		void SetTransform(Transform* _transform) { mTransform = _transform; }
+		Stat GetStat() const { return mStats; }
+		void SetStat(Stat _Stat) { mStats = _Stat; }
 
 	private:
 		class Transform* mTransform;

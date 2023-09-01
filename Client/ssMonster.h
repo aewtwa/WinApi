@@ -18,10 +18,11 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other) override;
 		virtual void OnCollisionExit(class Collider* _other) override;
 
+		virtual void Move();
+		virtual void Die();
+
 		bool GetisDeath() { return mbDeath; }
 		void SetisDeath(bool _death) { mbDeath = _death; }
-		void Move();
-		void Die();
 
 	private:
 		bool mbDeath;

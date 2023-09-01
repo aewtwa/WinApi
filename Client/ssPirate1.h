@@ -18,8 +18,8 @@ namespace ss
 		virtual void OnCollisionStay(class Collider* _other) override;
 		virtual void OnCollisionExit(class Collider* _other) override;
 
-		void Move();
-		void Die();
+		void Move() override;
+		void Die() override;
 	
 	private:
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;

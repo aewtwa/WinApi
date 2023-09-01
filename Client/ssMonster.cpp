@@ -54,6 +54,7 @@ namespace ss
 	}
 	void Monster::Die()
 	{
+		mbDeath = true;
 		Destroy(this);
 	}
 }

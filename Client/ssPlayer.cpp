@@ -16,7 +16,6 @@ namespace ss
 {
 	Player::Player()
 		: mState{}
-		, mDirection{}
 		, mAnimator{}
 		, mCollider{}
 		, mDeathTime(0.0f)
@@ -112,34 +111,6 @@ namespace ss
 			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
 			CollideWall(_other);
-			/*eDirection CurDir = CurDirection_flag();
-			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos += curDir * interSectVec;
-				SetPos(Pos);
-			}
-			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos -= curDir * interSectVec;
-				SetPos(Pos);
-			}
-			SetPos(Pos);*/
 			transform->SetPosition(Pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
@@ -147,34 +118,6 @@ namespace ss
 			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
 			CollideWall(_other);
-			/*eDirection CurDir = CurDirection_flag();
-			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos += curDir * interSectVec;
-				SetPos(Pos);
-			}
-			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos -= curDir * interSectVec;
-				SetPos(Pos);
-			}*/
-
 			transform->SetPosition(Pos);
 		}
 		if (L"ballon" == _other->GetOwner()->GetName())
@@ -207,33 +150,6 @@ namespace ss
 			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
 			CollideWall(_other);
-			/*eDirection CurDir = CurDirection_flag();
-			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos += curDir * interSectVec;
-				SetPos(Pos);
-			}
-			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos -= curDir * interSectVec;
-				SetPos(Pos);
-			}*/
 			transform->SetPosition(Pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
@@ -241,34 +157,6 @@ namespace ss
 			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
 			CollideWall(_other);
-			/*eDirection CurDir = CurDirection_flag();
-			if (CurDir == eDirection::Down || CurDir == eDirection::Left)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos += curDir * interSectVec;
-				SetPos(Pos);
-			}
-			else if (CurDir == eDirection::Up || CurDir == eDirection::Right)
-			{
-				RECT resultRect = GetInterSectColliderRect(_other);
-
-				Vector2 interSectVec = { static_cast<float>(resultRect.right - resultRect.left)
-					, static_cast<float>(resultRect.top - resultRect.bottom) };
-
-				Vector2 curDir = CurDirection();
-				interSectVec = curDir * interSectVec;
-
-				Pos -= curDir * interSectVec;
-				SetPos(Pos);
-			}*/
-
 			transform->SetPosition(Pos);
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
@@ -291,62 +179,75 @@ namespace ss
 
 	void Player::Idle()
 	{
+		std::bitset<static_cast<UINT>(eDirection::End)> direction = GetDirect();
 		if (Input::GetKey(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Up", true);
-			SetDirection(eDirection::Up);
+			direction.reset();
+			direction[static_cast<UINT>(eDirection::Up)] = true;
+			SetDirect(direction);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 		if (Input::GetKey(eKeyCode::Down))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Down", true);
-			SetDirection(eDirection::Down);
+			direction.reset();
+			direction[static_cast<UINT>(eDirection::Down)] = true;
+			SetDirect(direction);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 		if (Input::GetKey(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Left", true);
-			SetDirection(eDirection::Left);
+			direction.reset();
+			direction[static_cast<UINT>(eDirection::Left)] = true;
+			SetDirect(direction);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 		if (Input::GetKey(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"Bazzi_Right", true);
-			SetDirection(eDirection::Right);
+			direction.reset();
+			direction[static_cast<UINT>(eDirection::Right)] = true;
+			SetDirect(direction);
 			mState[static_cast<int>(eState::Move)] = true;
 		}
 
 		if (Input::GetKeyUp(eKeyCode::Up))
 		{
-			mDirection[static_cast<UINT>(eDirection::Up)] = false;
+			direction[static_cast<UINT>(eDirection::Up)] = false;
 			if (Input::AllKeyNone())
 			{
 				mAnimator->PlayAnimation(L"Bazzi_Up_Idle");
 			}
+			SetDirect(direction);
 		}
 		else if (Input::GetKeyUp(eKeyCode::Down))
 		{
-			mDirection[static_cast<UINT>(eDirection::Down)] = false;
+			direction[static_cast<UINT>(eDirection::Down)] = false;
 			if (Input::AllKeyNone())
 			{
 				mAnimator->PlayAnimation(L"Bazzi_Down_Idle");
 			}
+			SetDirect(direction);
 		}
 		else if (Input::GetKeyUp(eKeyCode::Left))
 		{
-			mDirection[static_cast<UINT>(eDirection::Left)] = false;
+			direction[static_cast<UINT>(eDirection::Left)] = false;
 			if (Input::AllKeyNone())
 			{
 				mAnimator->PlayAnimation(L"Bazzi_Left_Idle");
 			}
+			SetDirect(direction);
 		}
 		else if (Input::GetKeyUp(eKeyCode::Right))
 		{
-			mDirection[static_cast<UINT>(eDirection::Right)] = false;
+			direction[static_cast<UINT>(eDirection::Right)] = false;
 			if (Input::AllKeyNone())
 			{
 				mAnimator->PlayAnimation(L"Bazzi_Right_Idle");
 			}
+			SetDirect(direction);
 		}
 
 		if (Input::GetKey(eKeyCode::Space))
@@ -359,22 +260,23 @@ namespace ss
 	{
 		Vector2 Pos = this->GetPos();
 		Transform* transform = GetTransform();
-		if (mDirection[static_cast<UINT>(eDirection::Up)])
+		std::bitset<static_cast<UINT>(eDirection::End)> direction = GetDirect();
+		if (direction[static_cast<UINT>(eDirection::Up)])
 		{
 			Pos.y -= this->GetStat().Speed * Time::DeltaTime();
 			SetPos(Pos);
 		}
-		else if (mDirection[static_cast<UINT>(eDirection::Down)])
+		else if (direction[static_cast<UINT>(eDirection::Down)])
 		{
 			Pos.y += this->GetStat().Speed * Time::DeltaTime();
 			SetPos(Pos);
 		}
-		else if (mDirection[static_cast<UINT>(eDirection::Left)])
+		else if (direction[static_cast<UINT>(eDirection::Left)])
 		{
 			Pos.x -= this->GetStat().Speed * Time::DeltaTime();
 			SetPos(Pos);
 		}
-		else if (mDirection[static_cast<UINT>(eDirection::Right)])
+		else if (direction[static_cast<UINT>(eDirection::Right)])
 		{
 			Pos.x += this->GetStat().Speed * Time::DeltaTime();
 			SetPos(Pos);
@@ -403,46 +305,5 @@ namespace ss
 	{
 		mState.reset();
 		mAnimator->PlayAnimation(L"Bazzi_Trap");
-	}
-	void Player::SetDirection(eDirection _dir)
-	{
-		mDirection.reset();
-		mDirection[static_cast<UINT>(_dir)] = true;
-	}
-	eDirection Player::CurDirection_flag()
-	{
-		for (size_t i = 0; i < mDirection.size(); i++)
-		{
-			if (mDirection[i])
-			{
-				return static_cast<eDirection>(i);
-			}
-		}
-	}
-	Vector2 Player::CurDirection()
-	{
-		eDirection Dir = CurDirection_flag();
-
-		switch (Dir)
-		{
-		case ss::enums::eDirection::Up:
-			return { 0.f, -1.f };
-			break;
-		case ss::enums::eDirection::Down:
-			return { 0.f, 1.f };
-			break;
-		case ss::enums::eDirection::Left:
-			return { -1.f, 0.f };
-			break;
-		case ss::enums::eDirection::Right:
-			return { 1.f, 0.f };
-			break;
-		case ss::enums::eDirection::End:
-		default:
-			return { 0.f, 0.f };
-			break;
-		}
-
-		return { 0.f, 0.f };
 	}
 }
