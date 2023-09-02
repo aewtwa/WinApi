@@ -40,11 +40,39 @@ namespace ss
 		{
 			Die();
 		}
+		if (L"TileBox" == _other->GetOwner()->GetName())
+		{
+			Transform* transform = GetTransform();
+			Vector2 Pos = transform->GetPosition();
+			CollideWall(_other);
+			transform->SetPosition(Pos);
+		}
+		if (L"TileObject" == _other->GetOwner()->GetName())
+		{
+			Transform* transform = GetTransform();
+			Vector2 Pos = transform->GetPosition();
+			CollideWall(_other);
+			transform->SetPosition(Pos);
+		}
 	}
-	void Monster::OnCollisionStay(Collider* other)
+	void Monster::OnCollisionStay(Collider* _other)
 	{
+		if (L"TileBox" == _other->GetOwner()->GetName())
+		{
+			Transform* transform = GetTransform();
+			Vector2 Pos = transform->GetPosition();
+			CollideWall(_other);
+			transform->SetPosition(Pos);
+		}
+		if (L"TileObject" == _other->GetOwner()->GetName())
+		{
+			Transform* transform = GetTransform();
+			Vector2 Pos = transform->GetPosition();
+			CollideWall(_other);
+			transform->SetPosition(Pos);
+		}
 	}
-	void Monster::OnCollisionExit(Collider* other)
+	void Monster::OnCollisionExit(Collider* _other)
 	{
 	}
 

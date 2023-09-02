@@ -4,6 +4,7 @@
 #include "ssCollider.h"
 #include "ssMonster.h"
 #include "ssTime.h"
+#include "ssInput.h"
 
 namespace ss
 {
@@ -24,12 +25,6 @@ namespace ss
 		stat.Bombs = 1;
 		SetStat(stat);
 
-		Transform* transform = GetComponent<Transform>();
-		transform->GetPosition();
-		Vector2 pos = GetPos();
-		SetTransform(transform);
-		transform->SetPosition(pos);
-
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimationFolder(L"ForestMobUp", L"..\\Resources\\Image\\Monster\\Forest\\Up", Vector2(0.0f, 0.0f), 0.16f);
 		mAnimator->CreateAnimationFolder(L"ForestMobDown", L"..\\Resources\\Image\\Monster\\Forest\\Down", Vector2(0.0f, 0.0f), 0.16f);
@@ -44,6 +39,21 @@ namespace ss
 	}
 	void Pirate1::Update()
 	{
+		std::bitset<static_cast<UINT>(eDirection::End)> direction = GetDirect();
+		if (Input::GetKey(eKeyCode::W))
+		{
+			mAnimator->PlayAnimation(L"ForestMobUp");
+			direction.reset();
+			direction[static_cast<UINT>(eDirection::Up)] = true;
+			SetDirect(direction);
+			Move();
+		}
+		if (Input::GetKeyUp(eKeyCode::Up))
+		{
+			direction[static_cast<UINT>(eDirection::Up)] = false;
+			SetDirect(direction);
+		}
+
 		Monster::Update();
 	}
 	void Pirate1::Render(HDC _hdc)
@@ -52,16 +62,17 @@ namespace ss
 	}
 	void Pirate1::OnCollisionEnter(Collider* _other)
 	{
+		//Monster::OnCollisionEnter(_other);
 		if (L"WaterFlow" == _other->GetOwner()->GetName())
 		{
 			Die();
 		}
 		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
-			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
+			Vector2 pos = transform->GetPosition();
 			CollideWall(_other);
-			transform->SetPosition(Pos);
+			transform->SetPosition(pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
 		{
@@ -73,12 +84,13 @@ namespace ss
 	}
 	void Pirate1::OnCollisionStay(Collider* _other)
 	{
+		//Monster::OnCollisionStay(_other);
 		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
-			Vector2 Pos = this->GetPos();
 			Transform* transform = GetTransform();
+			Vector2 pos = transform->GetPosition();
 			CollideWall(_other);
-			transform->SetPosition(Pos);
+			transform->SetPosition(pos);
 		}
 		if (L"TileObject" == _other->GetOwner()->GetName())
 		{
@@ -93,12 +105,16 @@ namespace ss
 	}
 	void Pirate1::Move()
 	{
-		mAnimator->PlayAnimation(L"ForestMobUp");
-		/*Vector2 pos = this->GetPos();
+		Vector2 pos = GetPos();
 		Transform* transform = GetTransform();
-		pos.y -= this->GetStat().Speed * Time::DeltaTime();
-		SetPos(pos);
-		transform->SetPosition(pos);*/
+		std::bitset<static_cast<UINT>(eDirection::End)> direction = GetDirect();
+		if (direction[static_cast<UINT>(eDirection::Up)])
+		{
+			pos.y -= this->GetStat().Speed * Time::DeltaTime();
+			SetPos(pos);
+		}
+		transform->SetPosition(pos);
+
 		Monster::Move();
 	}
 	void Pirate1::Die()

@@ -22,6 +22,8 @@
 #include "ssTileObject.h"
 #include "ssTileObjectBack.h"
 #include "ssPirate1.h"
+#include "ssGameObject.h"
+#include "ssStatObject.h"
 
 namespace ss
 {
@@ -40,7 +42,13 @@ namespace ss
 		// ƒ≥∏Ø≈Õ ª¿‘
 		Object::Instantiate<Player>(eLayerType::Player);
 		// ∏ÛΩ∫≈Õ ª¿‘
-		Object::Instantiate<Pirate1>(eLayerType::Monster, Tile::ConvertNumberToTile(2, 6));
+		Pirate1* pirate1 = Object::Instantiate<Pirate1>(eLayerType::Monster);
+		Vector2 pos = pirate1->GetPos();
+		pos = Vector2(Tile::ConvertNumberToTile(2, 6));
+		Transform* ptr1 = pirate1->GetComponent<Transform>();
+		ptr1->SetPosition(pos);
+		pirate1->SetTransform(ptr1);
+		pirate1->SetPos(pos);
 		// ≈∏¿œ ª¿‘
 		Texture* IceTileImage = Resources::Load<Texture>(L"IceTile", L"..\\Resources\\Image\\Map\\iceobject.bmp");
 		Texture* SnowTileImage = Resources::Load<Texture>(L"SnowTile", L"..\\Resources\\Image\\Map\\icetile.bmp");
@@ -185,6 +193,9 @@ namespace ss
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::TileBox, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::TileObject, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Item, true);
+
+		CollisionManager::CollisionLayerCheck(eLayerType::Monster, eLayerType::TileBox, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Monster, eLayerType::TileObject, true);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::WaterFlow, eLayerType::Player, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::WaterFlow, eLayerType::Monster, true);
