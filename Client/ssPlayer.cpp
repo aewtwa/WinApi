@@ -135,7 +135,7 @@ namespace ss
 		if (L"skate" == _other->GetOwner()->GetName())
 		{
 			Stat stat = this->GetStat();
-			stat.Speed *= 2.2f;
+			stat.Speed *= 1.5f;
 			SetStat(stat);
 		}
 		if (L"WaterFlow" == _other->GetOwner()->GetName())

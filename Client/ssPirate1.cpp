@@ -21,8 +21,8 @@ namespace ss
 	{
 		Stat stat = {};
 		stat.Speed = 200.0f;
-		stat.BombPower = 1;
-		stat.Bombs = 1;
+		stat.BombPower = 0;
+		stat.Bombs = 0;
 		SetStat(stat);
 
 		mAnimator = AddComponent<Animator>();

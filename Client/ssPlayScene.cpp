@@ -22,6 +22,7 @@
 #include "ssTileObject.h"
 #include "ssTileObjectBack.h"
 #include "ssPirate1.h"
+#include "ssPirate2.h"
 #include "ssGameObject.h"
 #include "ssStatObject.h"
 
@@ -49,6 +50,14 @@ namespace ss
 		ptr1->SetPosition(pos);
 		pirate1->SetTransform(ptr1);
 		pirate1->SetPos(pos);
+
+		Pirate2* pirate2 = Object::Instantiate<Pirate2>(eLayerType::Monster);
+		Vector2 pos2 = pirate2->GetPos();
+		pos2 = Vector2(Tile::ConvertNumberToTile(12, 10));
+		Transform* ptr2 = pirate2->GetComponent<Transform>();
+		ptr2->SetPosition(pos2);
+		pirate2->SetTransform(ptr2);
+		pirate2->SetPos(pos2);
 		// ≈∏¿œ ª¿‘
 		Texture* IceTileImage = Resources::Load<Texture>(L"IceTile", L"..\\Resources\\Image\\Map\\iceobject.bmp");
 		Texture* SnowTileImage = Resources::Load<Texture>(L"SnowTile", L"..\\Resources\\Image\\Map\\icetile.bmp");
@@ -187,6 +196,10 @@ namespace ss
 				DummyBackTile->AddComponent<SpriteRenderer>()->SetImage(DummyBackImage);
 			}
 		}
+
+		Object::Instantiate<ballon>(eLayerType::Item, Tile::ConvertNumberToTile(4, 9));
+		Object::Instantiate<potion>(eLayerType::Item, Tile::ConvertNumberToTile(5, 9));
+		Object::Instantiate<skate>(eLayerType::Item, Tile::ConvertNumberToTile(6, 9));
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::WaterBomb, true);

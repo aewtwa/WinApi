@@ -24,9 +24,9 @@ namespace ss
 	{
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"ballon", Resources::Find<Texture>(L"ballon"), Vector2(0.0f, 0.0f), Vector2(56.0f, 70.0f), 2, Vector2(0.0f, 0.0f), 0.16f);
-
+		mAnimator->SetScale(Vector2(0.8f, 0.8f));
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50.0f, 60.0f));
+		mCollider->SetSize(Vector2(40.0f, 50.0f));
 	}
 
 	void ballon::Update()
