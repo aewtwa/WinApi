@@ -38,6 +38,8 @@ namespace ss
 	}
 	void PlayScene::Initialize()
 	{
+		// ¹Ù´Ú »ğÀÔ
+		//Object::Instantiate<IceFloor>(eLayerType::Floor);
 		// ¹è°æ »ğÀÔ
 		Object::Instantiate<BackGround>(eLayerType::Background);
 		// Ä³¸¯ÅÍ »ğÀÔ
@@ -244,6 +246,11 @@ namespace ss
 		if (Input::GetKey(eKeyCode::Z))
 		{
 			SceneManager::LoadScene(L"ToolScene");
+		}
+
+		if (this->GetLayer(eLayerType::Monster).GetGameObjects().size() == 0)
+		{
+			SceneManager::LoadScene(L"IceMap1");
 		}
 
 		Scene::Update();
