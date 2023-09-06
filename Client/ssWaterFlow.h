@@ -19,10 +19,6 @@ namespace ss
 		virtual void OnCollisionExit(class Collider* _other) override;
 
 		void Bomb();
-		void Up(Vector2 _Up);
-		void Down(Vector2 _Down);
-		void Left(Vector2 _Left);
-		void Right(Vector2 _Right);
 
 	private:
 		class Animator* mAnimator;

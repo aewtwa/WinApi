@@ -10,6 +10,8 @@
 #include "ssWaterFlow.h"
 #include "ssStatObject.h"
 #include "ssGameObject.h"
+#include "ssScene.h"
+#include "ssSceneManager.h"
 
 namespace ss
 {
@@ -85,26 +87,162 @@ namespace ss
 
 			WaterFlow* WF = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, mPos);
 			WF->GetComponent<Animator>()->PlayAnimation(L"BombCenterflow");
+
+			Scene* scene = SceneManager::GetActiveScene();
+			std::vector<GameObject*> v = scene->GetLayer(eLayerType::TileBox).GetGameObjects();
+			std::vector<GameObject*> b = scene->GetLayer(eLayerType::TileObject).GetGameObjects();
+
+			Vector2 tilePos = {};
+			Vector2 objectPos = {};
+			bool flag = 0;
+
 			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
 			{
 				Vector2 UpPos = mPos;
-				UpPos.y -= TILE_HEIGHT * i;
+				UpPos.y = UpPos.y - TILE_HEIGHT * i;
+
+				for (size_t i = 0; i < v.size(); i++)
+				{
+					tilePos = v[i]->GetComponent<Transform>()->GetPosition();
+					if (UpPos == tilePos)
+					{
+						WaterFlow* WFU = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, UpPos);
+						WFU->GetComponent<Animator>()->PlayAnimation(L"BombUpflow");
+						flag = 1;
+						break;
+					}
+				}
+				
+				for (size_t i = 0; i < b.size(); i++)
+				{
+					objectPos = b[i]->GetComponent<Transform>()->GetPosition();
+					if (UpPos == objectPos)
+					{
+						flag = 1;
+						break;
+					}
+				}
+
+				if (flag)
+				{
+					flag = 0;
+					break;
+				}
+
 				WaterFlow* WFU = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, UpPos);
 				WFU->GetComponent<Animator>()->PlayAnimation(L"BombUpflow");
-
+			}
+			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
+			{
 				Vector2 DownPos = mPos;
-				DownPos.y += TILE_HEIGHT * i;
+				DownPos.y = DownPos.y + TILE_HEIGHT * i;
+
+				for (size_t i = 0; i < v.size(); i++)
+				{
+					tilePos = v[i]->GetComponent<Transform>()->GetPosition();
+					if (DownPos == tilePos)
+					{
+						WaterFlow* WFD = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, DownPos);
+						WFD->GetComponent<Animator>()->PlayAnimation(L"BombDownflow");
+						flag = 1;
+						break;
+					}
+				}
+
+				for (size_t i = 0; i < b.size(); i++)
+				{
+					objectPos = b[i]->GetComponent<Transform>()->GetPosition();
+					if (DownPos == objectPos)
+					{
+						flag = 1;
+						break;
+					}
+				}
+
+				if (flag)
+				{
+					flag = 0;
+					break;
+				}
+
 				WaterFlow* WFD = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, DownPos);
 				WFD->GetComponent<Animator>()->PlayAnimation(L"BombDownflow");
+			}
+			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
+			{
 				Vector2 LeftPos = mPos;
-				LeftPos.x -= TILE_WIDTH * i;
+				LeftPos.x = LeftPos.x - TILE_WIDTH * i;
+
+				for (size_t i = 0; i < v.size(); i++)
+				{
+					tilePos = v[i]->GetComponent<Transform>()->GetPosition();
+					if (LeftPos == tilePos)
+					{
+						WaterFlow* WFL = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, LeftPos);
+						WFL->GetComponent<Animator>()->PlayAnimation(L"BombLeftflow");
+						flag = 1;
+						break;
+					}
+				}
+
+				for (size_t i = 0; i < b.size(); i++)
+				{
+					objectPos = b[i]->GetComponent<Transform>()->GetPosition();
+					if (LeftPos == objectPos)
+					{
+						flag = 1;
+						break;
+					}
+				}
+
+				if (flag)
+				{
+					flag = 0;
+					break;
+				}
+
 				WaterFlow* WFL = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, LeftPos);
 				WFL->GetComponent<Animator>()->PlayAnimation(L"BombLeftflow");
+			}
+			for (size_t i = 1; i <= this->mOwner->GetStat().BombPower; i++)
+			{
 				Vector2 RightPos = mPos;
-				RightPos.x += TILE_WIDTH * i;
+				RightPos.x = RightPos.x + TILE_WIDTH * i;
+
+				for (size_t i = 0; i < v.size(); i++)
+				{
+					tilePos = v[i]->GetComponent<Transform>()->GetPosition();
+					if (RightPos == tilePos)
+					{
+						WaterFlow* WFR = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, RightPos);
+						WFR->GetComponent<Animator>()->PlayAnimation(L"BombRightflow");
+						flag = 1;
+						break;
+					}
+				}
+
+				for (size_t i = 0; i < b.size(); i++)
+				{
+					objectPos = b[i]->GetComponent<Transform>()->GetPosition();
+					if (RightPos == objectPos)
+					{
+						flag = 1;
+						break;
+					}
+				}
+
+				if (flag)
+				{
+					flag = 0;
+					break;
+				}
+
 				WaterFlow* WFR = Object::Instantiate<WaterFlow>(eLayerType::WaterFlow, RightPos);
 				WFR->GetComponent<Animator>()->PlayAnimation(L"BombRightflow");
 			}
+
+
+
 
 			Stat stat = this->mOwner->GetStat();
 			stat.Bombs++;

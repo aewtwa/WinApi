@@ -20,12 +20,10 @@ namespace ss
 	void Pirate2::Initialize()
 	{
 		Stat stat = {};
-		stat.Speed = 200.0f;
+		stat.Speed = 100.0f;
 		stat.BombPower = 0;
 		stat.Bombs = 0;
 		SetStat(stat);
-
-		mDirection[static_cast<UINT>(eDirection::Up)] = true;
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimationFolder(L"Pirate2MobUp", L"..\\Resources\\Image\\Monster\\Pirate2\\Up", Vector2(0.0f, 0.0f), 0.16f);
@@ -33,7 +31,7 @@ namespace ss
 		mAnimator->CreateAnimationFolder(L"Pirate2MobLeft", L"..\\Resources\\Image\\Monster\\Pirate2\\Left", Vector2(0.0f, 0.0f), 0.16f);
 		mAnimator->CreateAnimationFolder(L"Pirate2MobRight", L"..\\Resources\\Image\\Monster\\Pirate2\\Right", Vector2(0.0f, 0.0f), 0.16f);
 		mAnimator->CreateAnimationFolder(L"Pirate2MobDie", L"..\\Resources\\Image\\Monster\\Pirate2\\Die", Vector2(0.0f, 0.0f), 0.16f);
-
+		mDirection[static_cast<UINT>(eDirection::Up)] = true;
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(35.0f, 41.0f));
 
@@ -43,23 +41,24 @@ namespace ss
 	{
 		mMovetime += Time::DeltaTime();
 
-		if (mMovetime > 2.0f && mDirection[static_cast<UINT>(eDirection::Up)])
+		if (mMovetime > 2.0f)
 		{
-			mAnimator->PlayAnimation(L"Pirate2MobUp");
-			Move();
-			mDirection.reset();
-			mDirection[static_cast<UINT>(eDirection::Down)] = true;
-			mMovetime = 0.0f;
+			if (mDirection[static_cast<UINT>(eDirection::Up)])
+			{
+				mDirection.reset();
+				mDirection[static_cast<UINT>(eDirection::Down)] = true;
+			}
+			else if(mDirection[static_cast<UINT>(eDirection::Down)])
+			{
+				mDirection.reset();
+				mDirection[static_cast<UINT>(eDirection::Up)] = true;
+			}
+
+			mMovetime = 0;
 		}
 
-		if (mMovetime > 2.0f && mDirection[static_cast<UINT>(eDirection::Down)])
-		{
-			mAnimator->PlayAnimation(L"Pirate2MobDown");
-			Move();
-			mDirection.reset();
-			mDirection[static_cast<UINT>(eDirection::Up)] = true;
-			mMovetime = 0.0f;
-		}
+		Move();
+
 		Monster::Update();
 	}
 	void Pirate2::Render(HDC _hdc)

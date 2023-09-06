@@ -85,9 +85,6 @@ namespace ss
 		SelectObject(mBackHdc, oldBrush);
 		DeleteObject(brush);
 
-		Time::Render(mBackHdc);
-
-//		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);

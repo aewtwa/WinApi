@@ -48,7 +48,7 @@ namespace ss
 			SetDirect(direction);
 			Move();
 		}
-		if (Input::GetKeyUp(eKeyCode::Up))
+		if (Input::GetKeyUp(eKeyCode::W))
 		{
 			direction[static_cast<UINT>(eDirection::Up)] = false;
 			SetDirect(direction);
