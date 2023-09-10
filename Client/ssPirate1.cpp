@@ -62,43 +62,11 @@ namespace ss
 	}
 	void Pirate1::OnCollisionEnter(Collider* _other)
 	{
-		//Monster::OnCollisionEnter(_other);
-		if (L"WaterFlow" == _other->GetOwner()->GetName())
-		{
-			Die();
-		}
-		if (L"TileBox" == _other->GetOwner()->GetName())
-		{
-			Transform* transform = GetTransform();
-			Vector2 pos = transform->GetPosition();
-			CollideWall(_other);
-			transform->SetPosition(pos);
-		}
-		if (L"TileObject" == _other->GetOwner()->GetName())
-		{
-			Vector2 Pos = this->GetPos();
-			Transform* transform = GetTransform();
-			CollideWall(_other);
-			transform->SetPosition(Pos);
-		}
+		Monster::OnCollisionEnter(_other);
 	}
 	void Pirate1::OnCollisionStay(Collider* _other)
 	{
-		//Monster::OnCollisionStay(_other);
-		if (L"TileBox" == _other->GetOwner()->GetName())
-		{
-			Transform* transform = GetTransform();
-			Vector2 pos = transform->GetPosition();
-			CollideWall(_other);
-			transform->SetPosition(pos);
-		}
-		if (L"TileObject" == _other->GetOwner()->GetName())
-		{
-			Vector2 Pos = this->GetPos();
-			Transform* transform = GetTransform();
-			CollideWall(_other);
-			transform->SetPosition(Pos);
-		}
+		Monster::OnCollisionStay(_other);
 	}
 	void Pirate1::OnCollisionExit(Collider* _other)
 	{

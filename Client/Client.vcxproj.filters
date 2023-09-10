@@ -127,6 +127,9 @@
     <Filter Include="Contents\GameObjects\StatObject\Monster\Pirate1">
       <UniqueIdentifier>{39c348fe-3291-4dc1-bea4-b4c1172df510}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObjects\StatObject\Monster\Boss">
+      <UniqueIdentifier>{c478209b-63ce-436a-920c-f06bde494d60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -288,6 +291,9 @@
     <ClInclude Include="ssTileObjectBack.h">
       <Filter>Contents\GameObjects\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="ssBoss.h">
+      <Filter>Contents\GameObjects\StatObject\Monster\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -444,6 +450,9 @@
     </ClCompile>
     <ClCompile Include="ssTileObjectBack.cpp">
       <Filter>Contents\GameObjects\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="ssBoss.cpp">
+      <Filter>Contents\GameObjects\StatObject\Monster\Boss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

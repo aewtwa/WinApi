@@ -3,11 +3,11 @@
 
 namespace ss
 {
-	class Pirate1 : public Monster
+	class Boss : public Monster
 	{
 	public:
-		Pirate1();
-		virtual ~Pirate1();
+		Boss();
+		virtual ~Boss();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -19,8 +19,9 @@ namespace ss
 
 		void Move() override;
 		void Die() override;
-	
+
 	private:
+		int mHp;
 		std::bitset<static_cast<UINT>(eDirection::End)> mDirection;
 
 		class Animator* mAnimator;

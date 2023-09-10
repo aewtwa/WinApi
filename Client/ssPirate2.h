@@ -3,7 +3,6 @@
 
 namespace ss
 {
-	using namespace math;
 	class Pirate2 : public Monster
 	{
 	public:

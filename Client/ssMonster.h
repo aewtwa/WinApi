@@ -3,7 +3,6 @@
 
 namespace ss
 {
-	using namespace math;
 	class Monster : public StatObject
 	{
 	public:
