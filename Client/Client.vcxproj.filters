@@ -294,6 +294,7 @@
     <ClInclude Include="ssBoss.h">
       <Filter>Contents\GameObjects\StatObject\Monster\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
