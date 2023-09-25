@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "Client.h"
 #include "ssApplication.h"
+////////////////////
+//////////////
+//////////////
 // test
 ///
 #include "ssTexture.h"
