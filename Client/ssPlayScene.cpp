@@ -62,13 +62,13 @@ namespace ss
 		pirate2->SetTransform(ptr2);
 		pirate2->SetPos(pos2);
 
-		Boss* boss = Object::Instantiate<Boss>(eLayerType::Monster);
+		/*Boss* boss = Object::Instantiate<Boss>(eLayerType::Monster);
 		Vector2 bosspos = boss->GetPos();
 		bosspos = Vector2(Tile::ConvertNumberToTile(5, 5));
 		Transform* bossptr = boss->GetComponent<Transform>();
 		bossptr->SetPosition(bosspos);
 		boss->SetTransform(bossptr);
-		boss->SetPos(bosspos);
+		boss->SetPos(bosspos);*/
 		// ≈∏¿œ ª¿‘
 		Texture* IceTileImage = Resources::Load<Texture>(L"IceTile", L"..\\Resources\\Image\\Map\\iceobject.bmp");
 		Texture* SnowTileImage = Resources::Load<Texture>(L"SnowTile", L"..\\Resources\\Image\\Map\\icetile.bmp");
