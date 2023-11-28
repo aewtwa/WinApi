@@ -19,7 +19,7 @@ namespace ss
 		, mAnimator{}
 		, mCollider{}
 		, mDeathTime(0.0f)
-		, mOnCollision(false)
+		, mOnCollision(true)
 	{
 		SetName(L"Player");
 	}
@@ -104,10 +104,13 @@ namespace ss
 		}
 		if (L"WaterBomb" == _other->GetOwner()->GetName())
 		{
-			Vector2 Pos = this->GetPos();
-			Transform* transform = GetTransform();
-			CollideWall(_other);
-			transform->SetPosition(Pos);
+			if (mOnCollision == false)
+			{
+				Vector2 Pos = this->GetPos();
+				Transform* transform = GetTransform();
+				CollideWall(_other);
+				transform->SetPosition(Pos);
+			}
 		}
 		if (L"TileBox" == _other->GetOwner()->GetName())
 		{
@@ -301,7 +304,7 @@ namespace ss
 	void Player::DropWaterBomb()
 	{
 		StatObject::DropWaterBomb();
-
+		mOnCollision = true;
 		mState[static_cast<int>(eState::DropWaterBomb)] = false;
 	}
 
